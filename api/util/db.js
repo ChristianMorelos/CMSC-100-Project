@@ -2,10 +2,14 @@ import mongoose from 'mongoose';
 
 
 const connectDB = async () => {
-    await mongoose.connect("mongodb://127.0.0.1:27017/YourDatabaseName", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
+    try {
+        await mongoose.connect("mongodb://127.0.0.1:27017/cmsc-100-project", 
+        {useNewUrlParser: true, useUnifiedTopology: true});
+        console.log("Connected successfully to MongoDB");
+    } catch (error) {
+        console.error("MongoDB connection error:", error);
+        process.exit(1);  
+    }
 }
 
 export default connectDB;

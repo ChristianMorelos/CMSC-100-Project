@@ -1,12 +1,11 @@
-import { Router } from "express";
-import { getSales, getUsers, getOrders, addProduct, fulfillOrder} from "../controllers/admin.js";
+import { Router } from 'express';
+import { getSales, getUsers, addProduct, fulfillOrder } from '../controllers/admin.js';
 
-const router = Router();
+const adminRouter = Router();
 
-router.get('/admin/sales', getSales);
-router.get('/admin/users', getUsers);
-router.get('/admin/orders', getOrders);
-router.post('/admin/add-products', addProduct);
-router.post('/admin/order-fulfillment', fulfillOrder);
+adminRouter.get('/sales', getSales);
+adminRouter.get('/users', getUsers);
+adminRouter.post('/add-products', addProduct);
+adminRouter.post('/order-fulfillment', fulfillOrder);
 
-export default router;
+export default adminRouter;

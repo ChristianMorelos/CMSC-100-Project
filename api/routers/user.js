@@ -1,10 +1,10 @@
-import { Router } from "express";
-import { checkoutOrder, cancelOrder, getOrders } from "../controllers/user.js";
+import { Router } from 'express';
+import { checkoutOrder, cancelOrder, getOrders as getUserOrders } from '../controllers/user.js';
 
-const router = Router();
+const userRouter = Router();
 
-router.post('/user/checkout-order', user.checkoutOrder);
-router.delete('/user/cancel-order', user.cancelOrder);
-router.get('/user/orders', user.getOrders);
+userRouter.get('/orders', getUserOrders);
+userRouter.post('/checkout-order', checkoutOrder);
+userRouter.delete('/cancel-order', cancelOrder);
 
-export default router;
+export default userRouter;
