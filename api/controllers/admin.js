@@ -1,11 +1,13 @@
 import { OrderTransaction } from "../models/model.js";
 
-const getSales = (req, res) => {
-    // Implement user login logic here
+const getSales = async (req, res) => {
+    // Get Orders
+    // Get Products
+    // Join Orders and Products
 };
 
-const getUsers = (req, res) => {
-    // Implement user login logic here
+const getUsers = async (req, res) => {
+    res.json(await User.find());
 };
 
 const getOrders = (req, res) => {
