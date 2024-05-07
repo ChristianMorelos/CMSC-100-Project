@@ -22,15 +22,24 @@ import needle from 'needle';
 //     console.log('Response', res.body);
 // });
 
-const orders = {
-    email: "john.doe@example.com",
-    products: [
-        { id: "P001", quantity: 2 },
-        { id: "P002", quantity: 1 }
-    ]
-};
+// const orders = {
+//     email: "john.doe@example.com",
+//     products: [
+//         { id: "P001", quantity: 2 },
+//         { id: "P002", quantity: 1 }
+//     ]
+// };
 
-needle.post('http://localhost:3000/user/checkout-order', orders, { json: true },
-(err, res) => {
-    console.log('Response', res.body);
-});
+// needle.post('http://localhost:3000/user/checkout-order', orders, { json: true },
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
+
+// const order = {
+//     transactionId: '663a5b60c572fc6dbb709095'
+// }
+
+// needle.post('http://localhost:3000/user/cancel-order', order, { json: true },
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
