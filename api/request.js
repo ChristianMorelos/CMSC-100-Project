@@ -13,11 +13,24 @@ import needle from 'needle';
 //     console.log('Response:', res.body);
 // });
 
-const fulfillOrder = {
-    transactionId: 'T001'
-}
+// const fulfillOrder = {
+//     transactionId: 'T001'
+// }
 
-needle.post('http://localhost:3000/admin/order-fulfillment', fulfillOrder,
+// needle.post('http://localhost:3000/admin/order-fulfillment', fulfillOrder,
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
+
+const orders = {
+    email: "john.doe@example.com",
+    products: [
+        { id: "P001", quantity: 2 },
+        { id: "P002", quantity: 1 }
+    ]
+};
+
+needle.post('http://localhost:3000/user/checkout-order', orders, { json: true },
 (err, res) => {
     console.log('Response', res.body);
 });
