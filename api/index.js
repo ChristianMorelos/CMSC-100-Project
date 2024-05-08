@@ -1,10 +1,10 @@
-import express from 'express';
-import connectDB from './util/db.js';
+import express from "express";
+import connectDB from "./util/db.js";
 
-import authRouter from './routers/auth.js';
-import adminRouter from './routers/admin.js';
-import userRouter from './routers/user.js';
-import productRouter from './routers/product.js';
+import authRouter from "./routers/auth.js";
+import adminRouter from "./routers/admin.js";
+import userRouter from "./routers/user.js";
+import productRouter from "./routers/product.js";
 
 const app = express();
 connectDB();
@@ -20,12 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 //     next();
 // });
 
-app.use('/auth', authRouter);
-app.use('/admin', adminRouter);
-app.use('/user', userRouter);
-app.use('/products', productRouter);
+app.use("/auth", authRouter);
+app.use("/admin", adminRouter);
+app.use("/user", userRouter);
+app.use("/products", productRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`API listening at port ${PORT}.`);
+  console.log(`API listening at port ${PORT}.`);
 });
