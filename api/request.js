@@ -43,3 +43,27 @@ import needle from 'needle';
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
+
+// const registerData = {
+//     firstName: 'John',
+//     middleName: 'Q',
+//     lastName: 'Doe',
+//     userType: 'admin',
+//     email: 'john.doe@example.com',
+//     password: '123456'
+// };
+
+// needle.post('http://localhost:3000/auth/register', registerData, { json: true },
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
+
+// const loginData = {
+//     email: 'john.doe@example.com',
+//     password: '123456'
+// };
+
+// needle.post('http://localhost:3000/auth/login', loginData, { json: true },
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
