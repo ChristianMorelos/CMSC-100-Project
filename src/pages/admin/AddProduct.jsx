@@ -1,16 +1,13 @@
 import { useState } from "react";
-export default function AddProduct(props) {
+export default function AddProduct() {
+
     const [prodId, setId] = useState('');
     const [prodName, setName] = useState('');
     const [prodDesc, setDesc] = useState('');
     const [prodType, setType] = useState(1);
     const [prodQty, setQty] = useState(1);
 
-    
-    const form = document.getElementById("form-values");
-
-
-    //
+    //validate fields function
     function validateFields(){
 
          //check if any of the input fields are empty 
@@ -35,6 +32,8 @@ export default function AddProduct(props) {
         setQty(1);
     }
 
+
+
   return (
     <>
 
@@ -42,19 +41,19 @@ export default function AddProduct(props) {
 
     <form id="form-values" >
         <div id="form">
-            <label className="product-field" for="prodId">Product Id:</label>
+            <label className="product-field" >Product Id:</label>
             <input value={prodId} type="text" onChange={e => setId(e.target.value)} id="prodId" name="prodId" required/>
 
-            <label className="product-field" for="prodName">Product Name:</label>
+            <label className="product-field" >Product Name:</label>
             <input value={prodName} type="text" onChange={e => setName(e.target.value)} id="prodName" name="prodName" required/>
 
-            <label className="product-field" for="productDesc">Product Description:</label>
+            <label className="product-field" >Product Description:</label>
             <input value={prodDesc} type="text" onChange={e => setDesc(e.target.value)} id="productDesc" name="productDesc" required/>
 
-            <label className="product-field" for="prodType">Product Type:</label>
+            <label className="product-field" >Product Type:</label>
             <input value={prodType} type="number" onChange={e => setType(e.target.value)} id="prodType" name="prodType" required/>
 
-            <label className="product-field" for="prodQuantity">Product Quantity:</label>
+            <label className="product-field" >Product Quantity:</label>
             <input value={prodQty} type="number" onChange={e => setQty(e.target.value)} id="prodQuantity" name="prodQuantity" required/>
         </div>
        
@@ -67,10 +66,7 @@ export default function AddProduct(props) {
   
 
 
-    
-    
-      
-
+  
 
     </>
   );

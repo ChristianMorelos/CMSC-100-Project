@@ -8,8 +8,9 @@ const newUser = {
   password: "password123",
 };
 
+//sample product
 const newProduct = {
-  productId: "131313131",
+  productId: "525242",
   productName: "Apple",
   productDescription: "Sweet",
   productType: 2,

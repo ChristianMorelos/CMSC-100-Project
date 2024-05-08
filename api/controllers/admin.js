@@ -8,13 +8,14 @@ const getUsers = (req, res) => {
   // Implement user login logic here
 };
 
-const getOrders = (req, res) => {
-  // Implement user login logic here
+//get orders method
+const getOrders = async (req, res) => {
+  //get all orders
+  res.json(await OrderTransaction.find());
 };
 
 //add product method
 const addProduct = async (req, res) => {
-  // Implement user login logic here
 
   //check if the product fields are complete
   if (
@@ -31,15 +32,14 @@ const addProduct = async (req, res) => {
       await newProduct.save();
 
       //success message
-      res.json({ "product added": true });
+      res.status(200).send({ "product added": true });
     } catch (error) {
       //failure message
-      res.json({ "product added": false });
+      res.send({ "product added": false });
     }
   } else {
     //failure message
-    //failure message
-    res.json({ "product added": false });
+    res.send({ "product added": false });
   }
 };
 
