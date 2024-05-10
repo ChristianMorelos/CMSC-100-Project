@@ -1,7 +1,8 @@
+import mongoose from "mongoose";
 import { Product } from "../models/model.js";
 
-const getAllProducts = (req, res) => {
-    // Implement user login logic here
+const getAllProducts = async (req, res) => {
+    res.send(await Product.find())
 };
 
 export { getAllProducts };

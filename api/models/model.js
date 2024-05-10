@@ -12,6 +12,7 @@ const User = mongoose.model('User', {
 const Product = mongoose.model('Product', {
     productId: String,
     productName: String,
+    productPrice: Number,
     productDescription: String,
     productType: Number,
     productQuantity: Number
