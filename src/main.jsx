@@ -1,10 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './index.css';
+import Root from './pages/admin/Root';
+import Shop from './pages/admin/Shop';
+import AddProduct from './pages/admin/AddProduct';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  { path: '/', element: <Root />, children: [
+    { path: '/', element: <Shop />},
+    { path: 'myorders', element: <AddProduct /> }
+  ]}
+])
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />    
+  </React.StrictMode>
+);
