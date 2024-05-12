@@ -18,12 +18,12 @@ import needle from "needle";
 //   productQuantity: 5,
 // };
 
-// needle.post("http://localhost:3000/auth/register", newUser, (err, res) => {
+// needle.post("http://localhost:4000/auth/register", newUser, (err, res) => {
 //   console.log("Response:", res.body);
 // });
 
 // needle.post(
-//   "http://localhost:3000/admin/add-products",
+//   "http://localhost:4000/admin/add-products",
 //   newProduct,
 //   (err, res) => {
 //     console.log(res.body);
@@ -38,7 +38,7 @@ import needle from "needle";
 //     password: 'password123'
 // };
 
-// needle.post('http://localhost:3000/auth/register', newUser, 
+// needle.post('http://localhost:4000/auth/register', newUser, 
 // (err, res) => {
 //     console.log('Response:', res.body);
 // });
@@ -47,7 +47,7 @@ import needle from "needle";
 //     transactionId: 'T001'
 // }
 
-// needle.post('http://localhost:3000/admin/order-fulfillment', fulfillOrder,
+// needle.post('http://localhost:4000/admin/order-fulfillment', fulfillOrder,
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
@@ -60,7 +60,7 @@ import needle from "needle";
 //     ]
 // };
 
-// needle.post('http://localhost:3000/user/checkout-order', orders, { json: true },
+// needle.post('http://localhost:4000/user/checkout-order', orders, { json: true },
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
@@ -69,7 +69,7 @@ import needle from "needle";
 //     transactionId: '663a5b60c572fc6dbb709095'
 // }
 
-// needle.post('http://localhost:3000/user/cancel-order', order, { json: true },
+// needle.post('http://localhost:4000/user/cancel-order', order, { json: true },
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
@@ -83,7 +83,7 @@ import needle from "needle";
 //     password: '123456'
 // };
 
-// needle.post('http://localhost:3000/auth/register', registerData, { json: true },
+// needle.post('http://localhost:4000/auth/register', registerData, { json: true },
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
@@ -93,14 +93,14 @@ import needle from "needle";
 //     password: '123456'
 // };
 
-// needle.post('http://localhost:3000/auth/login', loginData, { json: true },
+// needle.post('http://localhost:4000/auth/login', loginData, { json: true },
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
 
 const email = 'john.doe@example.com';
 
-needle.get(`http://localhost:3000/user/orders?email=${email}`,
+needle.get(`http://localhost:4000/user/orders?email=${email}`,
 (err, res) => {
     console.log('Response', res.body);
 });
