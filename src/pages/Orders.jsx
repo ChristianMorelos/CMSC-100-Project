@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Orders.css';
 
 function Orders() {
   const [currentView, setCurrentView] = useState('pending');
-
+  const [orders, setOrders] = useState([]);
   const mockUser = {
     firstName: 'Franz Christian',
     middleName: 'Dela Cruz',
     lastName: 'Morelos',
-    email: 'fdmorelos@up.edu.ph'
+    email: 'john.doe@example.com'
   };
 
-  const mockOrders = [
-    { transactionId: '1', productId: '101', productName: 'Organic Apples', orderQuantity: 3, orderStatus: 0, email: mockUser.email, dateOrdered: new Date().toISOString().slice(0, 10), imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Apples_in_a_basket.jpg'},
-    { transactionId: '2', productId: '102', productName: 'Almond Milk', orderQuantity: 5, orderStatus: 1, email: mockUser.email, dateOrdered: new Date().toISOString().slice(0, 10), imageUrl: 'https://foodbyjonister.com/wp-content/uploads/2018/02/AlmondMilk2-1035x1300.jpg' },
-    { transactionId: '3', productId: '103', productName: 'Whole Wheat Bread', orderQuantity: 2, orderStatus: 0, email: mockUser.email, dateOrdered: new Date().toISOString().slice(0, 10), imageUrl: 'https://bakingamoment.com/wp-content/uploads/2019/01/IMG_2403-best-soft-whole-wheat-bread-recipe.jpg' }
-  ];
+  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  const timeOptions = { hour: '2-digit', minute: '2-digit' };
 
-  const pendingOrders = mockOrders.filter(order => order.orderStatus === 0);
-  const completedOrders = mockOrders.filter(order => order.orderStatus === 1);
-  const canceledOrders = mockOrders.filter(order => order.orderStatus === 3);
+  useEffect(() => {
+    fetch(`http://localhost:4000/user/orders?email=${mockUser.email}`)
+      .then(response => response.json())
+      .then(body => {
+        setOrders(body)
+      })
+  })
+
+  const pendingOrders = orders.filter(order => order.orderStatus === 0);
+  const completedOrders = orders.filter(order => order.orderStatus === 1);
+  const canceledOrders = orders.filter(order => order.orderStatus === 2);
 
   function handleCancelOrder(transactionId) {
     console.log(`Canceling order with Transaction ID: ${transactionId}`);
@@ -27,24 +32,29 @@ function Orders() {
 
   const renderOrderSection = (orders) => (
     <div>
-      {orders.map(order => (
-        <div key={order.transactionId} className="order-item">
-          <img src={order.imageUrl} alt={order.productName} className="order-image" />
+      {orders.map(order => {
+        const date = new Date(order.dateOrdered);
 
-          <div className="order-details"> 
-            <h3>{order.productName}</h3>
-            <p>Quantity: {order.orderQuantity}</p>
-            <p>Ordered on: {order.dateOrdered}</p>
+        const formattedDate = date.toLocaleDateString('en-US', dateOptions);
+        const formattedTime = date.toLocaleTimeString('en-US', timeOptions);
+
+        return (
+          <div key={order.productId} className="order-item">
+            <img src={'https://via.placeholder.com/100'} alt={order.productName} className="order-image" />
+            <div className="order-details">
+              <h3>{order.productName}</h3>
+              <p>Quantity: {order.orderQuantity}</p>
+              <p>Ordered on: {formattedDate} at {formattedTime}</p>
+            </div>
+            {order.orderStatus === 0 && (
+              <button onClick={() => handleCancelOrder(order.transactionId)}>Cancel Order</button>
+            )}
           </div>
-          
-          {order.orderStatus === 0 && (
-            <button onClick={() => handleCancelOrder(order.transactionId)}>Cancel Order</button>
-          )}
-          
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
+
 
   return (
     <div className="orders-container">

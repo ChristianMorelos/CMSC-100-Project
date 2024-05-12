@@ -64,9 +64,9 @@
 }
 
 .order-image {
-    width: 100px; /* Fixed width for images */
-    height: 70px; /* Maintain aspect ratio */
-    margin-right: 20px; /* Space between the image and the details */
+    width: 100px; 
+    height: 70px;
+    margin-right: 20px; 
     border-radius: 5px;
     margin-bottom: 10px;
     transition: all 0.3s ease; 
