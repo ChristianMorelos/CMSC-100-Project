@@ -62,10 +62,15 @@ const cancelOrder = async (req, res) => {
     }
 };
 
-const getOrders = (req, res) => {
-    
+const getOrders = async (req, res) => {
+    try {
 
-    // Implement user login logic here
+        const { email } = req.query;
+        res.json(await OrderTransaction.find({ email: email }));      
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 };
 
 export { checkoutOrder, cancelOrder, getOrders }

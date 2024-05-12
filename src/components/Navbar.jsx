@@ -1,14 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/navbar.css'
+import '../styles/Navbar.css'
 
 function Navbar() {
   return (
-    <nav style={{ padding: '10px 0', textAlign: 'center' }}>
-      <Link to="/" style={{ marginRight: '20px', textDecoration: 'none', color: 'black', fontSize: '18px' }}>Farm-to-Table</Link>
-      <Link to="/orders" style={{ marginRight: '20px', textDecoration: 'none', color: 'black', fontSize: '18px' }}>Orders</Link>
-      <Link to="/admin" style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>Admin</Link>
+    <nav className="navbar">
+      <div>
+        <Link to="/" className="logo">Farm-to-Table</Link>
+      </div>
+      <div className="nav-links">
+        <Link to="/" className="nav-link">
+          Shop
+        </Link>
+
+        <Link to="/orders" className="nav-link">
+          Orders
+        </Link>
+
+        <Link to="/admin" className="nav-link">
+          Admin
+        </Link>
+        
+        <Link to="/login" className="nav-link">
+          Logout
+        </Link>
+      </div>
+
+
     </nav>
   );
 }
