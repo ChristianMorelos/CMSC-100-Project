@@ -55,6 +55,10 @@
     transition: all 0.3s ease; 
 }
 
+.order-item h3, p {
+    transition: all 0.3s ease; 
+}
+
 .order-details {
     flex-grow: 1; 
 }
@@ -65,6 +69,7 @@
     margin-right: 20px; /* Space between the image and the details */
     border-radius: 5px;
     margin-bottom: 10px;
+    transition: all 0.3s ease; 
 }
 
 .order-item button {
@@ -75,12 +80,22 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s; 
+    transition: all 0.3s ease; 
 }
 
 .order-item button:hover {
     color: white;
     border-color: #e85858;
     background-color: #e85858; 
+}
+
+.order-item h3 {
+    font-size: 1rem;
+}
+
+
+.order-item p {
+    font-size: 0.9rem;
 }
 
 @media (max-width: 1400px) {
@@ -114,5 +129,24 @@
     
     .order-item p {
         font-size: 0.9rem;
+    }
+
+    .order-item button {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 460px) {
+
+    .order-item h3 {
+        font-size: 0.9rem;
+    }
+    
+    .order-item p {
+        font-size: 0.8rem;
+    }
+
+    .order-item button {
+        font-size: 0.6rem;
     }
 }
