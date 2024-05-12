@@ -1,0 +1,118 @@
+.user-details {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    padding-bottom: 10px;
+    margin: auto; /* Centers the details section */
+    max-width: 960px; /* Ensures it doesn't stretch too wide on larger screens */
+    transition: all 0.3s ease; 
+}
+
+.user-details p {
+    margin-bottom: 0px;
+    line-height: 1.2;
+    font-size: 0.9rem;
+    width: 100%;
+    margin: auto;
+    transition: all 0.3s ease; 
+}
+
+.order-nav {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.order-nav select {
+    max-width: 60rem;
+    width: 70%;
+    padding: 10px 10px;
+    border: 2px solid #4CAF50; 
+    border-radius: 5px;
+    background-color: #ffffff; 
+    color: #333; 
+    font-size: 0.9rem; 
+    cursor: pointer;
+    outline: none; 
+    appearance: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    transition: all 0.3s ease; 
+}
+
+.order-nav select:hover {
+    background-color: #f0f0f0;
+}
+
+.order-item {
+    max-width: 60rem;
+    width: 70%;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: auto;
+    padding: 8px 12px;
+    margin:auto;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc; 
+    transition: all 0.3s ease; 
+}
+
+.order-details {
+    flex-grow: 1; 
+}
+
+.order-image {
+    width: 100px; /* Fixed width for images */
+    height: 70px; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between the image and the details */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.order-item button {
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+}
+
+.order-item button:hover {
+    color: white;
+    border-color: #e85858;
+    background-color: #e85858; 
+}
+
+@media (max-width: 1400px) {
+    .order-item, .user-details {
+        padding: 0 10px; 
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 700px) {
+    .order-item, .user-details {
+        padding: 0 10px; 
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+
+
+    .order-nav select {
+        width: 90%;
+    }
+
+    .order-item {
+        width: 90%;
+    }
+
+    .order-item h3 {
+        font-size: 1rem;
+    }
+    
+    .order-item p {
+        font-size: 0.9rem;
+    }
+}

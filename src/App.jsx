@@ -8,6 +8,8 @@ import Signup from './pages/Signup';
 import Orders from './pages/Orders';
 import Admin from './pages/Admin';
 
+import './App.css';
+
 function App() {
   return (
     <div>
