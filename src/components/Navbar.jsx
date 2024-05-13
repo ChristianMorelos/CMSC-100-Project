@@ -15,7 +15,7 @@ function Navbar({menus}) {
 
         <div className="nav-links">
             {menus.map((menu) =>
-                <Link to = {menu.url} className="nav-link"> {menu.name} </Link>
+                <Link key = {menu.key} to = {menu.url} className="nav-link"> {menu.name} </Link>
             )}
         </div>
     </nav>
