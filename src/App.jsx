@@ -13,14 +13,6 @@ import './App.css';
 function App() {
   return (
     <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Shop />} index />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="admin" element={<Admin />} />
-      </Routes>
     </div>
   );
 }

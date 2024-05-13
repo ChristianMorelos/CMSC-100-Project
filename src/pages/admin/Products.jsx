@@ -1,4 +1,6 @@
-import AddProduct from "./AddProduct";
+// Product Listing
+
+import AddProduct from "./products/AddProduct";
 
 export default function Products() {
     return(<div>
