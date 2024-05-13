@@ -1,14 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './index.css';
+
+import Root from './pages/Root';
+import Login from './pages/auth/Login';
+
+import Orders from './pages/admin/Orders';
+import Products from './pages/admin/Products';
+import Sales from './pages/admin/Sales';
+import Users from './pages/admin/Users';
+
+import UserOrders from './pages/user/Orders';
+import UserProducts from './pages/user/Products';
+
+
+const router = createBrowserRouter([
+  { path: '/', element: <Root />, children: [
+    { path: 'admin/orders', element: <Orders /> },
+    { path: 'admin/products', element: <Products /> },
+    { path: 'admin/sales', element: <Sales /> },
+    { path: 'admin/users', element: <Users /> },
+
+    { path: 'user/orders', element: <UserOrders /> },
+    { path: 'user/products', element: <UserProducts /> },
+  ]},
+
+  { path: '/login', element: <Login />},
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router} />    
   </React.StrictMode>
 );
