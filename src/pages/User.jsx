@@ -8,9 +8,9 @@ export default function User(onLogout) {
 
   // Navbar options for user
   const menus = [
-    { name: "Orders", url: "/user/orders" },
-    { name: "Products", url: "/user/products" },
-    { name: "Logout", url: "/login" }
+    { key:1, name: "Orders", url: "/user/orders" },
+    { key:2, name: "Products", url: "/user/products" },
+    { key:3, name: "Logout", url: "/login" }
   ];
 
   return (
