@@ -1,193 +1,42 @@
 // Product Listings and order fulfillment
 // Make this dynamic/component-based
 
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import '/src/styles/Products.css'
 
-export default function Products() {
+function Products() {
+  const [ items, setItems ] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/products')
+      .then(response => response.json())
+      .then(body => {
+        setItems(body)
+      })
+  })
+
   return (
     <>
       <div className='shop-body'>
         <div className='items-main-div'>
             <div className='items-div'>
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
+              {items.map((item) =>
+                <div className='itemBox-div'>
+                  <div className='itemBox' id='item-img-div'>
+                    <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
+                  </div>
+                  <div className='itemBox' id='item-name-div'>
+                    {item.productName}
+                  </div>
+                  <div className='itemBox' id='item-price-div'>
+                    {item.productQuantity}
+                  </div>
+                  <div className='itemBox' id='item-addToCartBtn-div'>
+                    <button>Add to Cart</button>
+                  </div>
                 </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-              <div className='itemBox-div'>
-                <div className='itemBox' id='item-img-div'>
-                  <img src='https://img.freepik.com/premium-photo/white-long-rice-basmati-burlap-sack-with-wooden-scoop-isolated-white-background_434420-1792.jpg' className='itemBox-img'></img>
-                </div>
-                <div className='itemBox' id='item-name-div'>
-                  Rice
-                </div>
-                <div className='itemBox' id='item-price-div'>
-                  P9999
-                </div>
-                <div className='itemBox' id='item-addToCartBtn-div'>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-
+              )}
             </div>
         </div>
         <div className='cart-main-div'>
@@ -340,3 +189,5 @@ export default function Products() {
     </>
   )
 }
+
+export default Products;
