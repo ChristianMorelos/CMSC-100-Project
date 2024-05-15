@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 export default function AddProduct() {
   const [prodId, setId] = useState("");
   const [prodName, setName] = useState("");
