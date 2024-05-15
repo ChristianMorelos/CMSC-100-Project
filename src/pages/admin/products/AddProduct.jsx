@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../../../styles/addProduct.css";
 export default function AddProduct() {
   const [prodId, setId] = useState("");
   const [prodName, setName] = useState("");
@@ -49,7 +50,7 @@ export default function AddProduct() {
   }
 
   return (
-    <>
+    <div className="addProductContainer">
       <h1 id="title">Add a Product</h1>
 
       <form id="form-values">
@@ -109,6 +110,6 @@ export default function AddProduct() {
       <button id="addProduct" onClick={validateFields}>
         Add Product
       </button>
-    </>
+    </div>
   );
 }

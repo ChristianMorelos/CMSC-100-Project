@@ -1,5 +1,5 @@
 // Product Listing
-
+import "../../styles/addProduct.css";
 import { useEffect, useState } from "react";
 import AddProduct from "./products/AddProduct";
 
@@ -15,11 +15,11 @@ export default function Products() {
   });
 
   return (
-    <div>
-      <div>
+    <div className="admin-products">
+      <div className="addProduct">
         <AddProduct></AddProduct>
       </div>
-      <div>
+      <div className="productContainer">
         {products.map((product) => (
           //product div containing image, name, price, and an add button
           <div className="product">
