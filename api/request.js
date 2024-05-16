@@ -1,6 +1,5 @@
 import needle from "needle";
 
-
 // const newUser = {
 //   firstName: "John",
 //   lastName: "Doe",
@@ -9,26 +8,26 @@ import needle from "needle";
 //   password: "password123",
 // };
 
-// //sample product
-// const newProduct = {
-//   productId: "525242",
-//   productName: "Apple",
-//   productDescription: "Sweet",
-//   productType: 2,
-//   productQuantity: 5,
-// };
+//sample product
+const newProduct = {
+  productId: "313131",
+  productName: "banana",
+  productDescription: "Sweet",
+  productType: 2,
+  productQuantity: 5,
+};
 
 // needle.post("http://localhost:4000/auth/register", newUser, (err, res) => {
 //   console.log("Response:", res.body);
 // });
 
-// needle.post(
-//   "http://localhost:4000/admin/add-products",
-//   newProduct,
-//   (err, res) => {
-//     console.log(res.body);
-//   }
-// );
+needle.post(
+  "http://localhost:4000/admin/add-products",
+  newProduct,
+  (err, res) => {
+    console.log(res.body);
+  }
+);
 
 // const newUser = {
 //     firstName: 'John',
@@ -38,7 +37,7 @@ import needle from "needle";
 //     password: 'password123'
 // };
 
-// needle.post('http://localhost:4000/auth/register', newUser, 
+// needle.post('http://localhost:4000/auth/register', newUser,
 // (err, res) => {
 //     console.log('Response:', res.body);
 // });
@@ -98,9 +97,8 @@ import needle from "needle";
 //     console.log('Response', res.body);
 // });
 
-const email = 'john.doe@example.com';
+const email = "john.doe@example.com";
 
-needle.get(`http://localhost:4000/user/orders?email=${email}`,
-(err, res) => {
-    console.log('Response', res.body);
+needle.get(`http://localhost:4000/user/orders?email=${email}`, (err, res) => {
+  console.log("Response", res.body);
 });
