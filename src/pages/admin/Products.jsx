@@ -35,13 +35,15 @@ export default function Products() {
       <div className="productContainer">
         {products.map((product) => (
           //product div containing image, name, price, and an add button
-          <div className="product">
+          <div key={product.productId} className="product">
             <img src={product.image} alt={product.name}></img>
             <h2>{product.productName}</h2>
-            <p>${product.productDescription}</p>
+            <p>Description: {product.productDescription}</p>
+            <p>Type: {product.productType}</p>
+            <p>Quantity: {product.productQuantity}</p>
 
             <button
-              id="deleteProduct"
+              className="deleteProduct"
               onClick={() => {
                 deleteProduct(product.productId);
               }}
