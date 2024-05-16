@@ -30,7 +30,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
-    font-size: 40px;
+    font-size: clamp(18px,2.5vw,40px);
     color: white;
 }
 
