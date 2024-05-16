@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../../../styles/addProduct.css";
 export default function AddProduct() {
-  const [prodId, setId] = useState("");
   const [prodName, setName] = useState("");
   const [prodDesc, setDesc] = useState("");
   const [prodType, setType] = useState(1);
@@ -10,21 +9,19 @@ export default function AddProduct() {
   //validate fields function
   function validateFields() {
     //check if any of the input fields are empty
-    if (prodId == "" || prodName == "" || prodDesc == "") {
+    if (prodName == "" || prodDesc == "") {
       //alert message for incomplete fields
       alert("Please fill out all of the fields first");
       return;
     }
 
     //print validated fields
-    console.log("Product Id: " + prodId);
     console.log("Product Name: " + prodName);
     console.log("Product Description: " + prodDesc);
     console.log("Product Type: " + prodType);
     console.log("Product Quantity: " + prodQty);
 
     const product = {
-      productId: prodId,
       productName: prodName,
       productDescription: prodDesc,
       productType: prodType,
@@ -55,16 +52,6 @@ export default function AddProduct() {
 
       <form id="form-values">
         <div id="form">
-          <label className="product-field">Product Id:</label>
-          <input
-            value={prodId}
-            type="text"
-            onChange={(e) => setId(e.target.value)}
-            id="prodId"
-            name="prodId"
-            required
-          />
-
           <label className="product-field">Product Name:</label>
           <input
             value={prodName}
