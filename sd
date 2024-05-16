@@ -1,0 +1,230 @@
+[33mcommit da387f6c3126bc6c98b8aa927e4ae6b07b818cbe[m[33m ([m[1;36mHEAD -> [m[1;32maob-3[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/aob-3[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 4951f9f 8bd2998
+Author: michaelcariaso <159239268+michaelcariaso@users.noreply.github.com>
+Date:   Thu May 16 18:14:31 2024 +0800
+
+    Merge pull request #10 from ChristianMorelos/muc-3
+    
+    merge: Added remove products from database, random id for products
+
+[33mcommit 8bd29986327d560172e64542d8141f0e47ddec71[m[33m ([m[1;31morigin/muc-3[m[33m)[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Thu May 16 17:25:10 2024 +0800
+
+    ui: Displayed the information about each product on the admin/products page and added styling
+
+[33mcommit 3203a4c0eb0a298e461eaa3bbc132d1490cc38f5[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Thu May 16 17:10:31 2024 +0800
+
+    feat: Added delete button for removing products from the inventory
+
+[33mcommit 4c6c53443d0f6c1214490b9bdfbc3a586c34e8fd[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Thu May 16 16:57:29 2024 +0800
+
+    feat: Added admin/remove-product endpoint and deleteProduct method for deleting product
+
+[33mcommit b61f79203440b613894fcab731ec12b506f0c2ed[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Thu May 16 16:41:40 2024 +0800
+
+    chore: Made the productId a random 8 character string using uuidv4
+
+[33mcommit 4951f9f406266bd5634212ee0e37fe76f926a10b[m
+Merge: 399550c d44ceb6
+Author: michaelcariaso <159239268+michaelcariaso@users.noreply.github.com>
+Date:   Wed May 15 22:22:06 2024 +0800
+
+    Merge pull request #9 from ChristianMorelos/muc-2
+    
+    merge: working admin/products page (AddProduct and Products)
+
+[33mcommit d44ceb67b1890535e523056f682074c8606f69a1[m[33m ([m[1;31morigin/muc-2[m[33m)[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Wed May 15 22:19:15 2024 +0800
+
+    ui: Changed the layout of admin/product divs and added some styling
+
+[33mcommit 7d8bc9fbb06d9dfc4d6eb5e60f8b6c8d29539718[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Wed May 15 21:37:09 2024 +0800
+
+    feat: Added fetch for admin/Products page for displaying products
+
+[33mcommit f8509ed0fb8ea73f495f233d5fbe76514f5e9241[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Wed May 15 20:49:17 2024 +0800
+
+    feat: Added fetch POST for saving products from the frontend form to the MongoDB products collection
+
+[33mcommit 399550c64c114e1244426b902787a58260cda8bd[m
+Author: Axel Balitaan <balitaanaxel@gmail.com>
+Date:   Tue May 14 06:46:51 2024 +0800
+
+    chore: added keys for navbar
+
+[33mcommit 097306181acb12186e0b4f9d9c7271c647fc4b5d[m
+Merge: 71c73ec faf99af
+Author: ChristianMorelos <112470900+ChristianMorelos@users.noreply.github.com>
+Date:   Tue May 14 06:25:49 2024 +0800
+
+    Merge pull request #8 from ChristianMorelos/aob-2
+
+[33mcommit faf99af5f222f82057322f10a95bd7a323eb54bd[m
+Author: Axel Balitaan <balitaanaxel@gmail.com>
+Date:   Tue May 14 01:02:54 2024 +0800
+
+    refactor: rearrange react files, adjusted navigation bar to component-based
+
+[33mcommit 71c73ecab1fa296b8f785c6dfe60a8a6ae96d739[m
+Merge: 7aca712 8908e53
+Author: ChristianMorelos <112470900+ChristianMorelos@users.noreply.github.com>
+Date:   Sun May 12 23:20:42 2024 +0800
+
+    Merge pull request #7 from ChristianMorelos/fcm-3
+    
+    feat: used fetch and useEffect to get data for orders page
+
+[33mcommit 8908e53ff7c937a503b1d9376677dfce8b132749[m[33m ([m[1;31morigin/fcm-3[m[33m)[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Sun May 12 23:18:59 2024 +0800
+
+    feat: added api call using fetch and useEffect
+
+[33mcommit 5622e1474bdf41feec6aabd11e478c70e7708176[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Sun May 12 23:17:02 2024 +0800
+
+    feat: added useEffect using fetch to get data for user orders
+
+[33mcommit 551adec0b75f0055361a5062b09359ed3309bdf6[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Sun May 12 22:35:24 2024 +0800
+
+    feat: added get orders function
+
+[33mcommit e7f638f917135dffc0f297004aff5616d40ea808[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Sun May 12 22:08:11 2024 +0800
+
+    feat: edited order css
+
+[33mcommit dd40504a6da1bc9adc37008b08b72d35fdf111fa[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Sun May 12 21:49:03 2024 +0800
+
+    feat: created orders page with responsive styles
+
+[33mcommit 7aca712763ff94edfdfd2db4ad97eea3bdb4d3b0[m
+Merge: c2451a3 5804aa1
+Author: ChristianMorelos <112470900+ChristianMorelos@users.noreply.github.com>
+Date:   Sun May 12 17:58:48 2024 +0800
+
+    Merge pull request #6 from ChristianMorelos/fcm-3
+    
+    feat: fixed routing and added navbar
+
+[33mcommit 5804aa1d983cc6e4ec10f07b41a6cca0c1abdcd5[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Sun May 12 17:58:05 2024 +0800
+
+    feat: fixed routing and added navbar
+
+[33mcommit 80d4e63ea9665aaa36ea5957b52345f8ccbeb593[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Sun May 12 17:51:28 2024 +0800
+
+    feat: fixed routing and added navbar
+
+[33mcommit c2451a3cc753ec58f6b28985f286d77e3082f52b[m
+Author: daphnemaiso <zomaiso@up.edu.ph>
+Date:   Fri May 10 12:54:06 2024 +0800
+
+    ui: shop and cart prototype
+
+[33mcommit bf9b16091d167c5a257b29579d2c676f2c044c32[m
+Merge: f5d9543 b566bea
+Author: michaelcariaso <159239268+michaelcariaso@users.noreply.github.com>
+Date:   Wed May 8 23:16:05 2024 +0800
+
+    Merge pull request #5 from ChristianMorelos/muc-1
+    
+    merge: merge muc-1 branch
+
+[33mcommit b566beae3c7be051f40b27f163fdc08a3a140f44[m[33m ([m[1;31morigin/muc-1[m[33m)[m
+Merge: 8557611 f5d9543
+Author: michaelcariaso <159239268+michaelcariaso@users.noreply.github.com>
+Date:   Wed May 8 22:48:25 2024 +0800
+
+    Merge branch 'main' into muc-1
+
+[33mcommit 85576115bb53604e616dd8abd1353f09cfaaf6d6[m
+Author: michaelcariaso <mdcariaso@up.edu.ph>
+Date:   Wed May 8 21:52:42 2024 +0800
+
+    feat: Added admin/orders endpoint and implemented gerOrders method
+
+[33mcommit f5d954330c9c916fb41d6a3353b8b12b5d127b4a[m
+Merge: 932aa20 1510a86
+Author: Axel O. Balitaan <118553810+aobalitaan@users.noreply.github.com>
+Date:   Wed May 8 20:41:31 2024 +0800
+
+    Merge pull request #4 from ChristianMorelos/aob-1
+    
+    Merge pull request #3 from ChristianMorelos/main
+
+[33mcommit 1510a868a5eaf02507670b2b96677aa436dd51cd[m[33m ([m[1;31morigin/aob-1[m[33m)[m
+Merge: 27539f1 932aa20
+Author: Axel O. Balitaan <118553810+aobalitaan@users.noreply.github.com>
+Date:   Wed May 8 20:35:29 2024 +0800
+
+    Merge pull request #3 from ChristianMorelos/main
+    
+    Merge aob-1 get sales, admin routes
+
+[33mcommit 932aa20e13e8f0719c5d8f8e662e4b4a9a11a2b8[m
+Merge: 27539f1 a74e4db
+Author: Axel Balitaan <balitaanaxel@gmail.com>
+Date:   Wed May 8 20:25:21 2024 +0800
+
+    merge: merge aob-1 branch
+
+[33mcommit a74e4db237dd3f1743227b005a8190628ae6bc5a[m
+Merge: c37eff0 d46a8a8
+Author: ChristianMorelos <112470900+ChristianMorelos@users.noreply.github.com>
+Date:   Wed May 8 19:34:50 2024 +0800
+
+    Merge pull request #2 from ChristianMorelos/fcm-2
+    
+    Fcm 2
+
+[33mcommit d46a8a8f288fffcfcb53f27f43e7fc3dd8402dcc[m[33m ([m[1;31morigin/fcm-2[m[33m)[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Wed May 8 19:32:25 2024 +0800
+
+    feat: added login feature and authenticate token function
+
+[33mcommit 30eafc6bcbed40823882c60086e08c23615a4cab[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Wed May 8 18:59:11 2024 +0800
+
+    chore: modified register function to store hashed password
+
+[33mcommit c37eff08d7a7c9975bdc9c137850dd8747789746[m
+Merge: 7243e03 0c85884
+Author: ChristianMorelos <112470900+ChristianMorelos@users.noreply.github.com>
+Date:   Wed May 8 18:30:33 2024 +0800
+
+    Merge pull request #1 from ChristianMorelos/fcm-1
+    
+    Fcm 1
+
+[33mcommit 0c85884098a01e73b0db114eb39989403c66eae6[m[33m ([m[1;31morigin/fcm-1[m[33m)[m
+Author: ChanMor <morelos.franzchristian@gmail.com>
+Date:   Wed May 8 01:25:26 2024 +0800
+
+    code: added cancel order function
+
+[33mcommit 866af6185056ed4ede981527b9d06dd8aaa6b6cd[m
+Author: ChanMor <morelos.franzchristian
