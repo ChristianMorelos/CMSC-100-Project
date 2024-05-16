@@ -83,6 +83,17 @@ const addProduct = async (req, res) => {
   }
 };
 
+//delete product method
+const deleteProduct = async (req, res) => {
+  //remove product using product id
+  const removeProduct = await Product.deleteOne({
+    productId: req.body.productId,
+  });
+
+  //response message
+  res.send(removeProduct);
+};
+
 const fulfillOrder = async (req, res) => {
   try {
     const { transactionId } = req.body;
@@ -125,4 +136,11 @@ const fulfillOrder = async (req, res) => {
   }
 };
 
-export { getSales, getUsers, getOrders, addProduct, fulfillOrder };
+export {
+  getSales,
+  getUsers,
+  getOrders,
+  addProduct,
+  deleteProduct,
+  fulfillOrder,
+};
