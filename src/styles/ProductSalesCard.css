@@ -1,0 +1,100 @@
+.product-sales-card{      /* Style for each card */
+    margin: 10px;
+
+    height:300px;
+    width: 225px;
+    padding: 15px;
+  
+
+    border-radius: 15px;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    background: white;
+    box-shadow: 0 5px 10px -2px rgba(128, 128, 128, 0.2);
+    text-align: center;
+
+    transition: transform 0.2s ease;
+}
+
+.product-sales-image{
+    min-height: 50%;
+    max-height: 50%;
+    max-width: 200px;
+    width: auto;
+    height: auto;
+
+    transition: transform 0.3s;
+}
+
+.product-sales-name{
+    font-size: 24px;
+    
+}
+
+.product-sales-card h2{
+    font-size: 16px;
+}
+
+.product-sales-card:hover{  /* Enlarge image when hovering on product card */
+    transform: scale(1.01);
+    cursor: pointer;      
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's above other content */
+
+    backdrop-filter: blur(2px);
+}
+
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 80%;
+    max-width: 500px; /* Maximum width of the modal */
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-image {
+    width: 100%; /* Full width of the modal */
+    height: auto; /* Maintain aspect ratio */
+    border-bottom: 1px solid #eaeaea; /* Separator line */
+    padding-bottom: 20px; /* Space below the image */
+}
+
+.modal-name,
+.modal-quantity,
+.modal-sales {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modal-name {
+    font-size: 24px;
+    color: #298F3B; /* Green color for the product name */
+}
+
+.modal-quantity,
+.modal-sales {
+    font-size: 18px;
+    color: #333; /* Dark grey for quantity and sales */
+}
+
+
+  
+  
