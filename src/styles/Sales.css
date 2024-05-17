@@ -103,18 +103,21 @@
 }
 
 .toolbar-text{
+    flex: 11;
+    text-align: center;
     padding: 10px;
     color: #696969;
-    font-size: clamp(9px, 1.25vw, 14px);
+    font-size: clamp(9px, 1vw, 14px);
 }
 
 .period{
     margin: 10px;
-    font-size: clamp(14px, 1.5vw, 18px);
+    font-size: clamp(12px, 1.25vw, 18px);
     font-weight: bold;
 }
 
 .period-selector {
+    flex: 2;
     height: 80%;
     min-width: 150px;
     width: 20%;
@@ -151,6 +154,7 @@
 }
 
 .toolbar-button {
+    flex: 1;
     margin: 5px;
     background-color: transparent;
     border: none;

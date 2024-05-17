@@ -103,7 +103,7 @@ needle(
   "post",
   "http://localhost:4000/auth/authenticate",
   { headers:{
-    'authorization': bearer,
+    'authorization': [],
     "Accept": "application/json"
   }},
   (err, res) => {
