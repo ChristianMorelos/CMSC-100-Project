@@ -12,11 +12,18 @@ const User = mongoose.model('User', {
 const Product = mongoose.model('Product', {
     productId: String,
     productName: String,
+    productPrice: Number,
     productDescription: String,
     productType: Number,
     productQuantity: Number
 }, 'products');
 
+
+const Cart = mongoose.model('Cart', {
+    email: String,
+    productId: String,
+    quantity: Number
+}, 'carts');
 
 const OrderTransaction = mongoose.model('OrderTransaction', {
     transactionId: String,
@@ -28,4 +35,4 @@ const OrderTransaction = mongoose.model('OrderTransaction', {
     time: String
 }, 'orderTransactions');
 
-export { User, Product, OrderTransaction };
+export { User, Product, Cart, OrderTransaction };
