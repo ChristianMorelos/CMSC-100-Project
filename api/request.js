@@ -9,25 +9,25 @@ import needle from "needle";
 // };
 
 //sample product
-const newProduct = {
-  productId: "313131",
-  productName: "banana",
-  productDescription: "Sweet",
-  productType: 2,
-  productQuantity: 5,
-};
+// const newProduct = {
+//   productId: "313131",
+//   productName: "banana",
+//   productDescription: "Sweet",
+//   productType: 2,
+//   productQuantity: 5,
+// };
 
 // needle.post("http://localhost:4000/auth/register", newUser, (err, res) => {
 //   console.log("Response:", res.body);
 // });
 
-needle.post(
-  "http://localhost:4000/admin/add-products",
-  newProduct,
-  (err, res) => {
-    console.log(res.body);
-  }
-);
+// needle.post(
+//   "http://localhost:4000/admin/add-products",
+//   newProduct,
+//   (err, res) => {
+//     console.log(res.body);
+//   }
+// );
 
 // const newUser = {
 //     firstName: 'John',
@@ -87,18 +87,36 @@ needle.post(
 //     console.log('Response', res.body);
 // });
 
-// const loginData = {
-//     email: 'john.doe@example.com',
-//     password: '123456'
-// };
+const loginData = {
+    email: 'john.doe@example.com',
+    password: '123456'
+};
 
 // needle.post('http://localhost:4000/auth/login', loginData, { json: true },
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
 
-const email = "john.doe@example.com";
-
-needle.get(`http://localhost:4000/user/orders?email=${email}`, (err, res) => {
-  console.log("Response", res.body);
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjQ2ZjQ2ZDkzMjQzMzk3MWY3YmMzNzYiLCJpYXQiOjE3MTU5MjY1MjcsImV4cCI6MTcxNTkzMDEyN30.DKc72GF4Re4c-6HITW5MTDLaTKyWIw60FSEugUZrniU'
+const bearer = `Bearer ${token}`;
+needle(
+  "post",
+  "http://localhost:4000/auth/authenticate",
+  { headers:{
+    'authorization': bearer,
+    "Accept": "application/json"
+  }},
+  (err, res) => {
+    console.log(res);
 });
+
+// needle.post('http://localhost:4000/auth/login', loginData, { json: true },
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
+
+// const email = "john.doe@example.com";
+
+// needle.get(`http://localhost:4000/user/orders?email=${email}`, (err, res) => {
+//   console.log("Response", res.body);
+// });
