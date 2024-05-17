@@ -87,36 +87,47 @@ import needle from "needle";
 //     console.log('Response', res.body);
 // });
 
-const loginData = {
-    email: 'john.doe@example.com',
-    password: '123456'
-};
+// const loginData = {
+//     email: 'john.doe@example.com',
+//     password: '123456'
+// };
 
 // needle.post('http://localhost:4000/auth/login', loginData, { json: true },
 // (err, res) => {
 //     console.log('Response', res.body);
 // });
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjQ2ZjQ2ZDkzMjQzMzk3MWY3YmMzNzYiLCJpYXQiOjE3MTU5MjY1MjcsImV4cCI6MTcxNTkzMDEyN30.DKc72GF4Re4c-6HITW5MTDLaTKyWIw60FSEugUZrniU'
-const bearer = `Bearer ${token}`;
-needle(
-  "post",
-  "http://localhost:4000/auth/authenticate",
-  { headers:{
-    'authorization': bearer,
-    "Accept": "application/json"
-  }},
-  (err, res) => {
-    console.log(res);
-});
+// const token = '';
+// const bearer = `Bearer ${token}`;
 
-// needle.post('http://localhost:4000/auth/login', loginData, { json: true },
-// (err, res) => {
-//     console.log('Response', res.body);
+// needle.post("http://localhost:4000/auth/authenticate",
+//   { headers:{
+//     'Authorization': bearer,
+//     "Accept": "application/json"
+//   }},
+//   (err, res) => {
+//     console.log(res);
 // });
 
 // const email = "john.doe@example.com";
 
 // needle.get(`http://localhost:4000/user/orders?email=${email}`, (err, res) => {
-//   console.log("Response", res.body);
+//   console.log(res.body);
 // });
+
+// const cartData = {
+//   email: 'jane.smith@example.com',
+//   productId: 'P002',
+//   quantity: '100'
+// }
+
+// needle.post('http://localhost:4000/user/add-to-cart', cartData, { json: true },
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
+
+const email = 'jane.smith@example.com';
+
+needle.get(`http://localhost:4000/user/get-cart-items?email=${email}`, (err, res) => {
+    console.log(res.body);
+});
