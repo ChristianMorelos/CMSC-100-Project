@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+:root{
+    --heading-font: "Poppins", sans-serif;
+    --text-font: "Roboto", sans-serif;
+    --nav-color: #F9F8FE;
+    --nav-text-color: #053116;
+}  

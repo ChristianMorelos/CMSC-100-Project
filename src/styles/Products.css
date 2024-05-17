@@ -1,12 +1,3 @@
-
-
-*{
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  font-family: var(--font-style);
-}
-
 :root{
   --body-color: #F1F6D9;
   --cart-color: #C4DD80;
@@ -20,8 +11,7 @@
 }
 
 /* ================= Navigation Bar ================= */
-nav{
-  /* background-color: var(--primary-green-1); */
+/* nav{
   height: 80px;
   display: flex;
   padding-left: 5vw;
@@ -32,7 +22,6 @@ nav{
 }
 
 .nav-logo-div{
-  /* background-color: blue; */
   flex: 1;
   display: flex;
   align-items: center;
@@ -45,13 +34,12 @@ nav{
 }
 
 .nav-menu-div{
-  /* background-color: yellow; */
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: end;
   font-family: var(--font-style);
-}
+} */
 
 /* ====================== Shop ====================== */
 .shop-body{
@@ -70,7 +58,6 @@ nav{
   align-items: baseline;
   margin-right: 550px;
   margin-left: 5%;
-  height: calc(100vh - 80px);
 }
 
 .items-div{
@@ -143,6 +130,7 @@ nav{
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   font-family: var(--font-style);
+  top: 100px;
 }
 
 /* .cart-main-div.close{

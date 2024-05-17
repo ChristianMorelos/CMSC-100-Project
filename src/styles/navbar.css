@@ -1,4 +1,38 @@
-nav,
+nav{
+    background-color: var(--nav-color);
+    height: 80px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    display: flex;
+    align-items: center;
+    font-family: var(--heading-font);
+    color: var(--nav-text-color);
+    position: sticky;
+    top: 0;
+}
+
+.nav-logo{
+    /* background-color: yellow; */
+    flex: 1;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.nav-links{
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 2rem;
+}
+
+.bxs-user-circle{
+    font-size: 40px;
+    /* background-color: aqua;    */
+    display: flex;
+}
+
+/* nav,
 .nav-links {
     display: flex;
     gap: 4rem;  
@@ -72,4 +106,4 @@ a:hover {
     .logo {
         font-size: 1.25rem;  
     }
-}
+} */

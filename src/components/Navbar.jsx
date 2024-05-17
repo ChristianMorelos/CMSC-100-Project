@@ -3,12 +3,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../styles/navbar.css";
+import "../styles/Navbar.css";
 
 function Navbar({ menus }) {
   return (
     <nav className="navbar">
-      <div>
+      <div className="nav-logo">
         <Link to={menus[0].url} className="logo">
           Farm-to-Table
         </Link>
@@ -16,10 +16,13 @@ function Navbar({ menus }) {
 
       <div className="nav-links">
         {menus.map((menu) => (
-          <Link key={menu.key} to={menu.url} className="nav-link">
-            {" "}
-            {menu.name}{" "}
-          </Link>
+          menu.name == "Logout" ? 
+            <Link key={menu.key} to={menu.url} className="nav-link">
+              <i className="bx bxs-user-circle"></i>
+            </Link>
+          : <Link key={menu.key} to={menu.url} className="nav-link">
+              {" "}{menu.name}{" "}
+            </Link>
         ))}
       </div>
     </nav>
