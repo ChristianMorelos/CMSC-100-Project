@@ -1,0 +1,95 @@
+.admin-products {
+  display: flex;
+  flex-direction: row;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+}
+
+/*add product form styling*/
+.addProductContainer {
+  height: 570px;
+  align-items: center;
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 0 4px gray;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 20px;
+}
+
+/* Product Container Styling */
+.productContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Product Div Styling */
+.product {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 0 4px gray;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: auto;
+  width: 250px;
+}
+
+/* Button Styling */
+#addProduct {
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+  background-color: darkgreen;
+  border: solid;
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+}
+
+/* Button Styling */
+.deleteProduct {
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+  background-color: maroon;
+  border: solid;
+  border-radius: 10px;
+  color: white;
+  margin: 10px;
+}
+
+/*Button Hover Styling */
+#addProduct:hover {
+  background-color: green;
+}
+
+/*Button Hover Styling */
+.deleteProduct:hover {
+  background-color: darkred;
+}
+
+/*style input fields*/
+input {
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*style label texts*/
+label {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}

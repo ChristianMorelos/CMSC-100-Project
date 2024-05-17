@@ -1,5 +1,8 @@
+// Order Fullfillment
+
 import React, { useEffect, useState } from 'react';
-import '../styles/Orders.css';
+import '/src/styles/Orders.css';
+
 
 function Orders() {
   const [currentView, setCurrentView] = useState('pending');
@@ -8,7 +11,7 @@ function Orders() {
     firstName: 'Franz Christian',
     middleName: 'Dela Cruz',
     lastName: 'Morelos',
-    email: 'john.doe@example.com'
+    email: 'example3@example.com'
   };
 
   const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };

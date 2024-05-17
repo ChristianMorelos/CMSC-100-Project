@@ -51,10 +51,10 @@ const login = async (req, res) => {
     };
 };
 
-const authenticateToken = (req, res, next) => {
+const authenticateToken = (req, res) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-
+    
     if (!token) {
         return res.status(401).json({ error: ' Unauthorized user' });
     }
@@ -63,7 +63,7 @@ const authenticateToken = (req, res, next) => {
         if (err) return res.status(403).json({ error: 'Token is not valid' });
 
         req.user = decoded;
-        next();
+        return res.status(200).json({ response: ' Authorized user' });
     });
 }
 
