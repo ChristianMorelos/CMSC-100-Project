@@ -36,11 +36,12 @@ export default function Products() {
         {products.map((product) => (
           //product div containing image, name, price, and an add button
           <div key={product.productId} className="product">
-            <img src={product.image} alt={product.name}></img>
             <h2>{product.productName}</h2>
+            <img src={product.productImg} alt={product.name}></img>
             <p>Description: {product.productDescription}</p>
             <p>Type: {product.productType}</p>
             <p>Quantity: {product.productQuantity}</p>
+            <p>Price: PHP {product.productPrice}</p>
 
             <button
               className="deleteProduct"

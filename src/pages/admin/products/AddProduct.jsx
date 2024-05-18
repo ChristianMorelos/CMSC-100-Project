@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../../../styles/addProduct.css";
 export default function AddProduct() {
   const [prodName, setName] = useState("");
+  const [prodPrice, setPrice] = useState(0);
+  const [prodImg, setImg] = useState("");
   const [prodDesc, setDesc] = useState("");
   const [prodType, setType] = useState(1);
   const [prodQty, setQty] = useState(1);
@@ -20,9 +22,12 @@ export default function AddProduct() {
     console.log("Product Description: " + prodDesc);
     console.log("Product Type: " + prodType);
     console.log("Product Quantity: " + prodQty);
+    console.log("Product Price: " + prodPrice);
 
     const product = {
       productName: prodName,
+      productPrice: prodPrice,
+      productImg: prodImg,
       productDescription: prodDesc,
       productType: prodType,
       productQuantity: prodQty,
@@ -39,8 +44,9 @@ export default function AddProduct() {
       });
 
     //reset values
-    setId("");
     setName("");
+    setImg("");
+    setPrice(0);
     setDesc("");
     setType(1);
     setQty(1);
@@ -59,6 +65,26 @@ export default function AddProduct() {
             onChange={(e) => setName(e.target.value)}
             id="prodName"
             name="prodName"
+            required
+          />
+
+          <label className="product-field">Product Price:</label>
+          <input
+            value={prodPrice}
+            type="number"
+            onChange={(e) => setPrice(e.target.value)}
+            id="prodPrice"
+            name="prodPrice"
+            required
+          />
+
+          <label className="product-field">Product Image:</label>
+          <input
+            value={prodImg}
+            type="text"
+            onChange={(e) => setImg(e.target.value)}
+            id="prodImg"
+            name="prodImg"
             required
           />
 
