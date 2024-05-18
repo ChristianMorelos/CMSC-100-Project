@@ -22,23 +22,24 @@ function Auth() {
       password: password,
     };
 
-    try {
-      const response = await fetch('http://localhost:4000/auth/register', {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(user),
-      });
-
+    fetch('http://localhost:4000/auth/register', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    })
+    .then(async response => {
       if (response.ok) {
-          alert('User registered successfully. Please login.');
-          setIsSignUpActive(false);
+        alert('User registered successfully. Please login.');
+        setIsSignUpActive(false);
       } else {
           const errorData = await response.json();
           alert(errorData.message || 'Error signing up');
       }
-    } catch (error) {
-        alert('Error signing up');
-    }
+    })
+    .catch(() => {
+      alert('Error signing up');
+
+    })    
   }
 
   const handleLogin = async () => {
@@ -47,25 +48,25 @@ function Auth() {
         password: password,
     };
 
-    try {
-        const response = await fetch('http://localhost:4000/auth/login', {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(credentials),
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            setIsLoggedIn(true);
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('email', email);
-        } else {
-            const errorData = await response.json();
-            alert(errorData.error || 'Error logging in');
-        }
-    } catch (error) {
-        alert('Error logging in');
-    }
+    fetch('http://localhost:4000/auth/login', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    })
+    .then(async response => {
+      if (response.ok) {
+        const data = await response.json();
+        setIsLoggedIn(true);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('email', email);
+      } else {
+          const errorData = await response.json();
+          alert(errorData.error || 'Error logging in');
+      }
+    })
+    .catch(() => {
+      alert('Error logging in');
+    })  
   };
 
   if (isLoggedIn) {

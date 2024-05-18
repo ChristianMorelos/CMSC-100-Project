@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import ConfirmModal from '/src/components/Confirm';
+import '/src/styles/Account.css';
 
 function UserAccount() {
   const currentEmail = localStorage.getItem('email');
-  const [currentUser, setCurrentUser] = useState({});
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:4000/user/info?email=${currentEmail}`)
       .then(response => response.json())
       .then(body => {
-        setCurrentUser(body);
         setFirstName(body.firstName || '');
         setMiddleName(body.middleName || '');
         setLastName(body.lastName || '');
@@ -34,59 +35,65 @@ function UserAccount() {
       password: password,
     };
 
-    try {
-      const response = await fetch('http://localhost:4000/auth/editAccount', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(updatedUser),
+    fetch('http://localhost:4000/user/edit-info', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(updatedUser),
+    })
+      .then(async response => {
+        if (response.ok) {
+          alert('User information updated successfully');
+          setIsModalOpen(false);
+        } else {
+          const errorData = await response.json();
+          alert(errorData.message || 'Error updating account');
+        }
+      })
+      .catch(() => {
+        alert('Error updating account');
       });
-
-      if (response.ok) {
-        alert('User information updated successfully');
-      } else {
-        const errorData = await response.json();
-        alert(errorData.message || 'Error updating account');
-      }
-    } catch (error) {
-      alert('Error updating account');
-    }
   };
 
   return (
-    <form>
-      <h1>Edit Account Details</h1>
-      <input
-        type="text"
-        placeholder="First name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
+    <div className="account-page">
+      <div className="account-container">
+        <form>
+          <h1>Edit Account Details</h1>
+          <input
+            type="text"
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Middle name"
+            value={middleName}
+            onChange={(e) => setMiddleName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button onClick={() => setIsModalOpen(true)} type="button">Update Account</button>
+        </form>
+      </div>
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleUpdate}
+        password={password}
+        setPassword={setPassword}
       />
-      <input
-        type="text"
-        placeholder="Middle name"
-        value={middleName}
-        onChange={(e) => setMiddleName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Last name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="New Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleUpdate} type="button">Update Account</button>
-    </form>
+    </div>
   );
 }
 
