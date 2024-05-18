@@ -31,8 +31,8 @@ function ProductSalesCards({ products, dates }) {
         <div className="product-sales-card" key={product.id} onClick={() => openModal(product.id)}>
           <img className="product-sales-image" src={product.image} alt={product.name} />
           <h1 className="product-sales-name">{product.name}</h1>
-          <h2 className="product-sales-quantity">Quantity Sold: {product.salesQuantity}</h2>
-          <h2 className="product-sales-sales">Total Sales: {product.salesSales}</h2>
+          <h2 className="product-sales-quantity">Period Sold: {product.periodSold}</h2>
+          <h2 className="product-sales-sales">Period Sales: {product.periodSales}</h2>
         </div>
       ))}
 
@@ -49,14 +49,14 @@ function ProductSalesCards({ products, dates }) {
                       <h1 className="modal-name">{product.name}</h1>
                       <h2 className="modal-info">{product.type}</h2>
                       <br />
-                      <h2 className="modal-info"> <strong>Unit Price:</strong> Php {product.unitPrice}</h2>
                       <h2 className="modal-info"><strong>Product Id:</strong> {product.id}</h2>
+                      <h2 className="modal-info"> <strong>Unit Price:</strong> Php {product.unitPrice}</h2>
                       <h2 className="modal-info"><strong>Total Sold (all-time):</strong> {product.totalSold}</h2>
-                      <h2 className="modal-info"><strong>Total Income:</strong> Php {product.totalIncome}</h2>
+                      <h2 className="modal-info"><strong>Total Income (all-time):</strong> Php {product.totalSales}</h2>
                       <br />
                       <h2 className="modal-period"><strong>Between {dates.start} - {dates.end}:</strong></h2>
-                      <h2 className="modal-sales"><strong>Sold:</strong> {product.salesQuantity}</h2>
-                      <h2 className="modal-sales"><strong>Income:</strong> Php {product.salesIncome.toFixed(2)}</h2>
+                      <h2 className="modal-sales"><strong>Period Sold:</strong> {product.periodSold}</h2>
+                      <h2 className="modal-sales"><strong>Period Sales:</strong> Php {product.periodSales}</h2>
                     </div>
                   </div>
                 );
