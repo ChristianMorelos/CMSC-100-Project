@@ -1,11 +1,10 @@
 import mongoose from 'mongoose';
-import { User, Product, OrderTransaction } from "../models/model.js";
+import { User, Product, Cart, OrderTransaction } from "../models/model.js";
 
 const checkoutOrder = async (req, res) => {
     try {
         const { email, products } = req.body;
         
-        // Validate the user email
         const user = await User.findOne({ email: email });
         if (!user) {
             return res.status(404).send('User not found.');
@@ -18,7 +17,6 @@ const checkoutOrder = async (req, res) => {
                 return res.status(404).send(`Product with ID ${id} not found.`);
             }
             
-            // Create a new transaction
             const newTransaction = new OrderTransaction({
                 transactionId: new mongoose.Types.ObjectId(),
                 productId: id,
@@ -47,12 +45,10 @@ const cancelOrder = async (req, res) => {
             return res.status(404).send("Order not found.");
         }
 
-        // Check if the order is already completed
         if (order.orderStatus === 1) { 
             return res.status(400).send("Cannot cancel a completed order.");
         }
 
-        // Update the order to canceled
         order.orderStatus = 3; 
         await order.save();
 
@@ -73,4 +69,51 @@ const getOrders = async (req, res) => {
     }
 };
 
-export { checkoutOrder, cancelOrder, getOrders }
+const getCart = async (req, res) => {
+    try {
+
+        const { email } = req.query; 
+        const items = await Cart.find({ email: email });    
+        
+        const cart = [];
+        for (let { productId, quantity } of items) {  
+            const {productName, productDescription, productType } = await Product.findOne({ productId: productId });
+
+            const cartItem = {
+                productId: productId,
+                productName: productName,
+                productDescription: productDescription,
+                productType: productType,
+                productQuantity: quantity,
+            };
+            console.log(cartItem);
+            cart.push(cartItem);
+        }
+
+        res.status(200).send(cart);
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
+const addCart = async (req, res) => {
+    try {
+        
+        const { email, productId, quantity } = req.body; 
+
+        const newCart = new Cart({
+            email: email,
+            productId: productId,
+            quantity: quantity
+        })
+
+        await newCart.save();
+        res.status(200).send("Item added to cart");
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
+export { checkoutOrder, cancelOrder, getOrders, addCart, getCart }

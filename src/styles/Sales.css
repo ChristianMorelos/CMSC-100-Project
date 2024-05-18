@@ -173,7 +173,7 @@
 
 #product-sales-card-container{     
     padding-top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 125px;
 
     display: flex;
     flex-direction: row;

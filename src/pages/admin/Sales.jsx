@@ -5,12 +5,68 @@ import ProductSalesCards from '/src/components/ProductSalesCards.jsx';
 function Sales() {
 
   const dummyProducts = [
-    { id: 1, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 1', salesQuantity: 10, salesSales: 100 },
-    { id: 2, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 2', salesQuantity: 20, salesSales: 200 },
-    { id: 3, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 3', salesQuantity: 30, salesSales: 300 },
-    { id: 4, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 4', salesQuantity: 40, salesSales: 400 },
-    { id: 5, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 5', salesQuantity: 50, salesSales: 500 },
+    {
+      id: 1,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 1',
+      type: 'Vegetables',
+      salesQuantity: 10,
+      salesSales: 100,
+      unitPrice: 10,
+      totalSold: 100,
+      totalIncome: 1000,
+      salesIncome: 100,
+    },
+    {
+      id: 2,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 2',
+      type: 'Vegetables',
+      salesQuantity: 20,
+      salesSales: 200,
+      unitPrice: 20,
+      totalSold: 200,
+      totalIncome: 2000,
+      salesIncome: 200,
+    },
+    {
+      id: 3,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 3',
+      type: 'Vegetables',
+      salesQuantity: 30,
+      salesSales: 300,
+      unitPrice: 30,
+      totalSold: 300,
+      totalIncome: 3000,
+      salesIncome: 300,
+    },
+    {
+      id: 4,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 4',
+      type: 'Vegetables',
+      salesQuantity: 40,
+      salesSales: 400,
+      unitPrice: 40,
+      totalSold: 400,
+      totalIncome: 4000,
+      salesIncome: 400,
+    },
+    {
+      id: 5,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 5',
+      type: 'Vegetables',
+      salesQuantity: 50,
+      salesSales: 500,
+      unitPrice: 50,
+      totalSold: 500,
+      totalIncome: 5000,
+      salesIncome: 500,
+    },
   ];
+  
   
 
   const [period, setPeriod] = useState('monthly');
@@ -114,7 +170,7 @@ function Sales() {
       </div>
 
       <div id='product-sales-card-container'>
-        <ProductSalesCards products={dummyProducts}></ProductSalesCards>
+        <ProductSalesCards products={dummyProducts} dates={{ start: formatDate(dates.start), end: formatDate(dates.end) }}></ProductSalesCards>
       </div>
 
       <div id="vignette"></div>
