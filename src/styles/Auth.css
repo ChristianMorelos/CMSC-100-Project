@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.auth-page {
+  background-color: #2da83d;
+  background: linear-gradient(to right, #acc360, #67a74d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.auth-container {
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  width: 400px;
+  max-width: 100%;
+  min-height: 480px;
+}
+
+.auth-container h1 {
+  margin-bottom: 10px;
+}
+
+.auth-container span {
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+}
+
+.auth-container p {
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  margin: 8px 0;
+  margin-top: 5px;
+}
+
+.auth-container a {
+  color: #333;
+  font-size: 13px;
+  text-decoration: none;
+  margin: 15px 0 10px;
+}
+
+.auth-container button {
+  background-color: #fff;
+  border-color: #2da83d;
+  color: #2da83d;
+  font-size: 12px;
+  padding: 10px 45px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.auth-container button:hover {
+  background-color: #2da83d;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.3s ease-out;
+}
+
+.auth-container form {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
+}
+
+.auth-container input {
+  background-color: #eee;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-size: 13px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+}
+
+.auth-container {
+  position: absolute;
+  height: 80%;
+}

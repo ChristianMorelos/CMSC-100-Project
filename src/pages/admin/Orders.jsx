@@ -11,7 +11,7 @@ function Orders() {
     firstName: 'Franz Christian',
     middleName: 'Dela Cruz',
     lastName: 'Morelos',
-    email: 'example3@example.com'
+    email: 'john.doe@example.com'
   };
 
   const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };

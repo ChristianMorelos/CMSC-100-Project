@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
 import Root from './pages/Root';
-import Login from './pages/auth/Login';
+import Auth from './pages/Auth';
 
 import Orders from './pages/admin/Orders';
 import Products from './pages/admin/Products';
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     { path: 'user/products', element: <UserProducts /> },
   ]},
 
-  { path: '/login', element: <Login />},
+  { path: '/login', element: <Auth />},
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
