@@ -3,7 +3,7 @@ import React from 'react';
 function Signup({ firstName, setFirstName, middleName, setMiddleName, lastName, setLastName, email, setEmail, password, setPassword, handleLogin, setIsSignUpActive }) {
   return (
     <form>
-      <h1>Create Account</h1>
+      <h1>Sign up</h1>
       <span>See endless agriculture!</span>
       <input
         type="text"

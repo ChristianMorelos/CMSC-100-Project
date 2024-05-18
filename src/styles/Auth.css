@@ -54,17 +54,25 @@
 }
 
 .auth-container button {
-  background-color: #2da83d;
-  color: #fff;
+  background-color: #fff;
+  border-color: #2da83d;
+  color: #2da83d;
   font-size: 12px;
   padding: 10px 45px;
-  border: 1px solid transparent;
+  border: 1px solid;
   border-radius: 8px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   margin-top: 10px;
   cursor: pointer;
+}
+
+.auth-container button:hover {
+  background-color: #2da83d;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.3s ease-out;
 }
 
 .auth-container form {
