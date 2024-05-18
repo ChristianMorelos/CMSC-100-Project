@@ -6,6 +6,14 @@ import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 
 function Navbar({ menus }) {
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+  };
+
+  const logoutMenu = { key: 5, name: "Logout", url: "/login" };
+
   return (
     <nav className="navbar">
       <div>
@@ -21,6 +29,10 @@ function Navbar({ menus }) {
             {menu.name}{" "}
           </Link>
         ))}
+        <Link onClick={() => handleLogout()} key={logoutMenu.key} to={logoutMenu.url} className="nav-link">
+            {" "}
+            {logoutMenu.name}{" "}
+        </Link>
       </div>
     </nav>
   );

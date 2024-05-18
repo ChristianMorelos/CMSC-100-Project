@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Signup({ firstName, setFirstName, middleName, setMiddleName, lastName, setLastName, email, setEmail, password, setPassword, handleLogin, setIsSignUpActive }) {
+function Signup({ firstName, setFirstName, middleName, setMiddleName, lastName, setLastName, email, setEmail, password, setPassword, handleSignup, setIsSignUpActive }) {
   return (
     <form>
       <h1>Sign up</h1>
@@ -39,7 +39,7 @@ function Signup({ firstName, setFirstName, middleName, setMiddleName, lastName, 
         Alread have an account?{' '}
         <a href="#" onClick={() => setIsSignUpActive(false)}> Sign in </a>
       </p>
-      <button onClick={handleLogin} type="button">Sign Up</button>
+      <button onClick={handleSignup} type="button">Sign Up</button>
     </form>
   );
 }

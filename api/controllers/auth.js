@@ -6,12 +6,12 @@ const SECRET_KEY = '279fa3818db53ae62ed74894b0312d2339bfabf269f4462f7ed7fe7f33ef
 
 const register = async (req, res) => {
     try {
-        const { firstName, middleName, lastName, userType, email } = req.body;
+        const { firstName, middleName, lastName, email } = req.body;
         let { password } = req.body;
 
         password = await bcrypt.hash(password, 10);
     
-        if (!firstName || !lastName || !userType || !email || !password) {
+        if (!firstName || !middleName || !lastName || !email || !password) {
             return res.status(400).json({ message: 'Missing required fields' });
         }
         
@@ -20,7 +20,7 @@ const register = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         
-        const newUser = new User({ firstName, middleName, lastName, userType, email, password });
+        const newUser = new User({ firstName, middleName, lastName, email, password });
         await newUser.save();
     
         res.status(200).json({ message: 'User registered successfully' });
