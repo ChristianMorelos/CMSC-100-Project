@@ -118,7 +118,12 @@ const addCart = async (req, res) => {
 
 const editAccount = async (req, res) => {
   try {
-    const { userEmail, firstName, middleName, lastName, email, password } = req.body;
+ 
+    const { userEmail, firstName, middleName, lastName, email } = req.body;
+
+    if (!firstName || !middleName || !lastName || !email ) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    } 
 
     await User.updateOne(
       { email: userEmail },
@@ -127,7 +132,6 @@ const editAccount = async (req, res) => {
         middleName: middleName,
         lastName: lastName,
         email: email,
-        password: await bcrypt.hash(password, 10)
       }}
     );
 
