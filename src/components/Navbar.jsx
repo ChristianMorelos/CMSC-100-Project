@@ -12,7 +12,7 @@ function Navbar({ menus }) {
     localStorage.removeItem('email');
   };
 
-  const logoutMenu = { key: 5, name: "Logout", url: "/login" };
+  const logoutMenu = { key: 5, name: "Logout", url: "/auth" };
 
   return (
     <nav className="navbar">

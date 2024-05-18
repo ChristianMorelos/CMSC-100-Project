@@ -13,6 +13,7 @@ import Users from './pages/admin/Users';
 
 import UserOrders from './pages/user/Orders';
 import UserProducts from './pages/user/Products';
+import UserAccount from './pages/user/Account';
 
 
 const router = createBrowserRouter([
@@ -24,9 +25,10 @@ const router = createBrowserRouter([
 
     { path: 'user/orders', element: <UserOrders /> },
     { path: 'user/products', element: <UserProducts /> },
+    { path: 'user/account', element: <UserAccount /> },
   ]},
 
-  { path: '/login', element: <Auth />},
+  { path: '/auth', element: <Auth />},
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -97,18 +97,19 @@ import needle from "needle";
 //     console.log('Response', res.body);
 // });
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjQ2ZjQ2ZDkzMjQzMzk3MWY3YmMzNzYiLCJpYXQiOjE3MTU5MjY1MjcsImV4cCI6MTcxNTkzMDEyN30.DKc72GF4Re4c-6HITW5MTDLaTKyWIw60FSEugUZrniU'
-const bearer = `Bearer ${token}`;
-needle(
-  "post",
-  "http://localhost:4000/auth/authenticate",
-  { headers:{
-    'authorization': [],
-    "Accept": "application/json"
-  }},
-  (err, res) => {
-    console.log(res);
-});
+// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjQ2ZjQ2ZDkzMjQzMzk3MWY3YmMzNzYiLCJpYXQiOjE3MTU5MjY1MjcsImV4cCI6MTcxNTkzMDEyN30.DKc72GF4Re4c-6HITW5MTDLaTKyWIw60FSEugUZrniU'
+// const bearer = `Bearer ${token}`;
+// needle(
+//   "post",
+//   "http://localhost:4000/auth/authenticate",
+//   { headers:{
+//     'authorization': [],
+//     "Accept": "application/json"
+//   }},
+//   (err, res) => {
+//     console.log(res);
+// });
+
 
 // needle.post("http://localhost:4000/auth/authenticate",
 //   { headers:{
@@ -136,8 +137,25 @@ needle(
 //     console.log('Response', res.body);
 // });
 
-const email = 'jane.smith@example.com';
+// const email = 'jane.smith@example.com';
 
-needle.get(`http://localhost:4000/user/get-cart-items?email=${email}`, (err, res) => {
+// needle.get(`http://localhost:4000/user/get-cart-items?email=${email}`, (err, res) => {
+//     console.log(res.body);
+// });
+
+// const newInfo = {
+//   email: 'jane.smith@example.com',
+//   productId: 'P002',
+//   quantity: '100'
+// }
+
+// needle.post('http://localhost:4000/user/add-to-cart', cartData, { json: true },
+// (err, res) => {
+//     console.log('Response', res.body);
+// });
+
+const currentEmail = 'fdmorelos@up.edu.ph';
+
+needle.get(`http://localhost:4000/user/info?email=${currentEmail}`, (err, res) => {
     console.log(res.body);
 });

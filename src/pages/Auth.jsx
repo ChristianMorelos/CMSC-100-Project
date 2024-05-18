@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Login from '../components/Signin';
-import Signup from '../components/Signup';
 import Root from './Root';
 
 import '../styles/Auth.css';
@@ -78,19 +76,45 @@ function Auth() {
       return (
         <div className="auth-page">
           <div className="auth-container">
-              <Signup
-              firstName={firstName}
-              setFirstName={setFirstName}
-              middleName={middleName}
-              setMiddleName={setMiddleName}
-              lastName={lastName}
-              setLastName={setLastName}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              handleSignup={handleSignup}        
-              setIsSignUpActive={setIsSignUpActive}  
-              />
+          <form onSubmit={(e) => e.preventDefault()}>
+            <h1>Sign up</h1>
+            <span>See endless agriculture!</span>
+            <input
+              type="text"
+              placeholder="First name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Middle name"
+              value={middleName}
+              onChange={(e) => setMiddleName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Last name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />      
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <p>
+              Alread have an account?{' '}
+              <a href="#" onClick={() => setIsSignUpActive(false)}> Sign in </a>
+            </p>
+            <button onClick={handleSignup} type="button">Sign Up</button>
+          </form>
           </div>
         </div>
     );
@@ -99,14 +123,27 @@ function Auth() {
   return (
     <div className="auth-page">
         <div className="auth-container">
-            <Login 
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            setIsSignUpActive={setIsSignUpActive}  
-            />
+        <form onSubmit={(e) => e.preventDefault()}>
+          <h1>Sign In</h1>
+          <span>Welcome dear customer!</span>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <p>
+            Don't have an account?{' '}
+            <a href="#" onClick={() => setIsSignUpActive(true)}> Register </a>
+          </p>
+          <button onClick={handleLogin} type="button">Sign In</button>
+        </form>
         </div>
     </div>
     );
