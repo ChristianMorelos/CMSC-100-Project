@@ -16,7 +16,7 @@ function ConfirmModal({ isOpen, onClose, onSubmit }) {
           value='dfs'
           onChange={(e) => {}}
         />
-        <button onClick={onSubmit}>Submit</button>
+        <button onClick={onSubmit}>Confirm</button>
       </div>
       </div>
       
