@@ -111,12 +111,12 @@
     text-align: center;
     padding: 10px;
     color: #696969;
-    font-size: clamp(9px, 1vw, 14px);
+    font-size: clamp(9px, 1vw, 12px);
 }
 
 .period{
     margin: 10px;
-    font-size: clamp(12px, 1.25vw, 18px);
+    font-size: clamp(12px, 1.25vw, 16px);
     font-weight: bold;
 }
 
