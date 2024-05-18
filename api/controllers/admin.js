@@ -3,35 +3,73 @@ import { v4 as uuidv4 } from "uuid";
 
 const getSales = async (req, res) => {
   try {
-    // Gets order transactions and product list
-    const orderTransactionList = await OrderTransaction.find();
+    const start = new Date(req.query.start);
+    const end = new Date(req.query.end);
+    
+    // Get order transactions with orderStatus = 1 (all-time)
+    const orderTransactionListAllTime = await OrderTransaction.find({ orderStatus: 1 });
+    
+    // Filter order transactions within the specified date range
+    const orderTransactionListWithinDates = orderTransactionListAllTime.filter(order => {
+      return order.dateOrdered >= start && order.dateOrdered <= end;
+    });
+
+    
+
+    // Get all products
     const productList = await Product.find();
 
-    const productSales = {}; // Initialize empty object {productId: {status: quantity}}
+    // Initialize an empty array to store product sales information
+    let productSales = [];
 
+    const productTypes = {
+      1: "Staple",
+      2: "Fruits and Vegetables",
+      3: "Livestock",
+      4: "Seafood",
+      5: "Others"
+    };
+
+    // Loop through each product
     for (const product of productList) {
-      // For every product in productList
-      const productId = product.productId; // Gets productId
+      // Filter order transactions for the current product and within the specified dates
+      const ordersWithinDatesForProduct = orderTransactionListWithinDates.filter(order => order.productId === product.productId);
 
-      // Initializes an object to store quantity by status, with default values as 0
-      const salesByStatus = { 0: 0, 1: 0, 2: 0 };
+      // Calculate sales quantity and sales income for the product within the specified dates
+      const periodSold = ordersWithinDatesForProduct.reduce((acc, order) => acc + order.orderQuantity, 0);
+      const periodSales = ordersWithinDatesForProduct.reduce((acc, order) => acc + order.orderQuantity * product.productPrice, 0);
 
-      // Computes total sales and categorizes by status
-      orderTransactionList
-        .filter((order) => order.productId === productId)
-        .forEach((order) => {
-          salesByStatus[order.orderStatus] += order.orderQuantity;
-        });
+      // Calculate total sold and total income for the product (all-time)
+      const totalSold = orderTransactionListAllTime.filter(order => order.productId === product.productId).reduce((acc, order) => acc + order.orderQuantity, 0);
+      const totalSales = orderTransactionListAllTime.filter(order => order.productId === product.productId).reduce((acc, order) => acc + order.orderQuantity * product.productPrice, 0);
 
-      productSales[productId] = salesByStatus; // Adds to the object {productId: {status: quantity}}
+      // Construct product sales object
+      const productSale = {
+        id: product.productId,
+        image: "https://cdn.britannica.com/17/196817-159-9E487F15/vegetables.jpg",
+        name: product.productName,
+        type: productTypes[product.productType],
+        periodSold,
+        periodSales,
+        unitPrice: product.productPrice,
+        totalSold,
+        totalSales,
+      };
+
+      // Push product sales object to the productSales array
+      productSales.push(productSale);
     }
 
-    res.json(productSales); // Returns productSales
+    // Send the product sales information as response
+    res.json(productSales);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
+
 
 const getUsers = async (req, res) => {
   res.json(await User.find());

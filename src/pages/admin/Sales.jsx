@@ -3,72 +3,6 @@ import '/src/styles/Sales.css';
 import ProductSalesCards from '/src/components/ProductSalesCards.jsx';
 
 function Sales() {
-
-  const dummyProducts = [
-    {
-      id: 1,
-      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
-      name: 'Product 1',
-      type: 'Vegetables',
-      salesQuantity: 10,
-      salesSales: 100,
-      unitPrice: 10,
-      totalSold: 100,
-      totalIncome: 1000,
-      salesIncome: 100,
-    },
-    {
-      id: 2,
-      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
-      name: 'Product 2',
-      type: 'Vegetables',
-      salesQuantity: 20,
-      salesSales: 200,
-      unitPrice: 20,
-      totalSold: 200,
-      totalIncome: 2000,
-      salesIncome: 200,
-    },
-    {
-      id: 3,
-      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
-      name: 'Product 3',
-      type: 'Vegetables',
-      salesQuantity: 30,
-      salesSales: 300,
-      unitPrice: 30,
-      totalSold: 300,
-      totalIncome: 3000,
-      salesIncome: 300,
-    },
-    {
-      id: 4,
-      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
-      name: 'Product 4',
-      type: 'Vegetables',
-      salesQuantity: 40,
-      salesSales: 400,
-      unitPrice: 40,
-      totalSold: 400,
-      totalIncome: 4000,
-      salesIncome: 400,
-    },
-    {
-      id: 5,
-      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
-      name: 'Product 5',
-      type: 'Vegetables',
-      salesQuantity: 50,
-      salesSales: 500,
-      unitPrice: 50,
-      totalSold: 500,
-      totalIncome: 5000,
-      salesIncome: 500,
-    },
-  ];
-  
-  
-
   const [period, setPeriod] = useState('monthly');
   const [dates, setDates] = useState({ start: new Date(), end: new Date() });
 
@@ -83,7 +17,7 @@ function Sales() {
   
     if (period === 'weekly') {
       start.setDate(now.getDate() - now.getDay());
-      end.setDate(start.getDate() + 6);
+      end.setTime(start.getTime() + (6 * 24 * 60 * 60 * 1000));
     } else if (period === 'monthly') {
       start.setDate(1);
       end.setFullYear(now.getFullYear(), now.getMonth() + 1, 0);
@@ -111,7 +45,7 @@ function Sales() {
     switch (period) {
       case 'weekly':
         start.setDate(start.getDate() + direction * 7);
-        end.setDate(start.getDate() + 6);
+        end.setTime(start.getTime() + (6 * 24 * 60 * 60 * 1000));
         break;
       case 'monthly':
         start.setMonth(start.getMonth() + direction);
@@ -143,23 +77,58 @@ function Sales() {
     });
   }
 
+
+  const [productSales, setProductSales] = useState([]);
+
+  useEffect(() => {
+    fetchSalesData();
+  }, [dates]);
+
+  function fetchSalesData() {
+    const queryString = `?start=${encodeURIComponent(dates.start.toISOString())}&end=${encodeURIComponent(dates.end.toISOString())}`;
+    fetch(`http://localhost:4000/admin/sales${queryString}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch sales data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const filteredData = data.filter(item => item.periodSold > 0);
+        setProductSales(filteredData);
+      })
+      .catch(error => {
+        console.error('Failed to fetch sales data:', error);
+      });
+  }
+  
+
+  const periodTotalSold = productSales.reduce((acc, curr) => acc + curr.periodSold, 0);
+  const periodTotalSales = productSales.reduce((acc, curr) => acc + curr.periodSales, 0);
+
   let summaryText = (
     <div>
-      You made <strong>80 sales</strong> amounting to 
-      <br/><strong>Php 1,000,000</strong> between<br/>
+      You made <strong>{periodTotalSold}</strong> {periodTotalSold > 1 ? 'sales' : 'sale'} amounting to 
+      <br/><strong>Php {periodTotalSales}</strong> between<br/>
       {formatDate(dates.start)} to {formatDate(dates.end)}.
     </div>
   );
   
   if (period === 'all-time') {
+    
+  
     summaryText = (
       <div>
-        You made <strong>80 sales</strong> amounting to 
-        <br/><strong>Php 1,000,000</strong> upto<br/>
+        You made <strong>{periodTotalSold}</strong> {periodTotalSold > 1 ? 'sales' : 'sale'} amounting to 
+      <br/><strong>Php {periodTotalSales}</strong> up to<br/>
         {formatDate(dates.end)}
       </div>
     );
-  }  
+  }
+  
 
   return (
     <div>
@@ -168,9 +137,10 @@ function Sales() {
           {summaryText}
         </span>
       </div>
-
+      
       <div id='product-sales-card-container'>
-        <ProductSalesCards products={dummyProducts} dates={{ start: formatDate(dates.start), end: formatDate(dates.end) }}></ProductSalesCards>
+        <span id='nothing'>{periodTotalSold == 0 ? 'Nothing to show here.' : ''}</span>
+        <ProductSalesCards products={productSales} dates={{ start: formatDate(dates.start), end: formatDate(dates.end) }}></ProductSalesCards>
       </div>
 
       <div id="vignette"></div>

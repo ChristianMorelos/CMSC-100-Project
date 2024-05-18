@@ -30,7 +30,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
-    font-size: clamp(18px,2.5vw,40px);
+    font-size: clamp(18px,2.5vw,36px);
     color: white;
 }
 
@@ -50,6 +50,10 @@
     max-width: 300px; 
     box-sizing: border-box; 
     transition: border-color 0.2s ease; 
+}
+
+#nothing{
+    color: #696969;
 }
 
 .search-input:focus {
@@ -180,4 +184,5 @@
     flex-wrap: wrap;
 
     justify-content: center;
+    align-content: center;
 }
