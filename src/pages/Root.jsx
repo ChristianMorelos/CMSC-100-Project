@@ -10,7 +10,7 @@ export default function Root() {
     firstName: 'Franz Christian',
     middleName: 'Dela Cruz',
     lastName: 'Morelos',
-    userType: 'customer',    // Change this to 'customer' if you want to check user pages
+    userType: 'admin',    // Change this to 'customer' if you want to check user pages
     email: 'john.doe@example.com',
     password: 'hashedsample'
   };
@@ -30,3 +30,4 @@ export default function Root() {
 
   return renderHomePage();
 }
+
