@@ -1,68 +1,202 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '/src/styles/Sales.css';
 import ProductSalesCards from '/src/components/ProductSalesCards.jsx';
 
 function Sales() {
 
-
   const dummyProducts = [
-    { id: 1, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 1', salesQuantity: 10, salesSales: 100 },
-    { id: 2, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 2', salesQuantity: 20, salesSales: 200 },
-    { id: 3, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 3', salesQuantity: 30, salesSales: 300 },
-    { id: 4, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 4', salesQuantity: 40, salesSales: 400 },
-    { id: 5, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 5', salesQuantity: 50, salesSales: 500 },
-    { id: 6, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 6', salesQuantity: 60, salesSales: 600 },
-    { id: 7, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 7', salesQuantity: 70, salesSales: 700 },
-    { id: 8, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 8', salesQuantity: 80, salesSales: 800 },
-    { id: 9, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 9', salesQuantity: 90, salesSales: 900 },
-    { id: 10, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 10', salesQuantity: 100, salesSales: 1000 },
-    { id: 11, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 11', salesQuantity: 110, salesSales: 1100 },
-    { id: 12, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 12', salesQuantity: 120, salesSales: 1200 },
-    { id: 13, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 13', salesQuantity: 130, salesSales: 1300 },
-    { id: 14, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 14', salesQuantity: 140, salesSales: 1400 },
-    { id: 15, image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg', name: 'Product 15', salesQuantity: 150, salesSales: 1500 },
+    {
+      id: 1,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 1',
+      type: 'Vegetables',
+      salesQuantity: 10,
+      salesSales: 100,
+      unitPrice: 10,
+      totalSold: 100,
+      totalIncome: 1000,
+      salesIncome: 100,
+    },
+    {
+      id: 2,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 2',
+      type: 'Vegetables',
+      salesQuantity: 20,
+      salesSales: 200,
+      unitPrice: 20,
+      totalSold: 200,
+      totalIncome: 2000,
+      salesIncome: 200,
+    },
+    {
+      id: 3,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 3',
+      type: 'Vegetables',
+      salesQuantity: 30,
+      salesSales: 300,
+      unitPrice: 30,
+      totalSold: 300,
+      totalIncome: 3000,
+      salesIncome: 300,
+    },
+    {
+      id: 4,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 4',
+      type: 'Vegetables',
+      salesQuantity: 40,
+      salesSales: 400,
+      unitPrice: 40,
+      totalSold: 400,
+      totalIncome: 4000,
+      salesIncome: 400,
+    },
+    {
+      id: 5,
+      image: 'https://cdn.britannica.com/39/187439-050-35BA4DCA/Broccoli-florets.jpg',
+      name: 'Product 5',
+      type: 'Vegetables',
+      salesQuantity: 50,
+      salesSales: 500,
+      unitPrice: 50,
+      totalSold: 500,
+      totalIncome: 5000,
+      salesIncome: 500,
+    },
   ];
   
+  
+
+  const [period, setPeriod] = useState('monthly');
+  const [dates, setDates] = useState({ start: new Date(), end: new Date() });
+
+  useEffect(() => {
+    getCurrentPeriodDates(period);
+  }, [period]);
+
+  function getCurrentPeriodDates(period) {
+    const now = new Date();
+    const start = new Date();
+    const end = new Date();
+  
+    if (period === 'weekly') {
+      start.setDate(now.getDate() - now.getDay());
+      end.setDate(start.getDate() + 6);
+    } else if (period === 'monthly') {
+      start.setDate(1);
+      end.setFullYear(now.getFullYear(), now.getMonth() + 1, 0);
+    } else if (period === 'annually') {
+      start.setFullYear(now.getFullYear(), 0, 1);
+      end.setFullYear(now.getFullYear(), 11, 31);
+    } else if (period === 'all-time') {
+      start.setFullYear(1970, 0, 1);
+      end.setDate(now.getDate());
+    }
+  
+    if (end > now) {
+      setDates({ start, end: now });
+    } else{
+      setDates({ start, end });
+    }
+  }
+  
+
+  const shiftDates = (direction) => {
+    const now = new Date();
+    const start = new Date(dates.start);
+    const end = new Date(dates.end);
+
+    switch (period) {
+      case 'weekly':
+        start.setDate(start.getDate() + direction * 7);
+        end.setDate(start.getDate() + 6);
+        break;
+      case 'monthly':
+        start.setMonth(start.getMonth() + direction);
+        end.setFullYear(start.getFullYear(), start.getMonth() + 1, 0);
+        break;
+      case 'annually':
+        start.setFullYear(start.getFullYear() + direction);
+        end.setFullYear(start.getFullYear(), 11, 31);
+        break;
+      default:
+        return;
+    }
+
+    if (start > now) {
+      getCurrentPeriodDates(period)
+    } else if (end > now) {
+      setDates({ start, end: now });
+    } else {
+      setDates({ start, end });
+    }
+  };
+
+
+  function formatDate(date) {
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  let summaryText = (
+    <div>
+      You made <strong>80 sales</strong> amounting to 
+      <br/><strong>Php 1,000,000</strong> between<br/>
+      {formatDate(dates.start)} to {formatDate(dates.end)}.
+    </div>
+  );
+  
+  if (period === 'all-time') {
+    summaryText = (
+      <div>
+        You made <strong>80 sales</strong> amounting to 
+        <br/><strong>Php 1,000,000</strong> upto<br/>
+        {formatDate(dates.end)}
+      </div>
+    );
+  }  
 
   return (
     <div>
       <div id="top-bar">
         <span className="summary">
-          You made <strong>80 sales</strong> amounting to <br />
-          <strong>Php 1,000,000</strong> from March 1-31, 2024.
+          {summaryText}
         </span>
       </div>
 
-  
-
       <div id='product-sales-card-container'>
-        <ProductSalesCards products={dummyProducts}></ProductSalesCards>
+        <ProductSalesCards products={dummyProducts} dates={{ start: formatDate(dates.start), end: formatDate(dates.end) }}></ProductSalesCards>
       </div>
 
-      <div id="vignette">
-        
-      </div>
+      <div id="vignette"></div>
 
       <div id="bottom-toolbar">
-        <select className="period-selector">
+        <select 
+          className="period-selector"
+          value={period}
+          onChange={(e) => setPeriod(e.target.value)}
+        >
           <option value="weekly">WEEKLY</option>
-          <option value="monthly" selected>
-            MONTHLY
-          </option>
+          <option value="monthly">MONTHLY</option>
           <option value="annually">ANNUALLY</option>
           <option value="all-time">ALL TIME</option>
         </select>
 
         <span className="toolbar-text">
           Showing sales from:
-          <span className="period start">March 1, 2024</span>
+          <span className="period start"> {formatDate(dates.start)} </span>
           to
-          <span className="period end">March 31, 2024</span>
+          <span className="period end"> {formatDate(dates.end)} </span>
         </span>
 
-        <button className="toolbar-button left">&lt;</button>
-        <button className="toolbar-button right">&gt;</button>
-        <button className="toolbar-button arrow">&#8634;</button>
+        <button className="toolbar-button left" onClick={() => shiftDates(-1)}>&lt;</button>
+        <button className="toolbar-button right" onClick={() => shiftDates(1)}>&gt;</button>
+        <button className="toolbar-button arrow" onClick={() => getCurrentPeriodDates(period)}>&#8634;</button>
       </div>
     </div>
   );

@@ -97,8 +97,18 @@ import needle from "needle";
 //     console.log('Response', res.body);
 // });
 
-// const token = '';
-// const bearer = `Bearer ${token}`;
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjQ2ZjQ2ZDkzMjQzMzk3MWY3YmMzNzYiLCJpYXQiOjE3MTU5MjY1MjcsImV4cCI6MTcxNTkzMDEyN30.DKc72GF4Re4c-6HITW5MTDLaTKyWIw60FSEugUZrniU'
+const bearer = `Bearer ${token}`;
+needle(
+  "post",
+  "http://localhost:4000/auth/authenticate",
+  { headers:{
+    'authorization': [],
+    "Accept": "application/json"
+  }},
+  (err, res) => {
+    console.log(res);
+});
 
 // needle.post("http://localhost:4000/auth/authenticate",
 //   { headers:{
