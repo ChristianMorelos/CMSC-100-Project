@@ -5,16 +5,18 @@ const getSales = async (req, res) => {
   try {
     const start = new Date(req.query.start);
     const end = new Date(req.query.end);
-    
+
     // Get order transactions with orderStatus = 1 (all-time)
-    const orderTransactionListAllTime = await OrderTransaction.find({ orderStatus: 1 });
-    
-    // Filter order transactions within the specified date range
-    const orderTransactionListWithinDates = orderTransactionListAllTime.filter(order => {
-      return order.dateOrdered >= start && order.dateOrdered <= end;
+    const orderTransactionListAllTime = await OrderTransaction.find({
+      orderStatus: 1,
     });
 
-    
+    // Filter order transactions within the specified date range
+    const orderTransactionListWithinDates = orderTransactionListAllTime.filter(
+      (order) => {
+        return order.dateOrdered >= start && order.dateOrdered <= end;
+      }
+    );
 
     // Get all products
     const productList = await Product.find();
@@ -27,26 +29,43 @@ const getSales = async (req, res) => {
       2: "Fruits and Vegetables",
       3: "Livestock",
       4: "Seafood",
-      5: "Others"
+      5: "Others",
     };
 
     // Loop through each product
     for (const product of productList) {
       // Filter order transactions for the current product and within the specified dates
-      const ordersWithinDatesForProduct = orderTransactionListWithinDates.filter(order => order.productId === product.productId);
+      const ordersWithinDatesForProduct =
+        orderTransactionListWithinDates.filter(
+          (order) => order.productId === product.productId
+        );
 
       // Calculate sales quantity and sales income for the product within the specified dates
-      const periodSold = ordersWithinDatesForProduct.reduce((acc, order) => acc + order.orderQuantity, 0);
-      const periodSales = ordersWithinDatesForProduct.reduce((acc, order) => acc + order.orderQuantity * product.productPrice, 0);
+      const periodSold = ordersWithinDatesForProduct.reduce(
+        (acc, order) => acc + order.orderQuantity,
+        0
+      );
+      const periodSales = ordersWithinDatesForProduct.reduce(
+        (acc, order) => acc + order.orderQuantity * product.productPrice,
+        0
+      );
 
       // Calculate total sold and total income for the product (all-time)
-      const totalSold = orderTransactionListAllTime.filter(order => order.productId === product.productId).reduce((acc, order) => acc + order.orderQuantity, 0);
-      const totalSales = orderTransactionListAllTime.filter(order => order.productId === product.productId).reduce((acc, order) => acc + order.orderQuantity * product.productPrice, 0);
+      const totalSold = orderTransactionListAllTime
+        .filter((order) => order.productId === product.productId)
+        .reduce((acc, order) => acc + order.orderQuantity, 0);
+      const totalSales = orderTransactionListAllTime
+        .filter((order) => order.productId === product.productId)
+        .reduce(
+          (acc, order) => acc + order.orderQuantity * product.productPrice,
+          0
+        );
 
       // Construct product sales object
       const productSale = {
         id: product.productId,
-        image: "https://cdn.britannica.com/17/196817-159-9E487F15/vegetables.jpg",
+        image:
+          "https://cdn.britannica.com/17/196817-159-9E487F15/vegetables.jpg",
         name: product.productName,
         type: productTypes[product.productType],
         periodSold,
@@ -67,9 +86,6 @@ const getSales = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
-
-
 
 const getUsers = async (req, res) => {
   res.json(await User.find());
@@ -93,6 +109,8 @@ const addProduct = async (req, res) => {
   //check if the product fields are complete
   if (
     req.body.productName &&
+    req.body.productPrice &&
+    req.body.productImg &&
     req.body.productDescription &&
     req.body.productType &&
     req.body.productQuantity
@@ -102,6 +120,8 @@ const addProduct = async (req, res) => {
       const newProduct = new Product({
         productId: productId,
         productName: req.body.productName,
+        productPrice: req.body.productPrice,
+        productImg: req.body.productImg,
         productDescription: req.body.productDescription,
         productType: req.body.productType,
         productQuantity: req.body.productQuantity,
@@ -130,6 +150,27 @@ const deleteProduct = async (req, res) => {
 
   //response message
   res.send(removeProduct);
+};
+
+//edit product method
+const editProduct = async (req, res) => {
+  //edit product with the given product id
+  const editOne = await Product.updateOne(
+    { productId: req.body.productId },
+    {
+      $set: {
+        productName: req.body.productName,
+        productPrice: req.body.productPrice,
+        productImg: req.body.productImg,
+        productDescription: req.body.productDescription,
+        productType: req.body.productType,
+        productQuantity: req.body.productQuantity,
+      },
+    }
+  );
+
+  //response message
+  res.send(editOne);
 };
 
 const fulfillOrder = async (req, res) => {
@@ -180,5 +221,6 @@ export {
   getOrders,
   addProduct,
   deleteProduct,
+  editProduct,
   fulfillOrder,
 };

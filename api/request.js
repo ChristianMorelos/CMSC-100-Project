@@ -110,7 +110,6 @@ import needle from "needle";
 //     console.log(res);
 // });
 
-
 // needle.post("http://localhost:4000/auth/authenticate",
 //   { headers:{
 //     'Authorization': bearer,
@@ -154,8 +153,20 @@ import needle from "needle";
 //     console.log('Response', res.body);
 // });
 
-const currentEmail = 'fdmorelos@up.edu.ph';
+// const currentEmail = "fdmorelos@up.edu.ph";
 
-needle.get(`http://localhost:4000/user/info?email=${currentEmail}`, (err, res) => {
+// needle.get(
+//   `http://localhost:4000/user/info?email=${currentEmail}`,
+//   (err, res) => {
+//     console.log(res.body);
+//   }
+// );
+
+const prodId = "13cbfd33";
+
+needle.get(
+  `http://localhost:4000/products/find-product?productId=${prodId}`,
+  (err, res) => {
     console.log(res.body);
-});
+  }
+);

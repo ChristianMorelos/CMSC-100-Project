@@ -1,33 +1,33 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 import { User, Product, Cart, OrderTransaction } from "../models/model.js";
 
 const checkoutOrder = async (req, res) => {
   try {
     const { email, products } = req.body;
-    
+
     const user = await User.findOne({ email: email });
     if (!user) {
-        return res.status(404).send('User not found.');
+      return res.status(404).send("User not found.");
     }
 
-    for (let { id, quantity } of products) {  
-        const product = await Product.findOne({ productId: id });
+    for (let { id, quantity } of products) {
+      const product = await Product.findOne({ productId: id });
 
-        if (!product) {
-            return res.status(404).send(`Product with ID ${id} not found.`);
-        }
-        
-        const newTransaction = new OrderTransaction({
-            transactionId: new mongoose.Types.ObjectId(),
-            productId: id,
-            orderQuantity: quantity, 
-            orderStatus: 0, 
-            email: email,
-            dateOrdered: new Date(), 
-            time: new Date().toLocaleTimeString()
-        });
+      if (!product) {
+        return res.status(404).send(`Product with ID ${id} not found.`);
+      }
 
-        await newTransaction.save();
+      const newTransaction = new OrderTransaction({
+        transactionId: new mongoose.Types.ObjectId(),
+        productId: id,
+        orderQuantity: quantity,
+        orderStatus: 0,
+        email: email,
+        dateOrdered: new Date(),
+        time: new Date().toLocaleTimeString(),
+      });
+
+      await newTransaction.save();
     }
 
     res.status(200).send("All orders have been processed successfully.");
@@ -38,18 +38,20 @@ const checkoutOrder = async (req, res) => {
 
 const cancelOrder = async (req, res) => {
   try {
-    const { transactionId } = req.body; 
-    const order = await OrderTransaction.findOne({ transactionId: transactionId });
-    
+    const { transactionId } = req.body;
+    const order = await OrderTransaction.findOne({
+      transactionId: transactionId,
+    });
+
     if (!order) {
-        return res.status(404).send("Order not found.");
+      return res.status(404).send("Order not found.");
     }
 
-    if (order.orderStatus === 1) { 
-        return res.status(400).send("Cannot cancel a completed order.");
+    if (order.orderStatus === 1) {
+      return res.status(400).send("Cannot cancel a completed order.");
     }
 
-    order.orderStatus = 3; 
+    order.orderStatus = 3;
     await order.save();
 
     res.status(200).send("Order has been successfully canceled.");
@@ -60,10 +62,8 @@ const cancelOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
   try {
-
     const { email } = req.query;
-    res.status(200).json(await OrderTransaction.find({ email: email }));      
-
+    res.status(200).json(await OrderTransaction.find({ email: email }));
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -71,68 +71,66 @@ const getOrders = async (req, res) => {
 
 const getCart = async (req, res) => {
   try {
+    const { email } = req.query;
+    const items = await Cart.find({ email: email });
 
-    const { email } = req.query; 
-    const items = await Cart.find({ email: email });    
-    
     const cart = [];
-    for (let { productId, quantity } of items) {  
-        const {productName, productDescription, productType } = await Product.findOne({ productId: productId });
+    for (let { productId, quantity } of items) {
+      const { productName, productDescription, productType } =
+        await Product.findOne({ productId: productId });
 
-        const cartItem = {
-            productId: productId,
-            productName: productName,
-            productDescription: productDescription,
-            productType: productType,
-            productQuantity: quantity,
-        };
-        console.log(cartItem);
-        cart.push(cartItem);
+      const cartItem = {
+        productId: productId,
+        productName: productName,
+        productDescription: productDescription,
+        productType: productType,
+        productQuantity: quantity,
+      };
+      console.log(cartItem);
+      cart.push(cartItem);
     }
 
     res.status(200).send(cart);
-
   } catch (error) {
     res.status(500).send(error.message);
   }
-}
+};
 
 const addCart = async (req, res) => {
   try {
-      
-    const { email, productId, quantity } = req.body; 
+    const { email, productId, quantity } = req.body;
 
     const newCart = new Cart({
-        email: email,
-        productId: productId,
-        quantity: quantity
-    })
+      email: email,
+      productId: productId,
+      quantity: quantity,
+    });
 
     await newCart.save();
     res.status(200).send("Item added to cart");
-
   } catch (error) {
     res.status(500).send(error.message);
   }
-}
+};
 
 const editAccount = async (req, res) => {
   try {
- 
     const { userEmail, firstName, middleName, lastName, email } = req.body;
 
-    if (!firstName || !middleName || !lastName || !email ) {
-      return res.status(400).json({ message: 'Missing required fields' });
-    } 
+    if (!firstName || !middleName || !lastName || !email) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
 
     await User.updateOne(
       { email: userEmail },
-      { $set: {
-        firstName: firstName,
-        middleName: middleName,
-        lastName: lastName,
-        email: email,
-      }}
+      {
+        $set: {
+          firstName: firstName,
+          middleName: middleName,
+          lastName: lastName,
+          email: email,
+        },
+      }
     );
 
     res.status(200).send("User information updated successfully");
@@ -149,4 +147,12 @@ const userInfo = async (req, res) => {
   }
 };
 
-export { checkoutOrder, cancelOrder, getOrders, addCart, getCart, editAccount, userInfo }
+export {
+  checkoutOrder,
+  cancelOrder,
+  getOrders,
+  addCart,
+  getCart,
+  editAccount,
+  userInfo,
+};
