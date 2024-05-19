@@ -64,14 +64,14 @@ import needle from "needle";
 // );
 
 const orders = {
-  email: "jonathan@example.com",
+  email: "john.doe@example.com",
   products: [
-    { id: "1", quantity: 2 },
-    { id: "2", quantity: 1 },
+    { id: "6", quantity: 5 },
+    { id: "2", quantity: 6 },
     { id: "3", quantity: 2 },
-    { id: "4", quantity: 1 },
-    { id: "8", quantity: 2 },
-    { id: "6", quantity: 1 },
+    { id: "4", quantity: 6 },
+    { id: "8", quantity: 1 },
+    { id: "1", quantity: 1 },
   ],
 };
 

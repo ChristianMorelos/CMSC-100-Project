@@ -4,6 +4,7 @@ import "/src/styles/adminOrders.css";
 function Orders() {
   const [currentView, setCurrentView] = useState("pending");
   const [orders, setOrders] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
   const timeOptions = { hour: "2-digit", minute: "2-digit" };
@@ -13,6 +14,14 @@ function Orders() {
       .then((response) => response.json())
       .then((body) => {
         setOrders(body);
+      });
+  });
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/products/`)
+      .then((response) => response.json())
+      .then((body) => {
+        setProducts(body);
       });
   });
 
@@ -41,16 +50,19 @@ function Orders() {
 
         const formattedDate = date.toLocaleDateString("en-US", dateOptions);
         const formattedTime = date.toLocaleTimeString("en-US", timeOptions);
+        const product = products.filter(
+          (product) => product.productId === order.productId
+        );
 
         return (
           <div key={order.productId} className="admin-order-item">
             <img
-              src={order.productImg}
-              alt={order.productName}
+              src={product[0].productImg}
+              alt={product[0].productName}
               className="admin-order-image"
             />
-            <div className="order-details">
-              <h3>{order.productName}</h3>
+            <div className="admin-order-details">
+              <h3>{product[0].productName}</h3>
               <p>Quantity: {order.orderQuantity}</p>
               <p>
                 Ordered on: {formattedDate} at {formattedTime}
