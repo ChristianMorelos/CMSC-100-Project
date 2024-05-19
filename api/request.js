@@ -30,39 +30,59 @@ import needle from "needle";
 // );
 
 // const newUser = {
-//     firstName: 'John',
-//     lastName: 'Doe',
-//     userType: 'customer',
-//     email: 'john@example.com',
-//     password: 'password123'
+//   firstName: "John",
+//   middleName: "De",
+//   lastName: "Doe",
+//   userType: "customer",
+//   email: "john.doe@example.com",
+//   password: "password123",
 // };
 
-// needle.post('http://localhost:4000/auth/register', newUser,
-// (err, res) => {
-//     console.log('Response:', res.body);
+// const newUser = {
+//   firstName: "Jonathan",
+//   middleName: "De",
+//   lastName: "Cray",
+//   userType: "customer",
+//   email: "jonathan@example.com",
+//   password: "password123",
+// };
+
+// needle.post("http://localhost:4000/auth/register", newUser, (err, res) => {
+//   console.log("Response:", res.body);
 // });
 
 // const fulfillOrder = {
-//     transactionId: 'T001'
-// }
-
-// needle.post('http://localhost:4000/admin/order-fulfillment', fulfillOrder,
-// (err, res) => {
-//     console.log('Response', res.body);
-// });
-
-// const orders = {
-//     email: "john.doe@example.com",
-//     products: [
-//         { id: "P001", quantity: 2 },
-//         { id: "P002", quantity: 1 }
-//     ]
+//   transactionId: "T001",
 // };
 
-// needle.post('http://localhost:4000/user/checkout-order', orders, { json: true },
-// (err, res) => {
-//     console.log('Response', res.body);
-// });
+// needle.post(
+//   "http://localhost:4000/admin/order-fulfillment",
+//   fulfillOrder,
+//   (err, res) => {
+//     console.log("Response", res.body);
+//   }
+// );
+
+const orders = {
+  email: "john.doe@example.com",
+  products: [
+    { id: "6", quantity: 5 },
+    { id: "2", quantity: 6 },
+    { id: "3", quantity: 2 },
+    { id: "4", quantity: 6 },
+    { id: "8", quantity: 1 },
+    { id: "1", quantity: 1 },
+  ],
+};
+
+needle.post(
+  "http://localhost:4000/user/checkout-order",
+  orders,
+  { json: true },
+  (err, res) => {
+    console.log("Response", res.body);
+  }
+);
 
 // const order = {
 //     transactionId: '663a5b60c572fc6dbb709095'
@@ -161,12 +181,3 @@ import needle from "needle";
 //     console.log(res.body);
 //   }
 // );
-
-const prodId = "13cbfd33";
-
-needle.get(
-  `http://localhost:4000/products/find-product?productId=${prodId}`,
-  (err, res) => {
-    console.log(res.body);
-  }
-);

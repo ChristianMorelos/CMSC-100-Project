@@ -9,7 +9,7 @@ const getSales = async (req, res) => {
     // Get order transactions with orderStatus = 1 (all-time)
     const orderTransactionListAllTime = await OrderTransaction.find({
       orderStatus: 1,
-    }).sort({orderStatus: 1});
+    }).sort({ orderStatus: 1 });
 
     // Filter order transactions within the specified date range
     const orderTransactionListWithinDates = orderTransactionListAllTime.filter(
@@ -87,7 +87,7 @@ const getSales = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
-  res.json(await User.find().sort({ firstName: 1}));
+  res.json(await User.find().sort({ firstName: 1 }));
 };
 
 //get orders method
