@@ -6,7 +6,7 @@
     "productDescription": "Fresh and crisp organic apples.",
     "productType": "organic",
     "productQuantity": 50,
-    "productImage": "https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-fresh-apple-fruit-red-png-image_10203073.png"
+    "productImg": "https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-fresh-apple-fruit-red-png-image_10203073.png"
   },
   {
     "productId": "2",
@@ -15,7 +15,7 @@
     "productDescription": "Nutrient-rich organic spinach leaves.",
     "productType": "organic",
     "productQuantity": 30,
-    "productImage": "https://static.vecteezy.com/system/resources/previews/028/831/075/original/fresh-green-spinach-png.png"
+    "productImg": "https://static.vecteezy.com/system/resources/previews/028/831/075/original/fresh-green-spinach-png.png"
   },
   {
     "productId": "3",
@@ -24,7 +24,7 @@
     "productDescription": "Free-range organic eggs.",
     "productType": "organic",
     "productQuantity": 20,
-    "productImage": "https://img.freepik.com/free-photo/three-fresh-organic-raw-eggs-isolated-white-surface_114579-43677.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1715817600&semt=ais_user"
+    "productImg": "https://img.freepik.com/free-photo/three-fresh-organic-raw-eggs-isolated-white-surface_114579-43677.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1715817600&semt=ais_user"
   },
   {
     "productId": "4",
@@ -33,7 +33,7 @@
     "productDescription": "Sweet and juicy organic blueberries.",
     "productType": "organic",
     "productQuantity": 40,
-    "productImage": "https://i.pinimg.com/736x/54/80/ec/5480ec102c8fa7e92ea61bd219a20494.jpg"
+    "productImg": "https://i.pinimg.com/736x/54/80/ec/5480ec102c8fa7e92ea61bd219a20494.jpg"
   },
   {
     "productId": "5",
@@ -42,7 +42,7 @@
     "productDescription": "Organic kale leaves, perfect for salads and smoothies.",
     "productType": "organic",
     "productQuantity": 25,
-    "productImage": "https://static.vecteezy.com/system/resources/previews/027/546/590/original/green-kale-leaves-isolated-png.png"
+    "productImg": "https://static.vecteezy.com/system/resources/previews/027/546/590/original/green-kale-leaves-isolated-png.png"
   },
   {
     "productId": "6",
@@ -51,7 +51,7 @@
     "productDescription": "Creamy and delicious organic avocados.",
     "productType": "organic",
     "productQuantity": 35,
-    "productImage": "https://png.pngtree.com/png-vector/20230930/ourmid/pngtree-avocado-png-avocado-fruit-ai-generated-png-image_10153887.png"
+    "productImg": "https://png.pngtree.com/png-vector/20230930/ourmid/pngtree-avocado-png-avocado-fruit-ai-generated-png-image_10153887.png"
   },
   {
     "productId": "7",
@@ -60,7 +60,7 @@
     "productDescription": "Certified organic bananas.",
     "productType": "organic",
     "productQuantity": 60,
-    "productImage": "https://png.pngtree.com/png-clipart/20220716/ourmid/pngtree-banana-yellow-fruit-banana-skewers-png-image_5944324.png"
+    "productImg": "https://png.pngtree.com/png-clipart/20220716/ourmid/pngtree-banana-yellow-fruit-banana-skewers-png-image_5944324.png"
   },
   {
     "productId": "8",
@@ -69,6 +69,6 @@
     "productDescription": "High-protein organic quinoa grains.",
     "productType": "organic",
     "productQuantity": 15,
-    "productImage": "https://www.ardovlm.com/wp-content/uploads/2016/02/vlm-quinoa.png"
+    "productImg": "https://www.ardovlm.com/wp-content/uploads/2016/02/vlm-quinoa.png"
   }
 ]

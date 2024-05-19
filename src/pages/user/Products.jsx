@@ -1,9 +1,6 @@
-// Product Listings and order fulfillment
-// Make this dynamic/component-based
-
 import React, { useEffect, useState } from 'react';
-
 import '/src/styles/Products.css'
+import ShoppingCart from '/src/components/ShoppingCart.jsx';
 
 function Products() {
   const [ products, setProducts ] = useState([]);
@@ -11,6 +8,7 @@ function Products() {
   const [ sortBy, setSortBy ] = useState('');
   const [ minPrice, setMinPrice ] = useState('');
   const [ maxPrice, setMaxPrice ] = useState('');
+  const [ isCartOpen, setIsCartOpen ] = useState(false);
   
   useEffect(() => {
     fetch('http://localhost:4000/products')
@@ -69,8 +67,20 @@ function Products() {
       });
   };
 
+  const handleCartButtonClick = () => {
+    setIsCartOpen(true);
+  };
+
+  const handleCloseCart = () => {
+    setIsCartOpen(false);
+  };
+
   return (
     <>
+      <button className='cart-btn' onClick={handleCartButtonClick}>
+        <i class='bx bx-cart'></i>
+      </button>
+      {isCartOpen && <ShoppingCart onClose={handleCloseCart} />} {/* Conditionally render ShoppingCart */}
       <div className='shop-div'>
         <div className='filter-div'>
           <h1>Filter by</h1>
@@ -134,7 +144,7 @@ function Products() {
             {products.map((product) =>
               <div className='product-box'>
                 <div className='img-div'>
-                  <img src={product.productImage} className='product-img'/>
+                  <img src={product.productImg} className='product-img'/>
                 </div>
                 <div className='info-div'>
                   <div className='name-div'>
