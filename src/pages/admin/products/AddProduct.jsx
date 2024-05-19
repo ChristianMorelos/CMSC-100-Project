@@ -1,17 +1,23 @@
 import { useState } from "react";
 import "../../../styles/addProduct.css";
-export default function AddProduct() {
-  const [prodName, setName] = useState("");
-  const [prodPrice, setPrice] = useState(0);
-  const [prodImg, setImg] = useState("");
-  const [prodDesc, setDesc] = useState("");
-  const [prodType, setType] = useState(1);
-  const [prodQty, setQty] = useState(1);
-
+export default function AddProduct({
+  setName,
+  setPrice,
+  setImg,
+  setDesc,
+  setType,
+  setQty,
+  prodName,
+  prodPrice,
+  prodImg,
+  prodDesc,
+  prodType,
+  prodQty,
+}) {
   //validate fields function
   function validateFields() {
     //check if any of the input fields are empty
-    if (prodName == "" || prodDesc == "") {
+    if (prodName == "" || prodDesc == "" || prodImg == "" || prodPrice == 0) {
       //alert message for incomplete fields
       alert("Please fill out all of the fields first");
       return;
