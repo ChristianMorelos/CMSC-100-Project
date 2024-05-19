@@ -38,24 +38,19 @@ function Users() {
         </span>
       </div>
       <div>
-        {users.map((user) => (
-          <div
-            key={user.userId}
-            className="user-section"
-            onClick={() => handleUserSelect(user)}
-          >
+        {users.map(user => (
+          <div key={user._id} className="user-section" onClick={() => handleUserSelect(user)}>
             <div className="user-details">
               <h3 className="user-name">
-                {user.firstName} T {user.middleName} {user.lastName}
+                {user.firstName} {user.middleName} {user.lastName}
               </h3>
               <h3 className="user-email">{user.email}</h3>
             </div>
           </div>
         ))}
       </div>
-      {selectedUser && (
-        <UserOrdersModal user={selectedUser} closeModal={handleCloseModal} />
-      )}
+      {selectedUser &&
+        <UserOrdersModal user={selectedUser} closeModal={handleCloseModal} />}
     </div>
   );
 }

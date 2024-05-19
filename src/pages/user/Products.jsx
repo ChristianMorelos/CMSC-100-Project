@@ -7,20 +7,23 @@ import '/src/styles/Products.css'
 
 function Products() {
   const [ products, setProducts ] = useState([]);
+  const [ originalProducts, setOriginalProducts ] = useState([]);
   const [ sortBy, setSortBy ] = useState('');
-
+  const [ minPrice, setMinPrice ] = useState('');
+  const [ maxPrice, setMaxPrice ] = useState('');
+  
   useEffect(() => {
     fetch('http://localhost:4000/products')
       .then(response => response.json())
       .then(body => {
-        setProducts(body)
+        setProducts(body);
+        setOriginalProducts(body);
       })
   }, [])
 
   const handleSortChange = (event) => {
     const value = event.target.value;
     setSortBy(value);
-    // Sort products based on the selected value
     let sortedProducts = [];
     if (value === 'name-asc') {
       sortedProducts = [...products].sort((a, b) => a.productName.localeCompare(b.productName));
@@ -30,42 +33,46 @@ function Products() {
       sortedProducts = [...products].sort((a, b) => a.productPrice - b.productPrice);
     } else if (value === 'price-desc') {
       sortedProducts = [...products].sort((a, b) => b.productPrice - a.productPrice);
+    } else {
+      sortedProducts = originalProducts;
     }
     setProducts(sortedProducts);
   };
 
-  const handleClear = () => {
-    setSortBy('');
-    document.querySelectorAll('input[name="sort-by-val"]').forEach((radio) => {
-      radio.checked = false;
-    });
+  const handleMinPriceChange = (event) => {
+    setMinPrice(event.target.value);
+  };
+  
+  const handleMaxPriceChange = (event) => {
+    setMaxPrice(event.target.value);
+  };
+  
+  const handleFilterByPrice = () => {
+    fetch('http://localhost:4000/products')
+      .then(response => response.json())
+      .then(body => {
+        let filteredProducts = body.filter(product => {
+          const price = product.productPrice;
+          return (!minPrice || price >= parseFloat(minPrice)) && (!maxPrice || price <= parseFloat(maxPrice));
+        });
+        setProducts(filteredProducts);
+      });
+  };
+  
+  const handleClearPriceFilter = () => {
+    setMinPrice('');
+    setMaxPrice('');
+    fetch('http://localhost:4000/products')
+      .then(response => response.json())
+      .then(body => {
+        setProducts(body)
+      });
   };
 
   return (
     <>
       <div className='shop-div'>
         <div className='filter-div'>
-          <h1>Sort by</h1>
-          <form className='sort-form'>
-            <div className='radio-div'>
-              <input type='radio' id='name-asc' name='sort-by-val' value='name-asc' onChange={handleSortChange} checked={sortBy === 'name-asc'}/>
-              <label htmlFor='name-asc'>Name: A to Z</label><br/>
-            </div>
-            <div className='radio-div'>
-              <input type='radio' id='name-desc' name='sort-by-val' value='name-desc' onChange={handleSortChange} checked={sortBy === 'name-desc'}/>
-              <label htmlFor='name-desc'>Name: Z to A</label><br/>
-            </div>
-            <div className='radio-div'>
-              <input type='radio' id='price-asc' name='sort-by-val' value='price-asc' onChange={handleSortChange} checked={sortBy === 'price-asc'}/>
-              <label htmlFor='price-asc'>Price: Ascending</label><br/>
-            </div>
-            <div className='radio-div'>
-              <input type='radio' id='price-desc' name='sort-by-val' value='price-desc' onChange={handleSortChange} checked={sortBy === 'price-desc'}/>
-              <label htmlFor='price-desc'>Price: Descending</label><br/>
-            </div>
-            <button type='button' onClick={handleClear}>Clear</button>
-          </form>
-
           <h1>Filter by</h1>
           <form className='filter-form'>
             <div className='checkbox-div'>
@@ -81,37 +88,68 @@ function Products() {
               <label htmlFor='filter-cat3'>Category 3</label><br/>
             </div>
           </form>
-
           <h1>Price Range</h1>
           <form className='range-form'>
             <div className='range-div'>
-              <input type='number' id='min-price' name='min-price' placeholder='₱MIN' min='0'/>
+              <input
+                type='number'
+                id='min-price'
+                name='min-price'
+                placeholder='₱MIN'
+                min='0'
+                value={minPrice}
+                onChange={handleMinPriceChange}
+              />
               <div className='line'></div>
-              <input type='number' id='max-price' name='max-price' placeholder='₱MAX' min='0'/>
+              <input
+                type='number'
+                id='max-price'
+                name='max-price'
+                placeholder='₱MAX'
+                min='0'
+                value={maxPrice}
+                onChange={handleMaxPriceChange}
+              />
             </div>
-           <input type="submit" className='range-submit-btn' value="APPLY"/>
+            <div className='price-range-btn'>
+              <button type="button" className='range-submit-btn' id='apply' onClick={handleFilterByPrice}>APPLY</button>
+              <button type='button' className='range-submit-btn' id='clear' onClick={handleClearPriceFilter}>CLEAR</button>
+            </div>
           </form>
-          
         </div>
         <div className='products-div'>
-          {products.map((product) =>
-            <div className='product-box'>
-              <div className='img-div'>
-                <img src={product.productImage} className='product-img'/>
-              </div>
-              <div className='info-div'>
-                <div className='name-div'>
-                  <a>{product.productName}</a>
+          <div className='products-head-div'>
+            <h4>Showing {products.length} products</h4>
+            <form>
+              <select name='sort-by-val' id='sort-by-val' onChange={handleSortChange} value={sortBy}>
+                <option value='show-all'>Show All</option>
+                <option value='name-asc'>Product Name: Ascending</option>
+                <option value='name-desc'>Product Name: Descending</option>
+                <option value='price-asc'>Price: Low to High</option>
+                <option value='price-desc'>Price: High to Low</option>
+              </select>
+            </form>
+          </div>
+          <div className='product-cards-div'>
+            {products.map((product) =>
+              <div className='product-box'>
+                <div className='img-div'>
+                  <img src={product.productImage} className='product-img'/>
                 </div>
-                <div className='price-div'>
-                  <a>₱ {product.productPrice}</a>
+                <div className='info-div'>
+                  <div className='name-div'>
+                    <a>{product.productName}</a>
+                  </div>
+                  <div className='price-div'>
+                    <a>₱ {product.productPrice}</a>
+                  </div>
+                </div>
+                <div className='addtocart-div'>
+                  <button type='button' className='addtocart-btn'>Add to Cart</button>
                 </div>
               </div>
-              <div className='addtocart-div'>
-                <button type='button' className='addtocart-btn'>Add to Cart</button>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>
