@@ -79,7 +79,7 @@
 }
 
 /*style input fields*/
-input {
+#form input {
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
@@ -88,7 +88,7 @@ input {
 }
 
 /*style label texts*/
-label {
+#form label {
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;

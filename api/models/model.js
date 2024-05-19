@@ -14,6 +14,7 @@ const Product = mongoose.model('Product', {
     productName: String,
     productPrice: Number,
     productDescription: String,
+    productImage: String,
     productType: Number,
     productQuantity: Number
 }, 'products');

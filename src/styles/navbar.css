@@ -13,7 +13,7 @@ nav,
 nav {
     justify-content: space-around;
     align-items: center;
-    height: 17vh;  
+    height: 80px;  
 }
 
 .nav-link {
