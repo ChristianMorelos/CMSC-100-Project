@@ -152,6 +152,27 @@ const deleteProduct = async (req, res) => {
   res.send(removeProduct);
 };
 
+//edit product method
+const editProduct = async (req, res) => {
+  //edit product with the given product id
+  const editOne = await Product.updateOne(
+    { productId: req.body.productId },
+    {
+      $set: {
+        productName: req.body.productName,
+        productPrice: req.body.productPrice,
+        productImg: req.body.productImg,
+        productDescription: req.body.productDescription,
+        productType: req.body.productType,
+        productQuantity: req.body.productQuantity,
+      },
+    }
+  );
+
+  //response message
+  res.send(editOne);
+};
+
 const fulfillOrder = async (req, res) => {
   try {
     const { transactionId } = req.body;
@@ -200,5 +221,6 @@ export {
   getOrders,
   addProduct,
   deleteProduct,
+  editProduct,
   fulfillOrder,
 };
