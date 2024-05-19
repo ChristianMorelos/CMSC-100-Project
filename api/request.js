@@ -38,6 +38,15 @@ import needle from "needle";
 //   password: "password123",
 // };
 
+// const newUser = {
+//   firstName: "Jonathan",
+//   middleName: "De",
+//   lastName: "Cray",
+//   userType: "customer",
+//   email: "jonathan@example.com",
+//   password: "password123",
+// };
+
 // needle.post("http://localhost:4000/auth/register", newUser, (err, res) => {
 //   console.log("Response:", res.body);
 // });
@@ -55,10 +64,14 @@ import needle from "needle";
 // );
 
 const orders = {
-  email: "john.doe@example.com",
+  email: "jonathan@example.com",
   products: [
-    { id: "P001", quantity: 2 },
-    { id: "P002", quantity: 1 },
+    { id: "1", quantity: 2 },
+    { id: "2", quantity: 1 },
+    { id: "3", quantity: 2 },
+    { id: "4", quantity: 1 },
+    { id: "8", quantity: 2 },
+    { id: "6", quantity: 1 },
   ],
 };
 

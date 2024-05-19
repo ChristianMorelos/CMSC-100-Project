@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "/src/styles/Orders.css";
+import "/src/styles/adminOrders.css";
 
 function Orders() {
   const [currentView, setCurrentView] = useState("pending");
@@ -28,7 +28,7 @@ function Orders() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ transactionId }),
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((body) => {
         console.log(body);
       });
@@ -43,11 +43,11 @@ function Orders() {
         const formattedTime = date.toLocaleTimeString("en-US", timeOptions);
 
         return (
-          <div key={order.productId} className="order-item">
+          <div key={order.productId} className="admin-order-item">
             <img
               src={order.productImg}
               alt={order.productName}
-              className="order-image"
+              className="admin-order-image"
             />
             <div className="order-details">
               <h3>{order.productName}</h3>
@@ -70,9 +70,13 @@ function Orders() {
 
   return (
     <div className="orders-container">
-      <div className="user-details"></div>
-
-      <div className="order-nav">
+      <div id="top-bar">
+        <span className="summary">
+          <strong>{pendingOrders.length}</strong> pending{" "}
+          {pendingOrders.length === 1 ? "order" : "orders"}
+        </span>
+      </div>
+      <div className="admin-order-nav">
         <select
           value={currentView}
           onChange={(e) => setCurrentView(e.target.value)}
