@@ -118,3 +118,17 @@ img {
   width: 80%;
   height: auto;
 }
+
+.sorting {
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.sort-type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
