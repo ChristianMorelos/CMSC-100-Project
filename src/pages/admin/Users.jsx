@@ -36,7 +36,7 @@ function Users() {
       </div>
       <div>
         {users.map(user => (
-          <div key={user.userId} className="user-section" onClick={() => handleUserSelect(user)}>
+          <div key={user._id} className="user-section" onClick={() => handleUserSelect(user)}>
             <div className="user-details">
               <h3 className="user-name">{user.firstName} {user.middleName} {user.lastName}</h3>
               <h3 className="user-email">{user.email}</h3>
