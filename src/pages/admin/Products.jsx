@@ -18,11 +18,13 @@ export default function Products() {
   const [prodDet, setProdDet] = useState({});
 
   //for sorting
-  const [sortType, setSortType] = useState("");
-  const [sortBy, setSortBy] = useState("");
+  const [sortType, setSortType] = useState("asc");
+  const [sortBy, setSortBy] = useState("name");
 
   useEffect(() => {
-    fetch("http://localhost:4000/products/")
+    fetch(
+      `http://localhost:4000/products/sorted-products?sortBy=${sortBy}&sortType=${sortType}`
+    )
       .then((response) => response.json())
       .then((body) => {
         setProducts(body);
@@ -64,89 +66,74 @@ export default function Products() {
             ></AddProduct>
 
             <div className="sorting">
-              <form>
-                <div className="type">
-                  <h2>Sort Type</h2>
-                  <div className="sort-type">
-                    <input
-                      id="asc"
-                      type="radio"
-                      name="sortType"
-                      value="ascending"
-                      defaultChecked
-                      onChange={(e) => setSortType(e)}
-                    />
-                    <label className="sorting" for="asc">
-                      Ascending
-                    </label>
-                  </div>
-                  <div className="sort-type">
-                    <input
-                      id="desc"
-                      type="radio"
-                      name="sortType"
-                      value="descending"
-                      onChange={(e) => setSortType(e)}
-                    />
-                    <label className="sorting" for="desc">
-                      Descending
-                    </label>
-                  </div>
+              <div className="type">
+                <h2>Sort Type</h2>
+                <div className="sort-type">
+                  <input
+                    id="asc"
+                    type="radio"
+                    name="sortType"
+                    value="asc"
+                    defaultChecked
+                    onChange={() => setSortType("asc")}
+                  />
+                  <label className="sorting">Ascending</label>
                 </div>
-                <div className="sortBy">
-                  <h2>Sort By</h2>
-                  <div className="sort-type">
-                    <input
-                      id="sName"
-                      type="radio"
-                      name="sortBy"
-                      value="name"
-                      defaultChecked
-                      onChange={(e) => setSortType(e)}
-                    />
-                    <label className="sorting" for="sName">
-                      Name
-                    </label>
-                  </div>
-                  <div className="sort-type">
-                    <input
-                      id="sType"
-                      type="radio"
-                      name="sortBy"
-                      value="type"
-                      onChange={(e) => setSortType(e)}
-                    />
-                    <label className="sorting" for="sType">
-                      Type
-                    </label>
-                  </div>
-                  <div className="sort-type">
-                    <input
-                      id="sPrice"
-                      type="radio"
-                      name="sortBy"
-                      value="price"
-                      onChange={(e) => setSortType(e)}
-                    />
-                    <label className="sorting" for="sPrice">
-                      Price
-                    </label>
-                  </div>
-                  <div className="sort-type">
-                    {" "}
-                    <input
-                      id="sQty"
-                      type="radio"
-                      name="sortBy"
-                      value="quantity"
-                      onChange={(e) => setSortType(e)}
-                    />
-                    <label className="sorting" for="sQty">
-                      Quantity
-                    </label>
-                  </div>
+                <div className="sort-type">
+                  <input
+                    id="desc"
+                    type="radio"
+                    name="sortType"
+                    value="desc"
+                    onChange={() => setSortType("desc")}
+                  />
+                  <label className="sorting">Descending</label>
                 </div>
-              </form>
+              </div>
+              <div className="sortBy">
+                <h2>Sort By</h2>
+                <div className="sort-type">
+                  <input
+                    id="sName"
+                    type="radio"
+                    name="sortBy"
+                    value="name"
+                    defaultChecked
+                    onChange={() => setSortBy("name")}
+                  />
+                  <label className="sorting">Name</label>
+                </div>
+                <div className="sort-type">
+                  <input
+                    id="sType"
+                    type="radio"
+                    name="sortBy"
+                    value="type"
+                    onChange={() => setSortBy("type")}
+                  />
+                  <label className="sorting">Type</label>
+                </div>
+                <div className="sort-type">
+                  <input
+                    id="sPrice"
+                    type="radio"
+                    name="sortBy"
+                    value="price"
+                    onChange={() => setSortBy("price")}
+                  />
+                  <label className="sorting">Price</label>
+                </div>
+                <div className="sort-type">
+                  <input
+                    id="sQty"
+                    type="radio"
+                    name="sortBy"
+                    value="quantity"
+                    onChange={() => setSortBy("quantity")}
+                  />
+                  <label className="sorting">Quantity</label>
+                </div>
+              </div>
             </div>
           </div>
           <div className="productContainer">
