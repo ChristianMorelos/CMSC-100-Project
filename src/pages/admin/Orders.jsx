@@ -57,12 +57,12 @@ function Orders() {
         return (
           <div key={order.productId} className="admin-order-item">
             <img
-              src={product[0].productImg}
-              alt={product[0].productName}
+              src={product[0]?.productImg}
+              alt={product[0]?.productName}
               className="admin-order-image"
             />
             <div className="admin-order-details">
-              <h3>{product[0].productName}</h3>
+              <h3>{product[0]?.productName}</h3>
               <p>Quantity: {order.orderQuantity}</p>
               <p>
                 Ordered on: {formattedDate} at {formattedTime}
