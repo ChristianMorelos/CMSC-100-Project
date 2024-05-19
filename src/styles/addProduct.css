@@ -113,7 +113,7 @@
 }
 
 /* Product Image Styling */
-img {
+.product img {
   margin: 10px;
   width: 80%;
   height: auto;

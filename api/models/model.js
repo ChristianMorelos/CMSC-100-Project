@@ -21,7 +21,6 @@ const Product = mongoose.model(
     productPrice: Number,
     productImg: String,
     productDescription: String,
-    productImage: String,
     productType: Number,
     productQuantity: Number,
   },
