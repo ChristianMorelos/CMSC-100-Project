@@ -1,23 +1,38 @@
 import { useState } from "react";
 import "../../../styles/addProduct.css";
 
-export default function EditProduct({
-  setEdit,
-  setName,
-  setPrice,
-  setImg,
-  setDesc,
-  setType,
-  setQty,
-  prodName,
-  prodPrice,
-  prodImg,
-  prodDesc,
-  prodType,
-  prodQty,
-}) {
+export default function EditProduct({ setEdit, prodDet }) {
+  //details
+  const [prodName, setName] = useState(prodDet.productName);
+  const [prodPrice, setPrice] = useState(prodDet.productPrice);
+  const [prodImg, setImg] = useState(prodDet.productImg);
+  const [prodDesc, setDesc] = useState(prodDet.productDescription);
+  const [prodType, setType] = useState(prodDet.productType);
+  const [prodQty, setQty] = useState(prodDet.productQuantity);
+
+  //edit product function
+  function editProduct() {
+    fetch("http://localhost:4000/admin/edit-product", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        productId: prodDet.productId,
+        productName: prodName,
+        productPrice: prodPrice,
+        productImg: prodImg,
+        productDescription: prodDesc,
+        productType: prodType,
+        productQuantity: prodQty,
+      }),
+    })
+      .then((response) => response.text())
+      .then((body) => {
+        console.log(body);
+      });
+  }
+
   return (
-    <div classNae="editPage">
+    <div className="editPage">
       <div className="addProductContainer1">
         <h1 id="title">Edit Product</h1>
 
@@ -88,6 +103,8 @@ export default function EditProduct({
         <button
           id="addProduct"
           onClick={() => {
+            console.log(prodDet);
+            editProduct();
             setEdit(false);
           }}
         >
@@ -96,7 +113,7 @@ export default function EditProduct({
       </div>
       <div>
         <button
-          className="editProduct"
+          className="deleteProduct"
           onClick={() => {
             setEdit(false);
           }}

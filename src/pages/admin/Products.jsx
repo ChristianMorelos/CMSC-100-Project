@@ -15,6 +15,8 @@ export default function Products() {
 
   const [edit, setEdit] = useState(false);
 
+  const [prodDet, setProdDet] = useState({});
+
   useEffect(() => {
     fetch("http://localhost:4000/products/")
       .then((response) => response.json())
@@ -38,25 +40,6 @@ export default function Products() {
 
   return (
     <>
-      {edit === true && (
-        <EditProduct
-          setEdit={setEdit}
-          setName={setName}
-          setPrice={setPrice}
-          setImg={setImg}
-          setDesc={setDesc}
-          setType={setType}
-          setQty={setQty}
-          //fields
-          prodName={prodName}
-          prodPrice={prodPrice}
-          prodImg={prodImg}
-          prodDesc={prodDesc}
-          prodType={prodType}
-          prodQty={prodQty}
-        ></EditProduct>
-      )}
-
       {edit === false && (
         <div className="admin-products">
           <div className="addProduct">
@@ -90,6 +73,16 @@ export default function Products() {
                 <button
                   className="editProduct"
                   onClick={() => {
+                    //set product details for when editing
+                    setProdDet({
+                      productId: product.productId,
+                      productName: product.productName,
+                      productPrice: product.productPrice,
+                      productImg: product.productImg,
+                      productDescription: product.productDescription,
+                      productType: product.productType,
+                      productQuantity: product.productQuantity,
+                    });
                     setEdit(!edit);
                   }}
                 >
@@ -108,6 +101,10 @@ export default function Products() {
             ))}
           </div>
         </div>
+      )}
+
+      {edit === true && (
+        <EditProduct setEdit={setEdit} prodDet={prodDet}></EditProduct>
       )}
     </>
   );

@@ -9,7 +9,7 @@ const getAllProducts = async (req, res) => {
 };
 
 const getProduct = async (req, res) => {
-  const product = await Product.find({ productId: req.body.productId });
+  const product = await Product.find({ productId: req.query.productId });
   res.send(product);
 };
 
