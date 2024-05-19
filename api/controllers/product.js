@@ -8,4 +8,9 @@ const getAllProducts = async (req, res) => {
   res.send(products);
 };
 
-export { getAllProducts };
+const getProduct = async (req, res) => {
+  const product = await Product.find({ productId: req.body.productId });
+  res.send(product);
+};
+
+export { getAllProducts, getProduct };
