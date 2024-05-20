@@ -76,15 +76,17 @@ const getCart = async (req, res) => {
 
     const cart = [];
     for (let { productId, quantity } of items) {
-      const { productName, productDescription, productType } =
+      const { productName, productDescription, productImg, productPrice, productType } =
         await Product.findOne({ productId: productId });
 
       const cartItem = {
         productId: productId,
         productName: productName,
         productDescription: productDescription,
+        productImg: productImg,
+        productPrice: productPrice,
         productType: productType,
-        productQuantity: quantity,
+        productQuantity: quantity
       };
       console.log(cartItem);
       cart.push(cartItem);
@@ -98,15 +100,32 @@ const getCart = async (req, res) => {
 
 const addCart = async (req, res) => {
   try {
-    const { email, productId, quantity } = req.body;
+    const { email, productId, productImg, productPrice, quantity } = req.body;
 
-    const newCart = new Cart({
-      email: email,
-      productId: productId,
-      quantity: quantity,
-    });
+    const existingCartItem = await Cart.findOne({ email: email, productId: productId });
 
-    await newCart.save();
+    if (existingCartItem) {
+      await Cart.updateOne(
+        { email: email,
+          productId: productId },
+        {
+          $set: {
+            quantity: existingCartItem.quantity + quantity
+          }
+        }
+      );
+    } else {
+      const newCart = new Cart({
+        email: email,
+        productId: productId,
+        productImg: productImg,
+        productPrice: productPrice,
+        quantity: quantity,
+      });
+  
+      await newCart.save();
+    }
+
     res.status(200).send("Item added to cart");
   } catch (error) {
     res.status(500).send(error.message);

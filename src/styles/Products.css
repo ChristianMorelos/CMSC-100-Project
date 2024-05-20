@@ -2,7 +2,7 @@
   background-color: var(--body-color);
   padding-left: 8vw;
   padding-right: 8vw;
-  padding-top: 50px;
+  padding-top: 30px;
   padding-bottom: 50px;
   display: flex;
 }
@@ -233,6 +233,7 @@
   border: none;
   color: #FFFFFF;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .addtocart-div:hover{

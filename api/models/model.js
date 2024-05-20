@@ -32,6 +32,8 @@ const Cart = mongoose.model(
   {
     email: String,
     productId: String,
+    productImg: String,
+    productPrice: Number,
     quantity: Number,
   },
   "carts"
