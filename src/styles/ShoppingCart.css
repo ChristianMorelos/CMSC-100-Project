@@ -176,4 +176,11 @@
     font-size: 16px;
     font-weight: 600;
     color: white;
+    cursor: pointer;
+}
+
+.checkout-btn-div button:hover{
+    background-color: var(--addtocart-btn-color);
+    transition: 0.5s;
+    cursor: pointer;
 }
