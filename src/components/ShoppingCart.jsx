@@ -75,6 +75,37 @@ function ShoppingCart({ onClose }) {
         const total = items.reduce((acc, item) => acc + (item.productPrice * item.productQuantity), 0);
         setTotalPrice(total.toFixed(2));
     };
+
+    const handleCheckout = async () => {
+        const products = cartItems.map(item => ({
+            id: item.productId,
+            quantity: item.productQuantity
+        }));
+
+        const requestData = {
+            email: email,
+            products: products
+        };
+
+        fetch('http://localhost:4000/user/checkout-order', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestData),
+        })
+        .then(async response => {
+            if (response.ok) {
+                alert('Checkout successful!');
+                setCartItems([]);       //clears cart
+                setTotalPrice(0);       //sets total price back to 0
+            } else {
+                const errorText = await response.text();
+                alert(`Checkout failed: ${errorText}`);
+            }
+        })
+        .catch(() => {
+            alert('Error during checkout');
+        });
+    };
     
     return (
         <>
@@ -119,7 +150,7 @@ function ShoppingCart({ onClose }) {
                         <div className='cart-checkout-div'>
                             <div className='totalPrice-div'>TOTAL: ₱ {totalPrice}</div>
                             <div className='checkout-btn-div'>
-                                <button>Checkout</button>
+                                <button onClick={handleCheckout}>Checkout</button>
                             </div>
                         </div>
                     </div>
