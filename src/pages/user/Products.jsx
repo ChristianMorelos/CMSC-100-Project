@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '/src/styles/Products.css'
 import ShoppingCart from '/src/components/ShoppingCart.jsx';
+import UserProductModal from '../../components/UserProductModal';
 
 function Products() {
   const [ products, setProducts ] = useState([]);
@@ -80,7 +81,7 @@ function Products() {
       <button className='cart-btn' onClick={handleCartButtonClick}>
         <i class='bx bx-cart'></i>
       </button>
-      {isCartOpen && <ShoppingCart onClose={handleCloseCart} />} {/* Conditionally render ShoppingCart */}
+      {isCartOpen && <ShoppingCart onClose={handleCloseCart} />}
       <div className='shop-div'>
         <div className='filter-div'>
           <h1>Filter by</h1>
@@ -141,24 +142,8 @@ function Products() {
             </form>
           </div>
           <div className='product-cards-div'>
-            {products.map((product) =>
-              <div className='product-box'>
-                <div className='img-div'>
-                  <img src={product.productImg} className='product-img'/>
-                </div>
-                <div className='info-div'>
-                  <div className='name-div'>
-                    <a>{product.productName}</a>
-                  </div>
-                  <div className='price-div'>
-                    <a>₱ {product.productPrice}</a>
-                  </div>
-                </div>
-                <div className='addtocart-div'>
-                  <button type='button' className='addtocart-btn'>Add to Cart</button>
-                </div>
-              </div>
-            )}
+            {products.length == 0 ? <div id='noproduct'></div>
+            : <UserProductModal products={products}></UserProductModal>}
           </div>
         </div>
       </div>
