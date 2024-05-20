@@ -88,11 +88,38 @@ const getCart = async (req, res) => {
         productType: productType,
         productQuantity: quantity
       };
-      console.log(cartItem);
       cart.push(cartItem);
     }
 
     res.status(200).send(cart);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const deleteCartItem = async (req, res) => {
+  try {
+    const { email, productId } = req.body;
+    await Cart.deleteOne({ email: email, productId: productId });
+    res.status(200).send("Item deleted from cart");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const updateCartItemQuantity = async (req, res) => {
+  try {
+    const { email, productId, newQuantity } = req.body;
+
+    if (newQuantity === 0) {
+      await deleteCartItem(req, res);
+    } else {
+      await Cart.updateOne(
+        { email: email, productId: productId },
+        { $set: { quantity: newQuantity } }
+      );
+      res.status(200).send("Item quantity updated in cart");
+    }
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -172,6 +199,8 @@ export {
   getOrders,
   addCart,
   getCart,
+  deleteCartItem,
+  updateCartItemQuantity,
   editAccount,
   userInfo,
 };
