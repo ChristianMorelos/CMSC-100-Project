@@ -1,0 +1,94 @@
+.product-modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    cursor: context-menu;
+}
+
+.blur-bg{
+    backdrop-filter: blur(2px);
+    background-color: rgba(138, 138, 138, 0.5);
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.modal-img-div{
+    height: 350px;
+    width: 350px;
+    display: block;
+    border-radius: 8px;
+}
+
+.modal-img-div img{
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.modal-info-div{
+    width: 500px;
+}
+
+.modal-info-div h1{
+    font-size: 26px;
+}
+
+.modal-info-div p{
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.modal-info-div h4{
+    font-size: 14px;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.modal-info-div h5{
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.modal-info-div button{
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    background-color: var(--addtocart-btn-color);
+    color: #FFFFFF;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.modal-info-div button:hover{
+    background-color: var(--addtocart-btn-hover-color);
+    transition: 0.3s;
+}
+
+.product-modal i{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.product-modal i:hover{
+    background-color: lightgray;
+    border-radius: 50%;
+    color: white;
+}

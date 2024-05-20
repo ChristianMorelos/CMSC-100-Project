@@ -1,0 +1,12 @@
+:root{
+  --body-color: #F9F8FE;
+  --product-box-color: #FFFFFF;
+  --addtocart-btn-color: #70A944;
+  --addtocart-btn-hover-color: #298F3B;
+  --apply-btn-color: #298F3B;
+  --main-text-color: #0C0C0C;
+  --price-color: #353535;
+  --border-color: #868686;
+
+  --small-text-font-size: 15px;
+}

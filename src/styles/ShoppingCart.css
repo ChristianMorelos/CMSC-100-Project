@@ -13,12 +13,13 @@
 .blur-side{
     backdrop-filter: blur(2px);
     background-color: rgba(138, 138, 138, 0.5);
-    width: calc(100vw - 30vw - 15px);
+    width: calc(100vw - 30vw - 17px);
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
+    overflow: hidden;
 }
 
 .cart-div{
@@ -38,6 +39,12 @@
 .cart-head i{
     font-size: 40px;
     cursor: pointer;
+}
+
+.cart-head i:hover{
+    background-color: lightgray;
+    border-radius: 50%;
+    color: white;
 }
 
 .cart-head h1{
@@ -139,6 +146,12 @@
 
 .delete-btn i{
     font-size: 30px;
+}
+
+.delete-btn i:hover{
+    background-color: lightgray;
+    border-radius: 50%;
+    color: white;
 }
 
 .cart-checkout-div{
