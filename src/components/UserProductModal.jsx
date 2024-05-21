@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '/src/styles/UserProductModal.css';
 
 function UserProductModal({ products }) {
+    const currentEmail = localStorage.getItem('email');
+    const [email, setEmail] = useState('');
     const [selectedUserProduct, setSelectedUserProduct] = useState(null);
 
+    useEffect(() => {
+        fetch(`http://localhost:4000/user/info?email=${currentEmail}`)
+            .then(response => response.json())
+            .then(body => {
+                setEmail(body.email || '');
+            })
+            .catch(error => {
+                console.error('Error fetching cart items:', error);
+            });
+    }, [currentEmail]);
+
     const handleProductClick = (productId, event) => {
-        if (!event.target.classList.contains('addtocart-div') && !event.target.classList.contains('addtocart-btn')) {
+        if (!event.target.closest('.addtocart-div') && !event.target.closest('.addtocart-btn')) {
             setSelectedUserProduct(productId);
         }
     };
@@ -16,7 +29,7 @@ function UserProductModal({ products }) {
 
     const handleAddToCart = async (productId, productImg, productPrice) => {
         const cart = {
-            email: 'zerinedaphne@gmail.com',
+            email: email,
             productId,
             productImg,
             productPrice,

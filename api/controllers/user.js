@@ -30,6 +30,7 @@ const checkoutOrder = async (req, res) => {
       await newTransaction.save();
     }
 
+    await Cart.deleteMany({ email: email });  //clears the cart
     res.status(200).send("All orders have been processed successfully.");
   } catch (error) {
     res.status(500).send(error.message);

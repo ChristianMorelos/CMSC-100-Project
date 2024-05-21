@@ -2,16 +2,28 @@ import React, { useEffect, useState } from 'react';
 import '/src/styles/ShoppingCart.css';
 
 function ShoppingCart({ onClose }) {
+    const currentEmail = localStorage.getItem('email');
     const [ cartItems, setCartItems ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
-    const email = 'zerinedaphne@gmail.com';
+    const [ email, setEmail ] = useState('');
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/user/info?email=${currentEmail}`)
+            .then(response => response.json())
+            .then(body => {
+                setEmail(body.email || '');
+            })
+            .catch(error => {
+                console.error('Error fetching cart items:', error);
+            });
+    }, [currentEmail]);
 
     useEffect(() => {
         fetchCartItems();
     }, []);
 
     const fetchCartItems = () => {
-        fetch(`http://localhost:4000/user/get-cart-items?email=${email}`)
+        fetch(`http://localhost:4000/user/get-cart-items?email=${currentEmail}`)
             .then(response => response.json())
             .then(data => {
                 setCartItems(data);
