@@ -34,7 +34,20 @@ function UserOrders() {
   const canceledOrders = orders.filter(order => order.orderStatus === 2);
 
   function handleCancelOrder(transactionId) {
-    console.log(`Canceling order with Transaction ID: ${transactionId}`);
+
+    fetch('http://localhost:4000/user/cancel-order', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ transactionId: transactionId }),
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Order cancelled succesfully');
+      } else {
+        alert('Error in cancelling order');
+      }
+    })
+    
   }
 
   const renderOrderSection = (orders) => (

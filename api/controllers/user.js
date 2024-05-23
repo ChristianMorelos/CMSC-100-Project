@@ -53,7 +53,7 @@ const cancelOrder = async (req, res) => {
       return res.status(400).send("Cannot cancel a completed order.");
     }
 
-    order.orderStatus = 3;
+    order.orderStatus = 2;
     await order.save();
 
     res.status(200).send("Order has been successfully canceled.");
