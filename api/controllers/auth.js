@@ -62,7 +62,7 @@ jwt.verify(token, SECRET_KEY, (err, decoded) => {
     if (err) return res.status(403).json({ error: 'Token is not valid' });
 
     req.user = decoded;
-    return res.status(200).json({ response: ' Authorized user' });
+    return res.status(200).json({ response: 'Authorized user' });
 });
 }
 export { register, login, authenticateToken }
