@@ -61,6 +61,13 @@ function Auth() {
         setIsLoggedIn(true);
         localStorage.setItem('token', data.token);
         localStorage.setItem('email', email);
+
+        if (email == 'admin@da.gov.ph') {
+          navigate('/admin/orders');
+        } else {
+          navigate('/user/orders');
+        }
+        
       } else {
           const errorData = await response.json();
           alert(errorData.error || 'Error logging in');
@@ -70,14 +77,6 @@ function Auth() {
       alert('Error logging in');
     })  
   };
-
-  if (isLoggedIn) {
-    if (email == 'admin@da.gov.ph') {
-      navigate('admin/orders');
-    } else {
-      navigate('/user/orders');
-    }
-  }
 
   if (isSignUpActive) {
       return (

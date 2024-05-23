@@ -3,23 +3,29 @@ import '/src/styles/Orders.css';
 
 
 function UserOrders() {
+  const email = localStorage.getItem('email');
+  const [currentUser, setCurrentUser] = useState({});
   const [currentView, setCurrentView] = useState('pending');
   const [orders, setOrders] = useState([]);
-  const mockUser = {
-    firstName: 'Franz Christian',
-    middleName: 'Dela Cruz',
-    lastName: 'Morelos',
-    email: 'john.doe@example.com'
-  };
+
+
 
   const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   const timeOptions = { hour: '2-digit', minute: '2-digit' };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/user/orders?email=${mockUser.email}`)
+    fetch(`http://localhost:4000/user/orders?email=${email}`)
       .then(response => response.json())
       .then(body => {
         setOrders(body)
+      })
+  })
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/user/info?email=${email}`)
+      .then(response => response.json())
+      .then(body => {
+        setCurrentUser(body)
       })
   })
 
@@ -59,8 +65,8 @@ function UserOrders() {
   return (
     <div className="orders-container">
       <div className="user-details">
-        <p>Account: {mockUser.firstName} {mockUser.middleName} {mockUser.lastName}</p>
-        <p>Email: {mockUser.email}</p>
+        <p>Account: {currentUser.firstName} {currentUser.middleName} {currentUser.lastName}</p>
+        <p>Email: {currentUser.email}</p>
       </div>
 
       <div className="order-nav">
