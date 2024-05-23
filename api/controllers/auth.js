@@ -52,19 +52,17 @@ const login = async (req, res) => {
 };
 
 const authenticateToken = (req, res) => {
-    const authHeader = req.headers['Authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    
-    if (!token) {
-        return res.status(401).json({ error: ' Unauthorized user' });
-    }
+  const { token } = req.body;
 
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
-        if (err) return res.status(403).json({ error: 'Token is not valid' });
+  if (!token) {
+      return res.status(401).json({ error: ' Unauthorized user' });
+  }
 
-        req.user = decoded;
-        return res.status(200).json({ response: ' Authorized user' });
-    });
+jwt.verify(token, SECRET_KEY, (err, decoded) => {
+    if (err) return res.status(403).json({ error: 'Token is not valid' });
+
+    req.user = decoded;
+    return res.status(200).json({ response: 'Authorized user' });
+});
 }
-
 export { register, login, authenticateToken }

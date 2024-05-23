@@ -15,7 +15,7 @@ function Orders() {
       .then((body) => {
         setOrders(body);
       });
-  });
+  },[orders]);
 
   useEffect(() => {
     fetch(`http://localhost:4000/products/`)
@@ -23,7 +23,7 @@ function Orders() {
       .then((body) => {
         setProducts(body);
       });
-  });
+  },[products]);
 
   const pendingOrders = orders.filter((order) => order.orderStatus === 0);
   const completedOrders = orders.filter((order) => order.orderStatus === 1);

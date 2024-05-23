@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { User, Product, Cart, OrderTransaction } from "../models/model.js";
+import bcrypt from 'bcrypt'; 
 
 const checkoutOrder = async (req, res) => {
   try {
@@ -52,7 +53,7 @@ const cancelOrder = async (req, res) => {
       return res.status(400).send("Cannot cancel a completed order.");
     }
 
-    order.orderStatus = 3;
+    order.orderStatus = 2;
     await order.save();
 
     res.status(200).send("Order has been successfully canceled.");
@@ -63,8 +64,26 @@ const cancelOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
   try {
+
     const { email } = req.query;
-    res.status(200).json(await OrderTransaction.find({ email: email }));
+
+    const transactions = await OrderTransaction.find({ email: email });
+    const orderList = []
+    
+    for (const transaction  of transactions) {
+      const product = await Product.findOne({ productId: transaction.productId });
+
+      const order = {
+        transactionId: transaction .transactionId, 
+        productName: product.productName, 
+        orderQuantity: transaction.orderQuantity, 
+        orderStatus: transaction.orderStatus,
+        dateOrdered: transaction.dateOrdered
+      };
+
+      orderList.push(order);
+    }
+    res.status(200).json(orderList);
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -194,6 +213,23 @@ const userInfo = async (req, res) => {
   }
 };
 
+const confirmPassword = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email })
+
+    const isPasswordValid = await bcrypt.compare(password, user.password)
+
+    if(!isPasswordValid) {
+        return res.status(401).json({ error: 'Invalid credentials' })
+    }   
+
+    return res.status(200).json({ response: 'Confirmed' })
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
 export {
   checkoutOrder,
   cancelOrder,
@@ -204,4 +240,5 @@ export {
   updateCartItemQuantity,
   editAccount,
   userInfo,
+  confirmPassword
 };

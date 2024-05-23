@@ -79,7 +79,7 @@ function Products() {
   return (
     <>
       <button className='cart-btn' onClick={handleCartButtonClick}>
-        <i class='bx bx-cart'></i>
+        <i className='bx bx-cart'></i>
       </button>
       {isCartOpen && <ShoppingCart onClose={handleCloseCart} />}
       <div className='shop-div'>

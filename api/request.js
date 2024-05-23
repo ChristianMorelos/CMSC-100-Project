@@ -1,3 +1,4 @@
+import { response } from "express";
 import needle from "needle";
 
 // const newUser = {
@@ -63,26 +64,26 @@ import needle from "needle";
 //   }
 // );
 
-const orders = {
-  email: "john.doe@example.com",
-  products: [
-    { id: "6", quantity: 5 },
-    { id: "2", quantity: 6 },
-    { id: "3", quantity: 2 },
-    { id: "4", quantity: 6 },
-    { id: "8", quantity: 1 },
-    { id: "1", quantity: 1 },
-  ],
-};
+// const orders = {
+//   email: "john.doe@example.com",
+//   products: [
+//     { id: "6", quantity: 5 },
+//     { id: "2", quantity: 6 },
+//     { id: "3", quantity: 2 },
+//     { id: "4", quantity: 6 },
+//     { id: "8", quantity: 1 },
+//     { id: "1", quantity: 1 },
+//   ],
+// };
 
-needle.post(
-  "http://localhost:4000/user/checkout-order",
-  orders,
-  { json: true },
-  (err, res) => {
-    console.log("Response", res.body);
-  }
-);
+// needle.post(
+//   "http://localhost:4000/user/checkout-order",
+//   orders,
+//   { json: true },
+//   (err, res) => {
+//     console.log("Response", res.body);
+//   }
+// );
 
 // const order = {
 //     transactionId: '663a5b60c572fc6dbb709095'
@@ -181,3 +182,23 @@ needle.post(
 //     console.log(res.body);
 //   }
 // );
+
+
+// fetch('http://localhost:4000/auth/validate-token', {
+//   method: "POST",
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify({ 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjRmYTczOWE0Y2Q5NmMzYmNiYmRjMTkiLCJpYXQiOjE3MTY0OTY3MjMsImV4cCI6MTcxNjUwMDMyM30.Zv8Ez5I6GL5i5xXQj0RodyE8zQMJP1-zCt1uy4sfi8s' })
+// })
+//   .then(response => {console.log(response)})
+
+
+const data = {
+  email: '1',
+  password: '1'
+}
+
+needle.post('http://localhost:4000/user/confirm-password', data, { json: true },
+(err, res) => {
+    console.log('Response', res.body);
+});
+

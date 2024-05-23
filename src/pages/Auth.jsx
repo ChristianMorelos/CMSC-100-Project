@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Root from './Root';
 
 import '../styles/Auth.css';
 
 function Auth() {
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
@@ -59,6 +61,13 @@ function Auth() {
         setIsLoggedIn(true);
         localStorage.setItem('token', data.token);
         localStorage.setItem('email', email);
+
+        if (email == 'admin@da.gov.ph') {
+          navigate('/admin/orders');
+        } else {
+          navigate('/user/orders');
+        }
+        
       } else {
           const errorData = await response.json();
           alert(errorData.error || 'Error logging in');
@@ -68,10 +77,6 @@ function Auth() {
       alert('Error logging in');
     })  
   };
-
-  if (isLoggedIn) {
-      return <Root />;
-  }
 
   if (isSignUpActive) {
       return (
