@@ -7,10 +7,6 @@ export default function Root() {
   const email = localStorage.getItem('email');
 
   const renderHomePage = () => {
-    if (!token || !email) {
-      return <Auth />;
-    }
-
     if (email === 'admin@da.gov.ph') {
       return <Admin />;
     }

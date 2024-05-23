@@ -1,10 +1,17 @@
-// Product Listing
-import "../../styles/addProduct.css";
+
 import { useEffect, useState } from "react";
-import AddProduct from "./products/AddProduct";
-import EditProduct from "./products/EditProduct";
+import AddProduct from "/src/pages/admin/products/AddProduct";
+import EditProduct from "/src/pages/admin/products/EditProduct";
+import Unauthorized from "/src/components/Unauthorized";
+import Unauthenticated from "/src/components/Unauthenticated";
+import Auth from "/src/hooks/Auth";
+
+import "/src/styles/addProduct.css";
 
 export default function Products() {
+
+  const { isAuthenticated, isAdmin } = Auth(); 
+
   const [products, setProducts] = useState([]);
   const [prodName, setName] = useState("");
   const [prodPrice, setPrice] = useState(0);
@@ -14,22 +21,32 @@ export default function Products() {
   const [prodQty, setQty] = useState(1);
 
   const [edit, setEdit] = useState(false);
-
   const [prodDet, setProdDet] = useState({});
 
-  //for sorting
   const [sortType, setSortType] = useState("asc");
   const [sortBy, setSortBy] = useState("name");
 
   useEffect(() => {
-    fetch(
-      `http://localhost:4000/products/sorted-products?sortBy=${sortBy}&sortType=${sortType}`
-    )
+    if (isAuthenticated) {
+      fetch(`http://localhost:4000/products/sorted-products?sortBy=${sortBy}&sortType=${sortType}`)
       .then((response) => response.json())
       .then((body) => {
         setProducts(body);
       });
-  });
+    }
+  }, [isAuthenticated]);
+
+  if (isAuthenticated == null) {
+    return; 
+  }
+
+  if (!isAuthenticated) {
+    return <Unauthenticated />;
+  }
+
+  if (!isAdmin) {
+    return <Unauthorized />;
+  }
 
   //delete product function
   function deleteProduct(product) {

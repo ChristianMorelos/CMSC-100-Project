@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
+import UserOrdersModal from "/src/components/UserOrdersModal.jsx";
+import Unauthorized from "/src/components/Unauthorized";
+import Unauthenticated from "/src/components/Unauthenticated";
+import Auth from "/src/hooks/Auth";
+
 import "/src/styles/Users.css";
 import "/src/styles/Orders.css";
-import UserOrdersModal from "/src/components/UserOrdersModal.jsx";
 
 function Users() {
+
+  const { isAuthenticated, isAdmin } = Auth(); 
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/admin/users`)
+    if (isAuthenticated) {
+      fetch(`http://localhost:4000/admin/users`)
       .then((response) => response.json())
       .then((data) => {
         const filteredData = data.filter(
@@ -19,7 +26,20 @@ function Users() {
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
-  });
+    }
+  }, [isAuthenticated]);
+
+  if (isAuthenticated == null) {
+    return; 
+  }
+
+  if (!isAuthenticated) {
+    return <Unauthenticated />;
+  }
+
+  if (!isAdmin) {
+    return <Unauthorized />;
+  }
 
   const handleUserSelect = (user) => {
     setSelectedUser(user);

@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ConfirmModal from '/src/components/Confirm';
+import Unauthenticated from "/src/components/Unauthenticated";
+import Auth from "/src/hooks/Auth";
+
 import '/src/styles/Account.css';
 
 function UserAccount() {
+
+  const { isAuthenticated } = Auth(); 
+
+
   const currentEmail = localStorage.getItem('email');
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
@@ -12,7 +19,8 @@ function UserAccount() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/user/info?email=${currentEmail}`)
+    if (isAuthenticated) {
+      fetch(`http://localhost:4000/user/info?email=${currentEmail}`)
       .then(response => response.json())
       .then(body => {
         setFirstName(body.firstName || '');
@@ -23,7 +31,16 @@ function UserAccount() {
       .catch(error => {
         console.error('Error fetching user info:', error);
       });
-  }, [currentEmail]);
+    }
+  }, [isAuthenticated, currentEmail]);
+
+  if (isAuthenticated == null) {
+    return; 
+  }
+
+  if (!isAuthenticated) {
+    return <Unauthenticated />;
+  }
 
   const handleUpdate = async () => {
     const updatedUser = {

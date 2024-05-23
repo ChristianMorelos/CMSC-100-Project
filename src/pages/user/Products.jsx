@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import '/src/styles/Products.css'
 import ShoppingCart from '/src/components/ShoppingCart.jsx';
 import UserProductModal from '../../components/UserProductModal';
+import Unauthenticated from "/src/components/Unauthenticated";
+import Auth from "/src/hooks/Auth";
+
+import '/src/styles/Products.css'
 
 function Products() {
+
+  const { isAuthenticated } = Auth(); 
+
   const [ products, setProducts ] = useState([]);
   const [ originalProducts, setOriginalProducts ] = useState([]);
   const [ sortBy, setSortBy ] = useState('');
@@ -12,13 +18,23 @@ function Products() {
   const [ isCartOpen, setIsCartOpen ] = useState(false);
   
   useEffect(() => {
-    fetch('http://localhost:4000/products')
+    if (isAuthenticated) {
+      fetch('http://localhost:4000/products')
       .then(response => response.json())
       .then(body => {
         setProducts(body);
         setOriginalProducts(body);
       })
-  }, [])
+    }
+  }, [isAuthenticated])
+
+  if (isAuthenticated == null) {
+    return; 
+  }
+
+  if (!isAuthenticated) {
+    return <Unauthenticated />;
+  }
 
   const handleSortChange = (event) => {
     const value = event.target.value;

@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
+import Unauthorized from "/src/components/Unauthorized";
+import Unauthenticated from "/src/components/Unauthenticated";
+import Auth from "/src/hooks/Auth";
+
 import "/src/styles/adminOrders.css";
 
 function Orders() {
+
+  const { isAuthenticated, isAdmin } = Auth(); 
+
   const [currentView, setCurrentView] = useState("pending");
   const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
@@ -10,20 +17,36 @@ function Orders() {
   const timeOptions = { hour: "2-digit", minute: "2-digit" };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/admin/orders`)
-      .then((response) => response.json())
-      .then((body) => {
-        setOrders(body);
-      });
-  });
+    if (isAuthenticated) {
+      fetch(`http://localhost:4000/admin/orders`)
+        .then((response) => response.json())
+        .then((body) => {
+          setOrders(body);
+        });
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/products/`)
-      .then((response) => response.json())
-      .then((body) => {
-        setProducts(body);
-      });
-  });
+    if (isAuthenticated) {
+      fetch(`http://localhost:4000/products/`)
+        .then((response) => response.json())
+        .then((body) => {
+          setProducts(body);
+        });
+    }
+  }, [isAuthenticated]);
+
+  if (isAuthenticated == null) {
+    return; 
+  }
+
+  if (!isAuthenticated) {
+    return <Unauthenticated />;
+  }
+
+  if (!isAdmin) {
+    return <Unauthorized />;
+  }
 
   const pendingOrders = orders.filter((order) => order.orderStatus === 0);
   const completedOrders = orders.filter((order) => order.orderStatus === 1);
@@ -40,6 +63,11 @@ function Orders() {
       .then((response) => response.text())
       .then((body) => {
         console.log(body);
+        fetch(`http://localhost:4000/admin/orders`)
+          .then((response) => response.json())
+          .then((body) => {
+            setOrders(body);
+          });
       });
   }
 
@@ -50,19 +78,19 @@ function Orders() {
 
         const formattedDate = date.toLocaleDateString("en-US", dateOptions);
         const formattedTime = date.toLocaleTimeString("en-US", timeOptions);
-        const product = products.filter(
+        const product = products.find(
           (product) => product.productId === order.productId
         );
 
         return (
           <div key={order.productId} className="admin-order-item">
             <img
-              src={product[0]?.productImg}
-              alt={product[0]?.productName}
+              src={product?.productImg}
+              alt={product?.productName}
               className="admin-order-image"
             />
             <div className="admin-order-details">
-              <h3>{product[0]?.productName}</h3>
+              <h3>{product?.productName}</h3>
               <p>Quantity: {order.orderQuantity}</p>
               <p>
                 Ordered on: {formattedDate} at {formattedTime}

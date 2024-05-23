@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import Unauthenticated from "/src/components/Unauthenticated";
+import Auth from "/src/hooks/Auth";
+
 import '/src/styles/Orders.css';
 
 
 function UserOrders() {
+
+  const { isAuthenticated } = Auth(); 
+
   const [currentView, setCurrentView] = useState('pending');
   const [orders, setOrders] = useState([]);
   const mockUser = {
@@ -16,12 +22,23 @@ function UserOrders() {
   const timeOptions = { hour: '2-digit', minute: '2-digit' };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/user/orders?email=${mockUser.email}`)
+    if (isAuthenticated) {
+      fetch(`http://localhost:4000/user/orders?email=${mockUser.email}`)
       .then(response => response.json())
       .then(body => {
         setOrders(body)
       })
-  })
+    }
+  }, [isAuthenticated])
+
+
+  if (isAuthenticated == null) {
+    return; 
+  }
+
+  if (!isAuthenticated) {
+    return <Unauthenticated />;
+  }
 
   const pendingOrders = orders.filter(order => order.orderStatus === 0);
   const completedOrders = orders.filter(order => order.orderStatus === 1);
