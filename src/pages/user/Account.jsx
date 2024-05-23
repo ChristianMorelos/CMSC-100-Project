@@ -4,6 +4,8 @@ import '/src/styles/Account.css';
 
 function UserAccount() {
   const currentEmail = localStorage.getItem('email');
+
+  const [currentUser, setCurrentUser] = useState({});
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -19,39 +21,53 @@ function UserAccount() {
         setMiddleName(body.middleName || '');
         setLastName(body.lastName || '');
         setEmail(body.email || '');
+        setCurrentUser(body || {});
       })
       .catch(error => {
         console.error('Error fetching user info:', error);
       });
   }, [currentEmail]);
 
-  const handleUpdate = async () => {
-    const updatedUser = {
-      userEmail: currentEmail,
-      firstName: firstName,
-      middleName: middleName,
-      lastName: lastName,
-      email: email,
-      password: password,
-    };
-
-    fetch('http://localhost:4000/user/edit-info', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(updatedUser),
-    })
-      .then(async response => {
-        if (response.ok) {
-          alert('User information updated successfully');
-          setIsModalOpen(false);
-        } else {
-          const errorData = await response.json();
-          alert(errorData.message || 'Error updating account');
-        }
-      })
-      .catch(() => {
-        alert('Error updating account');
+  const handleUpdate = async (pass) => {
+    try {
+      const confirmPasswordResponse = await fetch('http://localhost:4000/user/confirm-password', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ 'email': currentEmail, 'password': pass }),
       });
+
+      if (!confirmPasswordResponse.ok) {
+        alert('Wrong password');
+        setIsModalOpen(false);
+        return;
+      }
+
+      const updatedUser = {
+        userEmail: currentEmail,
+        firstName: firstName,
+        middleName: middleName,
+        lastName: lastName,
+        email: email,
+        password: pass,
+      };
+
+      const updateResponse = await fetch('http://localhost:4000/user/edit-info', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(updatedUser),
+      });
+
+      if (updateResponse.ok) {
+        alert('User information updated successfully');
+        setIsModalOpen(false);
+      } else {
+        const errorData = await updateResponse.json();
+        alert(errorData.message || 'Error updating account');
+      }
+    } catch (error) {
+      console.error('Error updating account:', error);
+      alert('Error updating account');
+    }
   };
 
   return (

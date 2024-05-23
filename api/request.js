@@ -190,3 +190,15 @@ needle.post(
 //   body: JSON.stringify({ 'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjRmYTczOWE0Y2Q5NmMzYmNiYmRjMTkiLCJpYXQiOjE3MTY0OTY3MjMsImV4cCI6MTcxNjUwMDMyM30.Zv8Ez5I6GL5i5xXQj0RodyE8zQMJP1-zCt1uy4sfi8s' })
 // })
 //   .then(response => {console.log(response)})
+
+
+const data = {
+  email: '1',
+  password: '1'
+}
+
+needle.post('http://localhost:4000/user/confirm-password', data, { json: true },
+(err, res) => {
+    console.log('Response', res.body);
+});
+

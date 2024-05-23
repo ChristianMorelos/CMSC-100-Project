@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { User, Product, Cart, OrderTransaction } from "../models/model.js";
-import { response } from "express";
+import bcrypt from 'bcrypt'; 
 
 const checkoutOrder = async (req, res) => {
   try {
