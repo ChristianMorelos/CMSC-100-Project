@@ -63,26 +63,26 @@ import needle from "needle";
 //   }
 // );
 
-const orders = {
-  email: "john.doe@example.com",
-  products: [
-    { id: "6", quantity: 5 },
-    { id: "2", quantity: 6 },
-    { id: "3", quantity: 2 },
-    { id: "4", quantity: 6 },
-    { id: "8", quantity: 1 },
-    { id: "1", quantity: 1 },
-  ],
-};
+// const orders = {
+//   email: "john.doe@example.com",
+//   products: [
+//     { id: "6", quantity: 5 },
+//     { id: "2", quantity: 6 },
+//     { id: "3", quantity: 2 },
+//     { id: "4", quantity: 6 },
+//     { id: "8", quantity: 1 },
+//     { id: "1", quantity: 1 },
+//   ],
+// };
 
-needle.post(
-  "http://localhost:4000/user/checkout-order",
-  orders,
-  { json: true },
-  (err, res) => {
-    console.log("Response", res.body);
-  }
-);
+// needle.post(
+//   "http://localhost:4000/user/checkout-order",
+//   orders,
+//   { json: true },
+//   (err, res) => {
+//     console.log("Response", res.body);
+//   }
+// );
 
 // const order = {
 //     transactionId: '663a5b60c572fc6dbb709095'
@@ -108,8 +108,8 @@ needle.post(
 // });
 
 // const loginData = {
-//     email: 'john.doe@example.com',
-//     password: '123456'
+//     email: 'admin@da.gov.ph',
+//     password: 'password'
 // };
 
 // needle.post('http://localhost:4000/auth/login', loginData, { json: true },
@@ -121,7 +121,7 @@ needle.post(
 // const bearer = `Bearer ${token}`;
 // needle(
 //   "post",
-//   "http://localhost:4000/auth/authenticate",
+//   "http://localhost:4000/auth/validate-token",
 //   { headers:{
 //     'authorization': [],
 //     "Accept": "application/json"
@@ -130,14 +130,13 @@ needle.post(
 //     console.log(res);
 // });
 
-// needle.post("http://localhost:4000/auth/authenticate",
-//   { headers:{
-//     'Authorization': bearer,
-//     "Accept": "application/json"
-//   }},
-//   (err, res) => {
-//     console.log(res);
-// });
+
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjQ4N2UzZTBkZGNhZWE5OGFiNGM2MDQiLCJpYXQiOjE3MTY0ODU3MzcsImV4cCI6MTcxNjQ4OTMzN30.iZnP_Ibvhgq2ux_JezbpycB4a4bE9HQ-lfFWksAh4yo' ;
+needle.post("http://localhost:4000/auth/validate-token",
+  { "token": token }, { json: true },
+  (err, res) => {
+    console.log(res);
+});
 
 // const email = "john.doe@example.com";
 
