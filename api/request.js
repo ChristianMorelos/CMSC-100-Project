@@ -64,26 +64,26 @@ import needle from "needle";
 //   }
 // );
 
-const orders = {
-  email: "john.doe@example.com",
-  products: [
-    { id: "6", quantity: 5 },
-    { id: "2", quantity: 6 },
-    { id: "3", quantity: 2 },
-    { id: "4", quantity: 6 },
-    { id: "8", quantity: 1 },
-    { id: "1", quantity: 1 },
-  ],
-};
+// const orders = {
+//   email: "john.doe@example.com",
+//   products: [
+//     { id: "6", quantity: 5 },
+//     { id: "2", quantity: 6 },
+//     { id: "3", quantity: 2 },
+//     { id: "4", quantity: 6 },
+//     { id: "8", quantity: 1 },
+//     { id: "1", quantity: 1 },
+//   ],
+// };
 
-needle.post(
-  "http://localhost:4000/user/checkout-order",
-  orders,
-  { json: true },
-  (err, res) => {
-    console.log("Response", res.body);
-  }
-);
+// needle.post(
+//   "http://localhost:4000/user/checkout-order",
+//   orders,
+//   { json: true },
+//   (err, res) => {
+//     console.log("Response", res.body);
+//   }
+// );
 
 // const order = {
 //     transactionId: '663a5b60c572fc6dbb709095'

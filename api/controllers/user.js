@@ -64,8 +64,26 @@ const cancelOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
   try {
+
     const { email } = req.query;
-    res.status(200).json(await OrderTransaction.find({ email: email }));
+
+    const transactions = await OrderTransaction.find({ email: email });
+    const orderList = []
+    
+    for (const transaction  of transactions) {
+      const product = await Product.findOne({ productId: transaction.productId });
+
+      const order = {
+        transactionId: transaction .transactionId, 
+        productName: product.productName, 
+        orderQuantity: transaction.orderQuantity, 
+        orderStatus: transaction.orderStatus,
+        dateOrdered: transaction.dateOrdered
+      };
+
+      orderList.push(order);
+    }
+    res.status(200).json(orderList);
   } catch (error) {
     res.status(500).send(error.message);
   }

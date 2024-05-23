@@ -19,7 +19,7 @@ function UserOrders() {
       .then(body => {
         setOrders(body)
       })
-  })
+  }, [])
 
   useEffect(() => {
     fetch(`http://localhost:4000/user/info?email=${email}`)
@@ -47,7 +47,7 @@ function UserOrders() {
         alert('Error in cancelling order');
       }
     })
-    
+
   }
 
   const renderOrderSection = (orders) => (
@@ -59,7 +59,7 @@ function UserOrders() {
         const formattedTime = date.toLocaleTimeString('en-US', timeOptions);
 
         return (
-          <div key={order.productId} className="order-item">
+          <div key={order.transactionId} className="order-item">
             <img src={'https://via.placeholder.com/100'} alt={order.productName} className="order-image" />
             <div className="order-details">
               <h3>{order.productName}</h3>
