@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { User, Product, Cart, OrderTransaction } from "../models/model.js";
+import { response } from "express";
 
 const checkoutOrder = async (req, res) => {
   try {
@@ -194,6 +195,23 @@ const userInfo = async (req, res) => {
   }
 };
 
+const confirmPassword = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email })
+
+    const isPasswordValid = await bcrypt.compare(password, user.password)
+
+    if(!isPasswordValid) {
+        return res.status(401).json({ error: 'Invalid credentials' })
+    }   
+
+    return res.status(200).json({ response: 'Confirmed' })
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
 export {
   checkoutOrder,
   cancelOrder,
@@ -204,4 +222,5 @@ export {
   updateCartItemQuantity,
   editAccount,
   userInfo,
+  confirmPassword
 };
