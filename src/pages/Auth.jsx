@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Root from './Root';
 
 import '../styles/Auth.css';
 
 function Auth() {
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
@@ -70,7 +72,11 @@ function Auth() {
   };
 
   if (isLoggedIn) {
-      return <Root />;
+    if (email == 'admin@da.gov.ph') {
+      navigate('admin/orders');
+    } else {
+      navigate('/user/orders');
+    }
   }
 
   if (isSignUpActive) {
