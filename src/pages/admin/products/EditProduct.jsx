@@ -31,6 +31,14 @@ export default function EditProduct({ setEdit, prodDet }) {
       });
   }
 
+  const productTypes = {
+    1: "Staple",
+    2: "Fruits and Vegetables",
+    3: "Livestock",
+    4: "Seafood",
+    5: "Others",
+  };
+
   return (
     <div className="editPage">
       <div className="edit-product-box">
@@ -73,15 +81,21 @@ export default function EditProduct({ setEdit, prodDet }) {
             />
           </div>
           <div className="input-div">
+            
             <label>Product Type:</label>
-            <input
+            <select
               value={prodType}
-              type="number"
               onChange={(e) => setType(e.target.value)}
               id="prodType"
               name="prodType"
               required
-            />
+            >
+              {Object.keys(productTypes).map((key) => (
+                <option key={key} value={key}>
+                  {productTypes[key]}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="input-div">
             <label>Product Description:</label>

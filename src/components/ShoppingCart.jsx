@@ -2,10 +2,19 @@ import React, { useEffect, useState } from 'react';
 import '/src/styles/ShoppingCart.css';
 
 function ShoppingCart({ onClose }) {
+    const [products, setProducts] = useState([]);
     const currentEmail = localStorage.getItem('email');
-    const [ cartItems, setCartItems ] = useState([]);
-    const [ totalPrice, setTotalPrice ] = useState(0);
-    const [ email, setEmail ] = useState('');
+    const [cartItems, setCartItems] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [email, setEmail] = useState('');
+
+    useEffect(() => {
+        fetch('http://localhost:4000/products')
+            .then(response => response.json())
+            .then(body => {
+                setProducts(body);
+            });
+    }, []);
 
     useEffect(() => {
         fetch(`http://localhost:4000/user/info?email=${currentEmail}`)
@@ -14,7 +23,7 @@ function ShoppingCart({ onClose }) {
                 setEmail(body.email || '');
             })
             .catch(error => {
-                console.error('Error fetching cart items:', error);
+                console.error('Error fetching user info:', error);
             });
     }, [currentEmail]);
 
@@ -59,28 +68,32 @@ function ShoppingCart({ onClose }) {
     };
 
     const handleQuantityChange = async (productId, newQuantity) => {
-        const requestData = {
-            email: email,
-            productId: productId,
-            newQuantity: newQuantity
-        };
+        if (newQuantity <= 0) {
+            handleDeleteCartItem(productId);
+        } else {
+            const requestData = {
+                email: email,
+                productId: productId,
+                newQuantity: newQuantity
+            };
 
-        fetch('http://localhost:4000/user/update-cart-quantity', {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(requestData),
-        })
-        .then(async response => {
-            if (response.ok) {
-                fetchCartItems();
-            } else {
-                const errorText = await response.text();
-                alert(`Failed to update item quantity in cart: ${errorText}`);
-            }
-        })
-        .catch(() => {
-            alert('Error updating item quantity in cart');
-        });
+            fetch('http://localhost:4000/user/update-cart-quantity', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestData),
+            })
+            .then(async response => {
+                if (response.ok) {
+                    fetchCartItems();
+                } else {
+                    const errorText = await response.text();
+                    alert(`Failed to update item quantity in cart: ${errorText}`);
+                }
+            })
+            .catch(() => {
+                alert('Error updating item quantity in cart');
+            });
+        }
     };
 
     const calculateTotalPrice = (items) => {
@@ -119,6 +132,12 @@ function ShoppingCart({ onClose }) {
         });
     };
     
+    // Filter cart items based on product quantity
+    const filteredCartItems = cartItems.filter(cartItem => {
+        const product = products.find(product => product.productId === cartItem.productId);
+        return product && product.productQuantity > 0;
+    });
+
     return (
         <>
             <div className='shopping-cart'>
@@ -128,9 +147,10 @@ function ShoppingCart({ onClose }) {
                         <h1>Shopping Cart</h1>
                         <i className='bx bx-x' onClick={onClose}></i>
                     </div>
-                    {cartItems.length === 0 ? <p>Your cart is empty</p>
+                    {filteredCartItems.length === 0 ? <p>Your cart is empty</p>
                     :   <div>
-                            {cartItems.map(item => (
+                            {filteredCartItems.map(item => (
+                                
                             <div className='cart-item-div' key={item.productId}>
                                 <div className='cart-img-div'>
                                     <img src={item.productImg} alt={item.productName} />

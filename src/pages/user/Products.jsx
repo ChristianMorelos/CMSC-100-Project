@@ -55,17 +55,10 @@ function Products() {
     setMaxPrice(event.target.value);
   };
 
-  const handleFilterByPrice = () => {
-    let filteredProducts = originalProducts.filter(product => {
-      const price = product.productPrice;
-      return (!minPrice || price >= parseFloat(minPrice)) && (!maxPrice || price <= parseFloat(maxPrice));
-    });
-    setProducts(filteredProducts);
-  };
-
-  const handleClearPriceFilter = () => {
+  const handleClearFilters = () => {
     setMinPrice('');
     setMaxPrice('');
+    setSelectedCategories([]);
     setProducts(originalProducts);
   };
 
@@ -118,7 +111,7 @@ function Products() {
                   onChange={handleCategoryChange}
                   checked={selectedCategories.includes(parseInt(type))}
                 />
-                <label htmlFor={`filter-cat${type}`} onChange={handleCategoryChange}>{productTypes[type]}</label><br/>
+                <label htmlFor={`filter-cat${type}`}>{productTypes[type]}</label><br/>
               </div>
             ))}
           </form>
@@ -145,10 +138,9 @@ function Products() {
                 onChange={handleMaxPriceChange}
               />
             </div>
-            {/* <div className='price-range-btn'>
-              <button type="button" className='range-submit-btn' id='apply' onClick={handleFilterByPrice}>APPLY</button>
-              <button type='button' className='range-submit-btn' id='clear' onClick={handleClearPriceFilter}>CLEAR</button>
-            </div> */}
+            <div className='price-range-btn'>
+              <button type='button' className='range-submit-btn' id='clear' onClick={handleClearFilters}>CLEAR</button>
+            </div>
           </form>
         </div>
         <div className='products-div'>

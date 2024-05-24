@@ -1,8 +1,7 @@
-// Product Listing
-import "../../styles/AddProduct.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddProduct from "./products/AddProduct";
 import EditProduct from "./products/EditProduct";
+import AdminProductModal from "../../components/AdminProductModal";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -10,10 +9,12 @@ export default function Products() {
   const [prodPrice, setPrice] = useState(0);
   const [prodImg, setImg] = useState("");
   const [prodDesc, setDesc] = useState("");
-  const [prodType, setType] = useState(1);
-  const [prodQty, setQty] = useState(1);
+  const [prodType, setType] = useState(5);
+  const [prodQty, setQty] = useState(0);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const [edit, setEdit] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [prodDet, setProdDet] = useState({});
 
@@ -109,6 +110,34 @@ export default function Products() {
       });
   }
 
+  const handleCategoryChange = (event) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+  
+    let updatedCategories;
+    if (isChecked) {
+      updatedCategories = [...selectedCategories, parseInt(value)];
+    } else {
+      updatedCategories = selectedCategories.filter(cat => cat !== parseInt(value));
+    }
+  
+    // Update the selected categories state
+    setSelectedCategories(updatedCategories);
+  
+    // If no categories are selected, display all products
+    if (updatedCategories.length === 0) {
+      setProducts(originalProducts);
+    } else {
+      // Filter products based on selected categories
+      const filteredProducts = originalProducts.filter(product =>
+        updatedCategories.includes(product.productType)
+      );
+  
+      // Update the products state with the filtered products
+      setProducts(filteredProducts);
+    }
+  };
+  
   return (
     <>
       {edit === false && (
@@ -128,13 +157,25 @@ export default function Products() {
               prodDesc={prodDesc}
               prodType={prodType}
               prodQty={prodQty}
-              //refresh
-              fetchProducts={fetchProducts}
             ></AddProduct>
           </div>
           <div className="display-product-div">
             <div className="products-head-div">
-              <h4>Showing {products.length} products</h4>
+              <form className='admin-filter-form'>
+                {Object.keys(productTypes).map(type => (
+                  <div key={type} className='admin-filter-div'>
+                    <input
+                      type='checkbox'
+                      id={`filter-cat${type}`}
+                      name={`filter-cat${type}`}
+                      value={type}
+                      onChange={handleCategoryChange}
+                      checked={selectedCategories.includes(parseInt(type))}
+                    />
+                    <label htmlFor={`filter-cat${type}`} onChange={handleCategoryChange}>{productTypes[type]}</label><br/>
+                  </div>
+                ))}
+              </form>
               <form>
                 <select
                   name="sort-by-val"
@@ -149,18 +190,33 @@ export default function Products() {
                   <option value="price-desc">Price: High to Low</option>
                   <option value="quantity-asc">Stock: Low to High</option>
                   <option value="quantity-desc">Stock: High to Low</option>
-                  <option value="type-asc">Type: Low to High</option>
-                  <option value="type-desc">Type: High to Low</option>
                 </select>
               </form>
             </div>
+            <h4>Showing {products.length} products</h4>
             <div className="display-product-card-div">
               {products.map((product) => (
-                <div className="admin-product-box">
+                <div
+                  key={product.productId}
+                  className="admin-product-box"
+                  onClick={() => {
+                    //set product details for when opening modal
+                    setProdDet({
+                      productId: product.productId,
+                      productName: product.productName,
+                      productPrice: product.productPrice,
+                      productImg: product.productImg,
+                      productDescription: product.productDescription,
+                      productType: product.productType,
+                      productQuantity: product.productQuantity,
+                    });
+                    setIsModalOpen(!isModalOpen);
+                  }}
+                >
                   <div className="admin-img-div">
                     <img
                       src={product.productImg}
-                      alt={product.name}
+                      alt={product.productName}
                       className="admin-product-img"
                     />
                   </div>
@@ -172,17 +228,15 @@ export default function Products() {
                       <a>Price: {product.productPrice}</a>
                     </div>
                     <div className="admin-price-div">
-                      <a>Type: {productTypes[product.productType]}</a>
+                      {product.productQuantity === 0 ? <a id="outofstock">OUT OF STOCK</a>
+                      : <a>Stock Left: {product.productQuantity}</a>}
                     </div>
-                    <div className="admin-price-div">
-                      <a>Stock Left: {product.productQuantity}</a>
-                    </div>
-
                     <div className="admin-button-div">
                       <button
                         id="admin-edit"
-                        onClick={() => {
-                          //set product details for when editing
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent click event from propagating
+                          // Set product details for editing
                           setProdDet({
                             productId: product.productId,
                             productName: product.productName,
@@ -192,14 +246,17 @@ export default function Products() {
                             productType: product.productType,
                             productQuantity: product.productQuantity,
                           });
+                          // Toggle the edit state
                           setEdit(!edit);
                         }}
                       >
                         EDIT
                       </button>
+
                       <button
                         id="admin-delete"
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent click event from propagating
                           deleteProduct(product.productId);
                         }}
                       >
@@ -217,6 +274,11 @@ export default function Products() {
       {edit === true && (
         <EditProduct setEdit={setEdit} prodDet={prodDet}></EditProduct>
       )}
+
+      {isModalOpen === true && (
+        <AdminProductModal setIsModalOpen={setIsModalOpen} prodDet={prodDet}></AdminProductModal>
+      )}
+
     </>
   );
 }
