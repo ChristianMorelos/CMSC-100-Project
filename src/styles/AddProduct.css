@@ -1,4 +1,4 @@
-.admin-products-main{
+.admin-products-main {
   background-color: var(--body-color);
   padding-left: 8vw;
   padding-right: 8vw;
@@ -6,40 +6,40 @@
   flex-wrap: wrap;
 }
 
-.add-product-div{
+.add-product-div {
   /* background-color: lightyellow; */
   width: 20vw;
   padding-right: 40px;
   padding-top: 50px;
 }
 
-.add-product-box{
+.add-product-box {
   /* background-color: #ffffff; */
   border-radius: 8px;
   padding: 20px;
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
-
 }
 
-.add-product-box h4{
+.add-product-box h4 {
   font-size: 25px;
   margin-bottom: 10px;
 }
 
-.input-div{
+.input-div {
   display: flex;
   flex-direction: column;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.input-div label{
+.input-div label {
   font-size: 15px;
   margin-bottom: 5px;
   font-weight: 500;
 }
 
-.input-div input, #productDesc{
+.input-div input,
+#productDesc {
   font-size: 15px;
   padding: 8px 10px;
   border-radius: 5px;
@@ -48,12 +48,12 @@
   border: 1px solid gray;
 }
 
-#productDesc{
+#productDesc {
   height: 150px;
   resize: none;
 }
 
-#addProduct{
+#addProduct {
   background-color: var(--apply-btn-color);
   border: none;
   padding: 10px 12px;
@@ -69,21 +69,26 @@
   background-color: var(--addtocart-btn-color);
 }
 
-.display-product-div{
+#addProduct:hover {
+  background-color: var(--addtocart-btn-color);
+  transition: 0.5s;
+}
+
+.display-product-div {
   /* background-color: lightblue; */
   padding-top: 30px;
   padding-bottom: 50px;
   flex: 1;
 }
 
-.display-product-card-div{
+.display-product-card-div {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   justify-content: center;
 }
 
-.admin-product-box{
+.admin-product-box {
   background-color: var(--product-box-color);
   padding: 15px;
   text-align: center;
@@ -93,12 +98,13 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.admin-product-box:hover{
+.admin-product-box:hover {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
@@ -114,38 +120,37 @@
   object-fit: cover;
 }
 
-.admin-info-div{
+.admin-info-div {
   margin-top: 15px;
   width: 100%;
 }
 
-.admin-name-div{
+.admin-name-div {
   margin-bottom: 8px;
 }
 
-.admin-price-div{
+.admin-price-div {
   margin-bottom: 2px;
   font-size: 15px;
 }
 
-.admin-name-div a{
+.admin-name-div a {
   color: var(--main-text-color);
   font-weight: 900;
 }
 
-.admin-price-div a{
+.admin-price-div a {
   color: var(--price-color);
 }
 
-.admin-button-div{
+.admin-button-div {
   display: flex;
   justify-content: space-between;
   gap: 10px;
   margin-top: 15px;
-
 }
 
-.admin-button-div button{
+.admin-button-div button {
   background-color: var(--addtocart-btn-color);
   display: flex;
   flex: 1;
@@ -158,18 +163,18 @@
   font-weight: 500;
 }
 
-#admin-edit{
+#admin-edit {
   background-color: var(--apply-btn-color);
   color: white;
 }
 
-#admin-edit:hover{
+#admin-edit:hover {
   background-color: var(--addtocart-btn-color);
   transition: 0.5s;
 }
 
-#admin-delete{
-  background-color: #D6D6D6;
+#admin-delete {
+  background-color: #d6d6d6;
   color: #868686;
 }
 
@@ -179,7 +184,7 @@
   transition: 0.5s;
 }
 
-.editPage{
+.editPage {
   background-color: var(--body-color);
   height: calc(100vh - 80px);
   display: flex;
@@ -187,26 +192,26 @@
   justify-content: center;
 }
 
-.edit-product-box{
-  background-color: #FFFFFF;
+.edit-product-box {
+  background-color: #ffffff;
   padding: 30px;
   width: 400px;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
-.edit-head{
+.edit-head {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
 }
 
-.edit-head h4{
+.edit-head h4 {
   font-size: 25px;
 }
 
-.edit-product-box button{
+.edit-product-box button {
   border: none;
   padding: 10px 12px;
   font-weight: 500;
@@ -215,23 +220,23 @@
   margin-top: 10px;
 }
 
-#save{
+#save {
   background-color: var(--apply-btn-color);
   color: white;
   margin-right: 5px;
 }
 
-#save:hover{
+#save:hover {
   background-color: var(--addtocart-btn-color);
   transition: 0.5s;
 }
 
-#cancel{
-  background-color: #D6D6D6;
+#cancel {
+  background-color: #d6d6d6;
   color: #868686;
 }
 
-#cancel:hover{
-  background-color: #B5B5B5;
+#cancel:hover {
+  background-color: #b5b5b5;
   transition: 0.5s;
 }
