@@ -30,6 +30,16 @@ export default function Products() {
       });
   }
 
+  //product types
+  const productTypes = {
+    1: "Staple",
+    2: "Fruits and Vegetables",
+    3: "Livestock",
+    4: "Seafood",
+    5: "Others",
+  };
+
+  //fetch products whenever there is a change to each of the states in this array
   useEffect(() => {
     fetchProducts();
   }, [
@@ -41,7 +51,6 @@ export default function Products() {
     prodQty,
     edit,
     prodDet,
-    sortBy,
   ]);
 
   const handleSortChange = (event) => {
@@ -71,6 +80,14 @@ export default function Products() {
     } else if (value === "quantity-desc") {
       sortedProducts = [...products].sort(
         (a, b) => b.productQuantity - a.productQuantity
+      );
+    } else if (value === "type-asc") {
+      sortedProducts = [...products].sort(
+        (a, b) => a.productType - b.productType
+      );
+    } else if (value === "type-desc") {
+      sortedProducts = [...products].sort(
+        (a, b) => b.productType - a.productType
       );
     } else {
       sortedProducts = originalProducts;
@@ -132,6 +149,8 @@ export default function Products() {
                   <option value="price-desc">Price: High to Low</option>
                   <option value="quantity-asc">Stock: Low to High</option>
                   <option value="quantity-desc">Stock: High to Low</option>
+                  <option value="type-asc">Type: Low to High</option>
+                  <option value="type-desc">Type: High to Low</option>
                 </select>
               </form>
             </div>
@@ -153,8 +172,12 @@ export default function Products() {
                       <a>Price: {product.productPrice}</a>
                     </div>
                     <div className="admin-price-div">
+                      <a>Type: {productTypes[product.productType]}</a>
+                    </div>
+                    <div className="admin-price-div">
                       <a>Stock Left: {product.productQuantity}</a>
                     </div>
+
                     <div className="admin-button-div">
                       <button
                         id="admin-edit"
