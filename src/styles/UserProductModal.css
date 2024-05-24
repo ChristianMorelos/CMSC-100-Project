@@ -54,13 +54,18 @@
 .modal-info-div h4{
     font-size: 14px;
     margin-top: 10px;
-    font-style: italic;
 }
 
 .modal-info-div h5{
     font-size: 18px;
     margin-top: 30px;
     margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.modal-info-div h6{
+    font-size: 16px;
+    margin-top: 10px;
     font-weight: 400;
 }
 
@@ -77,6 +82,15 @@
 .modal-info-div button:hover{
     background-color: var(--addtocart-btn-hover-color);
     transition: 0.3s;
+}
+
+#outofstock-btn{
+    border: none;
+    border-radius: 5px;
+    background-color: #D6D6D6;
+    color: #5c5c5c;
+    font-weight: 500;
+    cursor: default;
 }
 
 .product-modal i{

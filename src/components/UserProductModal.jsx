@@ -18,7 +18,7 @@ function UserProductModal({ products }) {
     }, [currentEmail]);
 
     const handleProductClick = (productId, event) => {
-        if (!event.target.closest('.addtocart-div') && !event.target.closest('.addtocart-btn')) {
+        if (!event.target.closest('.addtocart-div') && !event.target.closest('.addtocart-btn') && !event.target.closest('.outofstock-div')) {
             setSelectedUserProduct(productId);
         }
     };
@@ -54,6 +54,14 @@ function UserProductModal({ products }) {
         });
     };
 
+    const productTypes = {
+        1: "Staple",
+        2: "Fruits and Vegetables",
+        3: "Livestock",
+        4: "Seafood",
+        5: "Others",
+    };
+
     return (
         <>
             {products.map((product) => (
@@ -69,9 +77,13 @@ function UserProductModal({ products }) {
                             <a>₱ {product.productPrice}</a>
                         </div>
                     </div>
+                    {product.productQuantity === 0 ? <div className='outofstock-div'>Out of Stock</div>
+                    :
                     <div className='addtocart-div' onClick={() => handleAddToCart(product.productId, product.productImg, product.productPrice)}>
                         <button type='button' className='addtocart-btn'>Add to Cart</button>
-                    </div>
+                    </div> 
+                    }
+                    
                 </div>
             ))}
 
@@ -88,9 +100,12 @@ function UserProductModal({ products }) {
                                     <div className='modal-info-div'>
                                         <h1>{product.productName}</h1>
                                         <p>{product.productDescription}</p>
-                                        <h4>Category: Fruits and Vegetables</h4>
+                                        <h4>Category: {productTypes[product.productType]}</h4>
                                         <h5>₱ {product.productPrice}</h5>
+                                        {product.productQuantity === 0 ? <button id='outofstock-btn'>Out of Stock</button>
+                                        :
                                         <button onClick={() => handleAddToCart(product.productId, product.productImg, product.productPrice)}>Add to Cart</button>
+                                        }
                                     </div>
                                 </div>
                             );

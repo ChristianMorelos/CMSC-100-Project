@@ -74,7 +74,16 @@ export default function AddProduct({
     setDesc("");
     setType(1);
     setQty(1);
-  }
+  };
+
+  //product types
+  const productTypes = {
+    1: "Staple",
+    2: "Fruits and Vegetables",
+    3: "Livestock",
+    4: "Seafood",
+    5: "Others",
+  };
 
   return (
     <div className="add-product-page">
@@ -117,16 +126,19 @@ export default function AddProduct({
           </div>
           <div className="input-div">
             <label>Product Type:</label>
-            <input
+            <select
               value={prodType}
-              type="number"
-              min={1}
-              max={5}
               onChange={(e) => setType(e.target.value)}
               id="prodType"
               name="prodType"
               required
-            />
+            >
+              {Object.keys(productTypes).map((key) => (
+                <option key={key} value={key}>
+                  {productTypes[key]}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="input-div">
             <label>Product Description:</label>

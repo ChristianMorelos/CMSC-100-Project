@@ -105,6 +105,7 @@
   cursor: pointer;
   border: none;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 #apply{
@@ -133,9 +134,9 @@
 
 .products-head-div{
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   gap: 10px;
 }
 
@@ -172,7 +173,7 @@
   align-items: center;
   justify-content: center;
   /* min-height: 400px; */
-  min-width: calc(20% - 16px);
+  min-width: calc(25% - 16px);
   max-height: 350px;
   /* max-width: 20%;  */
   /* flex: 1; */
@@ -197,8 +198,6 @@
   object-fit: cover;
 }
 
-
-
 .info-div{
   margin-top: 15px;
   margin-bottom: 15px;
@@ -215,6 +214,17 @@
 
 .price-div a{
   color: var(--price-color);
+}
+
+.outofstock-div{
+  background-color: #D6D6D6;
+  color: #5c5c5c;
+  width: 100%;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: default;
 }
 
 .addtocart-div{
@@ -287,4 +297,40 @@
   .product-cards-div{
     justify-content: center;
   }
+}
+
+.admin-filter-form{
+  display: flex;
+  gap: 5px;
+}
+
+.display-product-div h4{
+  font-weight: 500;
+  font-size: var(--small-text-font-size);
+  color: var(--border-color);
+  margin-bottom: 15px;
+}
+
+.admin-filter-div input{
+  appearance: none;
+}
+
+.admin-filter-div label{
+  background-color: #D6D6D6;
+  color: #505050;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.admin-filter-div label:hover{
+  background-color: #B5B5B5;
+  transition: 0.5s;
+}
+
+.admin-filter-div input:checked + label {
+  background-color: var(--addtocart-btn-color);
+  color: white;
 }
