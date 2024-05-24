@@ -36,12 +36,15 @@ function ShoppingCart({ onClose }) {
             .then(response => response.json())
             .then(data => {
                 setCartItems(data);
-                calculateTotalPrice(data);
             })
             .catch(error => {
                 console.error('Error fetching cart items:', error);
             });
     };
+
+    useEffect(() => {
+        calculateTotalPrice(cartItems);
+    }, [cartItems, products]);
 
     const handleDeleteCartItem = async (productId) => {
         const requestData = {
@@ -97,7 +100,13 @@ function ShoppingCart({ onClose }) {
     };
 
     const calculateTotalPrice = (items) => {
-        const total = items.reduce((acc, item) => acc + (item.productPrice * item.productQuantity), 0);
+        const total = items.reduce((acc, item) => {
+            const product = products.find(product => product.productId === item.productId);
+            if (product && product.productQuantity > 0) {
+                return acc + (item.productPrice * item.productQuantity);
+            }
+            return acc;
+        }, 0);
         setTotalPrice(total.toFixed(2));
     };
 
@@ -131,7 +140,7 @@ function ShoppingCart({ onClose }) {
             alert('Error during checkout');
         });
     };
-    
+
     // Filter cart items based on product quantity
     const filteredCartItems = cartItems.filter(cartItem => {
         const product = products.find(product => product.productId === cartItem.productId);
