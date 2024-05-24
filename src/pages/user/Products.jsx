@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import '/src/styles/Products.css'
+import '/src/styles/Products.css';
 import ShoppingCart from '/src/components/ShoppingCart.jsx';
 import UserProductModal from '../../components/UserProductModal';
 
 function Products() {
-  const [ products, setProducts ] = useState([]);
-  const [ originalProducts, setOriginalProducts ] = useState([]);
-  const [ sortBy, setSortBy ] = useState('');
-  const [ minPrice, setMinPrice ] = useState('');
-  const [ maxPrice, setMaxPrice ] = useState('');
-  const [ isCartOpen, setIsCartOpen ] = useState(false);
-  
+  const [products, setProducts] = useState([]);
+  const [originalProducts, setOriginalProducts] = useState([]);
+  const [sortBy, setSortBy] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const productTypes = {
+    1: "Staple",
+    2: "Fruits and Vegetables",
+    3: "Livestock",
+    4: "Seafood",
+    5: "Others",
+  };
+
   useEffect(() => {
     fetch('http://localhost:4000/products')
       .then(response => response.json())
@@ -18,7 +27,7 @@ function Products() {
         setProducts(body);
         setOriginalProducts(body);
       })
-  }, [])
+  }, []);
 
   const handleSortChange = (event) => {
     const value = event.target.value;
@@ -41,31 +50,23 @@ function Products() {
   const handleMinPriceChange = (event) => {
     setMinPrice(event.target.value);
   };
-  
+
   const handleMaxPriceChange = (event) => {
     setMaxPrice(event.target.value);
   };
-  
+
   const handleFilterByPrice = () => {
-    fetch('http://localhost:4000/products')
-      .then(response => response.json())
-      .then(body => {
-        let filteredProducts = body.filter(product => {
-          const price = product.productPrice;
-          return (!minPrice || price >= parseFloat(minPrice)) && (!maxPrice || price <= parseFloat(maxPrice));
-        });
-        setProducts(filteredProducts);
-      });
+    let filteredProducts = originalProducts.filter(product => {
+      const price = product.productPrice;
+      return (!minPrice || price >= parseFloat(minPrice)) && (!maxPrice || price <= parseFloat(maxPrice));
+    });
+    setProducts(filteredProducts);
   };
-  
+
   const handleClearPriceFilter = () => {
     setMinPrice('');
     setMaxPrice('');
-    fetch('http://localhost:4000/products')
-      .then(response => response.json())
-      .then(body => {
-        setProducts(body)
-      });
+    setProducts(originalProducts);
   };
 
   const handleCartButtonClick = () => {
@@ -75,6 +76,27 @@ function Products() {
   const handleCloseCart = () => {
     setIsCartOpen(false);
   };
+
+  const handleCategoryChange = (event) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      setSelectedCategories([...selectedCategories, parseInt(value)]);
+    } else {
+      setSelectedCategories(selectedCategories.filter(cat => cat !== parseInt(value)));
+    }
+  };
+
+  const isProductInSelectedCategories = (product) => {
+    return selectedCategories.length === 0 || selectedCategories.includes(product.productType);
+  };
+
+  const filteredProducts = products.filter(product => {
+    return isProductInSelectedCategories(product) &&
+      (!minPrice || product.productPrice >= parseFloat(minPrice)) &&
+      (!maxPrice || product.productPrice <= parseFloat(maxPrice));
+  });
 
   return (
     <>
@@ -86,18 +108,19 @@ function Products() {
         <div className='filter-div'>
           <h1>Filter by</h1>
           <form className='filter-form'>
-            <div className='checkbox-div'>
-              <input type='checkbox' id='filter-cat1' name='filter-cat1' value='cat1'/>
-              <label htmlFor='filter-cat1'>Category 1</label><br/>
-            </div>
-            <div className='checkbox-div'>
-              <input type='checkbox' id='filter-cat2' name='filter-cat2' value='cat2'/>
-              <label htmlFor='filter-cat2'>Category 2</label><br/>
-            </div>
-            <div className='checkbox-div'>
-              <input type='checkbox' id='filter-cat3' name='filter-cat3' value='cat3'/>
-              <label htmlFor='filter-cat3'>Category 3</label><br/>
-            </div>
+            {Object.keys(productTypes).map(type => (
+              <div key={type} className='checkbox-div'>
+                <input
+                  type='checkbox'
+                  id={`filter-cat${type}`}
+                  name={`filter-cat${type}`}
+                  value={type}
+                  onChange={handleCategoryChange}
+                  checked={selectedCategories.includes(parseInt(type))}
+                />
+                <label htmlFor={`filter-cat${type}`} onChange={handleCategoryChange}>{productTypes[type]}</label><br/>
+              </div>
+            ))}
           </form>
           <h1>Price Range</h1>
           <form className='range-form'>
@@ -122,15 +145,15 @@ function Products() {
                 onChange={handleMaxPriceChange}
               />
             </div>
-            <div className='price-range-btn'>
+            {/* <div className='price-range-btn'>
               <button type="button" className='range-submit-btn' id='apply' onClick={handleFilterByPrice}>APPLY</button>
               <button type='button' className='range-submit-btn' id='clear' onClick={handleClearPriceFilter}>CLEAR</button>
-            </div>
+            </div> */}
           </form>
         </div>
         <div className='products-div'>
           <div className='products-head-div'>
-            <h4>Showing {products.length} products</h4>
+            <h4>Showing {filteredProducts.length} products</h4>
             <form>
               <select name='sort-by-val' id='sort-by-val' onChange={handleSortChange} value={sortBy}>
                 <option value='show-all'>Show All</option>
@@ -142,13 +165,13 @@ function Products() {
             </form>
           </div>
           <div className='product-cards-div'>
-            {products.length == 0 ? <div id='noproduct'></div>
-            : <UserProductModal products={products}></UserProductModal>}
+            {filteredProducts.length === 0 ? <div id='noproduct'></div> :
+              <UserProductModal products={filteredProducts} />}
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default Products;
