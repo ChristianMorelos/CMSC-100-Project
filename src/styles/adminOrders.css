@@ -45,7 +45,7 @@ p {
 }
 
 .admin-order-image {
-  width: 70px;
+  width: 100px;
   height: 70px;
   margin-right: 20px;
   border-radius: 5px;
@@ -66,8 +66,8 @@ p {
 
 .admin-order-item button:hover {
   color: white;
-  border-color: #e85858;
-  background-color: #e85858;
+  border-color: #4caf50;
+  background-color: #4caf50;
 }
 
 .admin-order-item h3 {

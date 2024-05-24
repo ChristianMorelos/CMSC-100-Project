@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "/src/styles/adminOrders.css";
+import "/src/styles/AdminOrders.css";
 
 function Orders() {
   const [currentView, setCurrentView] = useState("pending");
