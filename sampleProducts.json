@@ -1,74 +1,137 @@
 [
   {
     "productId": "1",
-    "productName": "Apples",
-    "productPrice": 199.95,
-    "productDescription": "Fresh and crisp organic apples.",
-    "productType": "organic",
-    "productQuantity": 50,
-    "productImg": "https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-fresh-apple-fruit-red-png-image_10203073.png"
+    "productName": "Rice",
+    "productPrice": 50.00,
+    "productDescription": "High-quality staple rice.",
+    "productType": 1,
+    "productQuantity": 100,
+    "productImg": "https://www.srssulit.com/wp-content/uploads/products/2004898875-9.png"
   },
   {
     "productId": "2",
-    "productName": "Spinach",
-    "productPrice": 124.95,
-    "productDescription": "Nutrient-rich organic spinach leaves.",
-    "productType": "organic",
-    "productQuantity": 30,
-    "productImg": "https://static.vecteezy.com/system/resources/previews/028/831/075/original/fresh-green-spinach-png.png"
+    "productName": "Potatoes",
+    "productPrice": 15.00,
+    "productDescription": "Fresh and organic potatoes.",
+    "productType": 2,
+    "productQuantity": 80,
+    "productImg": "https://png.pngtree.com/png-clipart/20230928/original/pngtree-potatoes-isolated-no-background-png-image_13008158.png"
   },
   {
     "productId": "3",
-    "productName": "Eggs",
-    "productPrice": 249.95,
-    "productDescription": "Free-range organic eggs.",
-    "productType": "organic",
-    "productQuantity": 20,
-    "productImg": "https://img.freepik.com/free-photo/three-fresh-organic-raw-eggs-isolated-white-surface_114579-43677.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1715817600&semt=ais_user"
+    "productName": "Chicken",
+    "productPrice": 150.00,
+    "productDescription": "Free-range organic chicken.",
+    "productType": 3,
+    "productQuantity": 50,
+    "productImg": "https://binksberryhollow.com/wp-content/uploads/2021/01/Whole-Chicken-1030x1030.png"
   },
   {
     "productId": "4",
-    "productName": "Blueberries",
-    "productPrice": 299.95,
-    "productDescription": "Sweet and juicy organic blueberries.",
-    "productType": "organic",
+    "productName": "Salmon",
+    "productPrice": 500.00,
+    "productDescription": "Fresh wild-caught salmon.",
+    "productType": 4,
     "productQuantity": 40,
-    "productImg": "https://i.pinimg.com/736x/54/80/ec/5480ec102c8fa7e92ea61bd219a20494.jpg"
+    "productImg": "https://png.pngtree.com/png-clipart/20231206/original/pngtree-slice-of-raw-salmon-nobody-photo-png-image_13785660.png"
   },
   {
     "productId": "5",
-    "productName": "Kale",
-    "productPrice": 149.95,
-    "productDescription": "Organic kale leaves, perfect for salads and smoothies.",
-    "productType": "organic",
-    "productQuantity": 25,
-    "productImg": "https://static.vecteezy.com/system/resources/previews/027/546/590/original/green-kale-leaves-isolated-png.png"
+    "productName": "Almonds",
+    "productPrice": 20.00,
+    "productDescription": "Raw organic almonds.",
+    "productType": 5,
+    "productQuantity": 60,
+    "productImg": "https://img.freepik.com/premium-photo/almonds-isolated-white-background_188078-11739.jpg"
   },
   {
     "productId": "6",
-    "productName": "Avocados",
-    "productPrice": 99.95,
-    "productDescription": "Creamy and delicious organic avocados.",
-    "productType": "organic",
-    "productQuantity": 35,
-    "productImg": "https://png.pngtree.com/png-vector/20230930/ourmid/pngtree-avocado-png-avocado-fruit-ai-generated-png-image_10153887.png"
+    "productName": "Wheat Flour",
+    "productPrice": 45.00,
+    "productDescription": "Premium quality wheat flour.",
+    "productType": 1,
+    "productQuantity": 70,
+    "productImg": "https://static.vecteezy.com/system/resources/previews/026/975/423/large_2x/whole-wheat-flour-top-view-isolated-on-white-background-photo.jpg"
   },
   {
     "productId": "7",
-    "productName": "Bananas",
-    "productPrice": 49.95,
-    "productDescription": "Certified organic bananas.",
-    "productType": "organic",
-    "productQuantity": 60,
-    "productImg": "https://png.pngtree.com/png-clipart/20220716/ourmid/pngtree-banana-yellow-fruit-banana-skewers-png-image_5944324.png"
+    "productName": "Tomatoes",
+    "productPrice": 12.00,
+    "productDescription": "Fresh organic tomatoes.",
+    "productType": 2,
+    "productQuantity": 90,
+    "productImg": "https://st.depositphotos.com/1010305/3831/i/450/depositphotos_38313321-stock-photo-three-fresh-tomatoes.jpg"
   },
   {
     "productId": "8",
-    "productName": "Quinoa",
-    "productPrice": 419.95,
-    "productDescription": "High-protein organic quinoa grains.",
-    "productType": "organic",
-    "productQuantity": 15,
-    "productImg": "https://www.ardovlm.com/wp-content/uploads/2016/02/vlm-quinoa.png"
+    "productName": "Beef",
+    "productPrice": 250.00,
+    "productDescription": "Grass-fed organic beef.",
+    "productType": 3,
+    "productQuantity": 30,
+    "productImg": "https://thumbs.dreamstime.com/b/shin-beef-meat-isolated-white-studio-background-uncooked-organic-48190235.jpg"
+  },
+  {
+    "productId": "9",
+    "productName": "Shrimp",
+    "productPrice": 300.00,
+    "productDescription": "Fresh wild-caught shrimp.",
+    "productType": 4,
+    "productQuantity": 50,
+    "productImg": "https://st.depositphotos.com/1821481/2806/i/450/depositphotos_28067841-stock-photo-raw-shrimp-isolated-on-white.jpg"
+  },
+  {
+    "productId": "10",
+    "productName": "Honey",
+    "productPrice": 150.00,
+    "productDescription": "Pure organic honey.",
+    "productType": 5,
+    "productQuantity": 100,
+    "productImg": "https://t3.ftcdn.net/jpg/02/55/17/30/360_F_255173033_6L6YbTDRgBNW4dnFee6umnpR4OTMUIBR.jpg"
+  },
+  {
+    "productId": "11",
+    "productName": "Corn",
+    "productPrice": 20.00,
+    "productDescription": "Fresh organic corn.",
+    "productType": 1,
+    "productQuantity": 80,
+    "productImg": "https://img.freepik.com/premium-photo/raw-corn-white_1010706-133.jpg"
+  },
+  {
+    "productId": "12",
+    "productName": "Carrots",
+    "productPrice": 10.00,
+    "productDescription": "Crisp organic carrots.",
+    "productType": 2,
+    "productQuantity": 100,
+    "productImg": "https://img.freepik.com/premium-photo/fresh-carrots-white-background-ai-generated-image_532963-17937.jpg"
+  },
+  {
+    "productId": "13",
+    "productName": "Pork",
+    "productPrice": 220.00,
+    "productDescription": "Organic pork meat.",
+    "productType": 3,
+    "productQuantity": 40,
+    "productImg": "https://thumbs.dreamstime.com/b/raw-pork-loin-white-background-fresh-meat-raw-pork-loin-116986841.jpg"
+  },
+  {
+    "productId": "14",
+    "productName": "Tuna",
+    "productPrice": 400.00,
+    "productDescription": "Fresh wild-caught tuna.",
+    "productType": 4,
+    "productQuantity": 60,
+    "productImg": "https://img.freepik.com/premium-photo/isolated-tuna-sashimi-raw-tuna-fish-white-background_1077802-9367.jpg"
+  },
+  {
+    "productId": "15",
+    "productName": "Olive Oil",
+    "productPrice": 350.00,
+    "productDescription": "Extra virgin olive oil.",
+    "productType": 5,
+    "productQuantity": 70,
+    "productImg": "https://png.pngtree.com/png-clipart/20240416/original/pngtree-olive-oil-and-olives-isolated-on-white-background-with-clipping-path-png-image_14838363.png"
   }
 ]
