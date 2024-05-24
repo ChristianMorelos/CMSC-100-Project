@@ -17,9 +17,27 @@ export default function AddProduct({
   //validate fields function
   function validateFields() {
     //check if any of the input fields are empty
-    if (prodName == "" || prodDesc == "" || prodImg == "" || prodPrice == 0) {
+    if (prodName == "" || prodDesc == "" || prodImg == "") {
       //alert message for incomplete fields
       alert("Please fill out all of the fields first");
+      return;
+    }
+
+    //validation for price
+    if (prodPrice <= 0) {
+      alert("Please enter a valid price");
+      return;
+    }
+
+    //validation for product type
+    if (prodType > 5 || prodType < 1) {
+      alert("Please enter a valid product type from 1-5");
+      return;
+    }
+
+    //validation for product quantity
+    if (prodQty < 0) {
+      alert("Please enter a valid product quantity");
       return;
     }
 
@@ -102,6 +120,8 @@ export default function AddProduct({
             <input
               value={prodType}
               type="number"
+              min={1}
+              max={5}
               onChange={(e) => setType(e.target.value)}
               id="prodType"
               name="prodType"
