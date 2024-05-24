@@ -1,19 +1,16 @@
-.shopping-cart{
+.shopping-cart {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
-    width: 30vw;
-    background-color: white;
+    width: 100vw;
     z-index: 1000;
-    overflow-y: auto;
-    transition: transform 0.5s ease-in-out;
 }
 
 .blur-side{
     backdrop-filter: blur(2px);
     background-color: rgba(138, 138, 138, 0.5);
-    width: calc(100vw - 30vw - 17px);
+    width: 100vw;
     height: 100%;
     position: fixed;
     top: 0;
@@ -27,6 +24,13 @@
     height: 100vh;
     width: 30vw;
     padding: 30px;
+    z-index: 1001;
+    overflow-y: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 30px;
 }
 
 .cart-head{

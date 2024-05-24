@@ -1,134 +1,230 @@
-.admin-products {
-  display: flex;
-  flex-direction: row;
-}
-
-#form {
-  display: flex;
-  flex-direction: column;
-}
-
-/*add product form styling*/
-.addProductContainer {
-  height: 570px;
-  align-items: center;
-  display: flex;
-  width: 300px;
-  flex-direction: column;
-  border-radius: 10px;
-  margin: 10px;
-  box-shadow: 0 0 4px gray;
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 20px;
-}
-
-/* Product Container Styling */
-.productContainer {
+.admin-products-main{
+  background-color: var(--body-color);
+  padding-left: 8vw;
+  padding-right: 8vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
 }
 
-/* Product Div Styling */
-.product {
+.add-product-div{
+  /* background-color: lightyellow; */
+  width: 20vw;
+  padding-right: 40px;
+  padding-top: 50px;
+}
+
+.add-product-box{
+  /* background-color: #ffffff; */
+  border-radius: 8px;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  margin: 10px;
-  box-shadow: 0 0 4px gray;
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
-  height: auto;
-  width: 250px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
+
 }
 
-/* Button Styling */
-#addProduct {
-  font-size: 15px;
-  width: 200px;
-  height: 50px;
-  background-color: darkgreen;
-  border: solid;
-  border-radius: 10px;
-  color: white;
-  margin: 10px;
+.add-product-box h4{
+  font-size: 25px;
+  margin-bottom: 10px;
 }
 
-/* Button Styling */
-.deleteProduct {
-  font-size: 15px;
-  width: 200px;
-  height: 50px;
-  background-color: maroon;
-  border: solid;
-  border-radius: 10px;
-  color: white;
-  margin: 10px;
-}
-
-/* Button Styling */
-.editProduct {
-  font-size: 15px;
-  width: 200px;
-  height: 50px;
-  background-color: orange;
-  border: solid;
-  border-radius: 10px;
-  color: white;
-  margin: 10px;
-}
-
-/*Button Hover Styling */
-#addProduct:hover {
-  background-color: green;
-}
-
-/*Button Hover Styling */
-.deleteProduct:hover {
-  background-color: darkred;
-}
-
-/*Button Hover Styling */
-.editProduct:hover {
-  background-color: darkgoldenrod;
-}
-
-/*style input fields*/
-#form input {
-  height: 40px;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/*style label texts*/
-#form label {
-  font-size: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-}
-
-/* Product Image Styling */
-.product img {
-  margin: 10px;
-  width: 80%;
-  height: auto;
-}
-
-.sorting {
+.input-div{
   display: flex;
   flex-direction: column;
-  font-weight: normal;
-  font-size: 15px;
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.sort-type {
+.input-div label{
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-div input, #productDesc{
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffffff;
+  border: 1px solid gray;
+}
+
+#productDesc{
+  height: 150px;
+  resize: none;
+}
+
+#addProduct{
+  background-color: var(--apply-btn-color);
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  font-weight: 500;
+  color: white;
+  margin-top: 20px;
+}
+
+.display-product-div{
+  /* background-color: lightblue; */
+  padding-top: 30px;
+  padding-bottom: 50px;
+  flex: 1;
+}
+
+.display-product-card-div{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 20px;
+  justify-content: center;
+}
+
+.admin-product-box{
+  background-color: var(--product-box-color);
+  padding: 15px;
+  text-align: center;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-product-box:hover{
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.admin-img-div {
+  height: 200px;
+  width: 100%;
+  display: block;
+}
+
+.admin-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-info-div{
+  margin-top: 15px;
+  width: 100%;
+}
+
+.admin-name-div{
+  margin-bottom: 8px;
+}
+
+.admin-price-div{
+  margin-bottom: 2px;
+  font-size: 15px;
+}
+
+.admin-name-div a{
+  color: var(--main-text-color);
+  font-weight: 900;
+}
+
+.admin-price-div a{
+  color: var(--price-color);
+}
+
+.admin-button-div{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+
+}
+
+.admin-button-div button{
+  background-color: var(--addtocart-btn-color);
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+
+#admin-edit{
+  background-color: var(--apply-btn-color);
+  color: white;
+}
+
+#admin-edit:hover{
+  background-color: var(--addtocart-btn-color);
+  transition: 0.5s;
+}
+
+#admin-delete{
+  background-color: #D6D6D6;
+  color: #868686;
+}
+
+#admin-delete:hover{
+  background-color: #B5B5B5;
+  transition: 0.5s;
+}
+
+.editPage{
+  background-color: var(--body-color);
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-product-box{
+  background-color: #FFFFFF;
+  padding: 30px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+}
+
+.edit-head{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.edit-head h4{
+  font-size: 25px;
+}
+
+.edit-product-box button{
+  border: none;
+  padding: 10px 12px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#save{
+  background-color: var(--apply-btn-color);
+  color: white;
+  margin-right: 5px;
+}
+
+#save:hover{
+  background-color: var(--addtocart-btn-color);
+  transition: 0.5s;
+}
+
+#cancel{
+  background-color: #D6D6D6;
+  color: #868686;
+}
+
+#cancel:hover{
+  background-color: #B5B5B5;
+  transition: 0.5s;
 }
