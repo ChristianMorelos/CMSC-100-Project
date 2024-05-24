@@ -19,7 +19,7 @@ function UserOrders() {
       .then(body => {
         setOrders(body)
       })
-  }, [])
+  }, [orders])
 
   useEffect(() => {
     fetch(`http://localhost:4000/user/info?email=${email}`)
@@ -27,7 +27,7 @@ function UserOrders() {
       .then(body => {
         setCurrentUser(body)
       })
-  })
+  }, [])
 
   const pendingOrders = orders.filter(order => order.orderStatus === 0);
   const completedOrders = orders.filter(order => order.orderStatus === 1);
@@ -42,6 +42,8 @@ function UserOrders() {
     })
     .then(response => {
       if (response.ok) {
+
+
         alert('Order cancelled succesfully');
       } else {
         alert('Error in cancelling order');
