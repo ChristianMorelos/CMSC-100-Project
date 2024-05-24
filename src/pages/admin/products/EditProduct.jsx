@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../../../styles/addProduct.css";
+import "../../../styles/AddProduct.css";
 
 export default function EditProduct({ setEdit, prodDet }) {
   //details
@@ -33,12 +33,13 @@ export default function EditProduct({ setEdit, prodDet }) {
 
   return (
     <div className="editPage">
-      <div className="addProductContainer1">
-        <h1 id="title">Edit Product</h1>
-
-        <form id="form-values1">
-          <div id="form">
-            <label className="product-field">Product Name:</label>
+      <div className="edit-product-box">
+        <div className="edit-head">
+          <h4>Edit Product</h4>
+        </div>
+        <form>
+          <div className="input-div">
+            <label>Product Name:</label>
             <input
               value={prodName}
               type="text"
@@ -47,18 +48,9 @@ export default function EditProduct({ setEdit, prodDet }) {
               name="prodName"
               required
             />
-
-            <label className="product-field">Product Price:</label>
-            <input
-              value={prodPrice}
-              type="number"
-              onChange={(e) => setPrice(e.target.value)}
-              id="prodPrice"
-              name="prodPrice"
-              required
-            />
-
-            <label className="product-field">Product Image:</label>
+          </div>
+          <div className="input-div">
+            <label>Product Image Link:</label>
             <input
               value={prodImg}
               type="text"
@@ -67,18 +59,21 @@ export default function EditProduct({ setEdit, prodDet }) {
               name="prodImg"
               required
             />
-
-            <label className="product-field">Product Description:</label>
+          </div>
+          <div className="input-div">
+            <label>Product Price:</label>
             <input
-              value={prodDesc}
-              type="text"
-              onChange={(e) => setDesc(e.target.value)}
-              id="productDesc"
-              name="productDesc"
+              value={prodPrice}
+              type="number"
+              onChange={(e) => setPrice(e.target.value)}
+              id="prodPrice"
+              name="prodPrice"
+              min="0"
               required
             />
-
-            <label className="product-field">Product Type:</label>
+          </div>
+          <div className="input-div">
+            <label>Product Type:</label>
             <input
               value={prodType}
               type="number"
@@ -87,8 +82,20 @@ export default function EditProduct({ setEdit, prodDet }) {
               name="prodType"
               required
             />
-
-            <label className="product-field">Product Quantity:</label>
+          </div>
+          <div className="input-div">
+            <label>Product Description:</label>
+            <textarea
+              value={prodDesc}
+              type="text"
+              onChange={(e) => setDesc(e.target.value)}
+              id="productDesc"
+              name="productDesc"
+              required
+            />
+          </div>
+          <div className="input-div">
+            <label>Product Quantity:</label>
             <input
               value={prodQty}
               type="number"
@@ -99,26 +106,23 @@ export default function EditProduct({ setEdit, prodDet }) {
             />
           </div>
         </form>
-
         <button
-          id="addProduct"
+          id="save"
           onClick={() => {
             console.log(prodDet);
             editProduct();
             setEdit(false);
           }}
         >
-          Save Changes
+          SAVE CHANGES
         </button>
-      </div>
-      <div>
         <button
-          className="deleteProduct"
+          id="cancel"
           onClick={() => {
             setEdit(false);
           }}
         >
-          Cancel
+          CANCEL
         </button>
       </div>
     </div>

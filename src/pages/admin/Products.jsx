@@ -1,5 +1,5 @@
 // Product Listing
-import "../../styles/addProduct.css";
+import "../../styles/AddProduct.css";
 import { useEffect, useState } from "react";
 import AddProduct from "./products/AddProduct";
 import EditProduct from "./products/EditProduct";
@@ -18,18 +18,43 @@ export default function Products() {
   const [prodDet, setProdDet] = useState({});
 
   //for sorting
-  const [sortType, setSortType] = useState("asc");
-  const [sortBy, setSortBy] = useState("name");
+  const [ sortBy, setSortBy ] = useState('');
+  const [ originalProducts, setOriginalProducts ] = useState([]);
 
-  useEffect(() => {
-    fetch(
-      `http://localhost:4000/products/sorted-products?sortBy=${sortBy}&sortType=${sortType}`
-    )
+  function fetchProducts() {
+    fetch("http://localhost:4000/products")
       .then((response) => response.json())
       .then((body) => {
         setProducts(body);
+        setOriginalProducts(body);
       });
-  });
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const handleSortChange = (event) => {
+    const value = event.target.value;
+    setSortBy(value);
+    let sortedProducts = [];
+    if (value === 'name-asc') {
+      sortedProducts = [...products].sort((a, b) => a.productName.localeCompare(b.productName));
+    } else if (value === 'name-desc') {
+      sortedProducts = [...products].sort((a, b) => b.productName.localeCompare(a.productName));
+    } else if (value === 'price-asc') {
+      sortedProducts = [...products].sort((a, b) => a.productPrice - b.productPrice);
+    } else if (value === 'price-desc') {
+      sortedProducts = [...products].sort((a, b) => b.productPrice - a.productPrice);
+    } else if (value === 'quantity-asc') {
+      sortedProducts = [...products].sort((a, b) => a.productQuantity - b.productQuantity);
+    } else if (value === 'quantity-desc') {
+      sortedProducts = [...products].sort((a, b) => b.productQuantity - a.productQuantity);
+    } else {
+      sortedProducts = originalProducts;
+    }
+    setProducts(sortedProducts);
+  };
 
   //delete product function
   function deleteProduct(product) {
@@ -41,14 +66,15 @@ export default function Products() {
       .then((response) => response.text())
       .then((body) => {
         console.log(body);
+        fetchProducts();
       });
   }
 
   return (
     <>
       {edit === false && (
-        <div className="admin-products">
-          <div className="addProduct">
+        <div className="admin-products-main">
+          <div className="add-product-div">
             <AddProduct
               setName={setName}
               setPrice={setPrice}
@@ -64,118 +90,63 @@ export default function Products() {
               prodType={prodType}
               prodQty={prodQty}
             ></AddProduct>
-
-            <div className="sorting">
-              <div className="type">
-                <h2>Sort Type</h2>
-                <div className="sort-type">
-                  <input
-                    id="asc"
-                    type="radio"
-                    name="sortType"
-                    value="asc"
-                    defaultChecked
-                    onChange={() => setSortType("asc")}
-                  />
-                  <label className="sorting">Ascending</label>
-                </div>
-                <div className="sort-type">
-                  <input
-                    id="desc"
-                    type="radio"
-                    name="sortType"
-                    value="desc"
-                    onChange={() => setSortType("desc")}
-                  />
-                  <label className="sorting">Descending</label>
-                </div>
-              </div>
-              <div className="sortBy">
-                <h2>Sort By</h2>
-                <div className="sort-type">
-                  <input
-                    id="sName"
-                    type="radio"
-                    name="sortBy"
-                    value="name"
-                    defaultChecked
-                    onChange={() => setSortBy("name")}
-                  />
-                  <label className="sorting">Name</label>
-                </div>
-                <div className="sort-type">
-                  <input
-                    id="sType"
-                    type="radio"
-                    name="sortBy"
-                    value="type"
-                    onChange={() => setSortBy("type")}
-                  />
-                  <label className="sorting">Type</label>
-                </div>
-                <div className="sort-type">
-                  <input
-                    id="sPrice"
-                    type="radio"
-                    name="sortBy"
-                    value="price"
-                    onChange={() => setSortBy("price")}
-                  />
-                  <label className="sorting">Price</label>
-                </div>
-                <div className="sort-type">
-                  <input
-                    id="sQty"
-                    type="radio"
-                    name="sortBy"
-                    value="quantity"
-                    onChange={() => setSortBy("quantity")}
-                  />
-                  <label className="sorting">Quantity</label>
-                </div>
-              </div>
-            </div>
           </div>
-          <div className="productContainer">
-            {products.map((product) => (
-              //product div containing image, name, price, and an add button
-              <div key={product.productId} className="product">
-                <h2>{product.productName}</h2>
-                <img src={product.productImg} alt={product.name}></img>
-                <p>Description: {product.productDescription}</p>
-                <p>Type: {product.productType}</p>
-                <p>Quantity: {product.productQuantity}</p>
-                <p>Price: PHP {product.productPrice}</p>
-
-                <button
-                  className="editProduct"
-                  onClick={() => {
-                    //set product details for when editing
-                    setProdDet({
-                      productId: product.productId,
-                      productName: product.productName,
-                      productPrice: product.productPrice,
-                      productImg: product.productImg,
-                      productDescription: product.productDescription,
-                      productType: product.productType,
-                      productQuantity: product.productQuantity,
-                    });
-                    setEdit(!edit);
-                  }}
-                >
-                  Edit
-                </button>
-
-                <button
-                  className="deleteProduct"
-                  onClick={() => {
-                    deleteProduct(product.productId);
-                  }}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
+          <div className="display-product-div">
+            <div className='products-head-div'>
+              <h4>Showing {products.length} products</h4>
+              <form>
+                <select name='sort-by-val' id='sort-by-val' onChange={handleSortChange} value={sortBy}>
+                  <option value='show-all'>Show All</option>
+                  <option value='name-asc'>Product Name: Ascending</option>
+                  <option value='name-desc'>Product Name: Descending</option>
+                  <option value='price-asc'>Price: Low to High</option>
+                  <option value='price-desc'>Price: High to Low</option>
+                  <option value='quantity-asc'>Stock: Low to High</option>
+                  <option value='quantity-desc'>Stock: High to Low</option>
+                </select>
+              </form>
+            </div>
+            <div className="display-product-card-div">
+              {products.map((product) => (
+                <div className="admin-product-box">
+                  <div className="admin-img-div">
+                    <img src={product.productImg} alt={product.name} className="admin-product-img"/>
+                  </div>
+                  <div className="admin-info-div">
+                    <div className="admin-name-div">
+                      <a>{product.productName}</a>
+                    </div>
+                    <div className="admin-price-div">
+                      <a>Price: {product.productPrice}</a>
+                    </div>
+                    <div className="admin-price-div">
+                      <a>Stock Left: {product.productQuantity}</a>
+                    </div>
+                    <div className="admin-button-div">
+                      <button id="admin-edit"
+                        onClick={() => {
+                          //set product details for when editing
+                          setProdDet({
+                            productId: product.productId,
+                            productName: product.productName,
+                            productPrice: product.productPrice,
+                            productImg: product.productImg,
+                            productDescription: product.productDescription,
+                            productType: product.productType,
+                            productQuantity: product.productQuantity,
+                          });
+                          setEdit(!edit);
+                        }}>EDIT</button>
+                      <button id="admin-delete"
+                        onClick={() => {
+                          deleteProduct(product.productId);
+                        }}
+                        >DELETE</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
