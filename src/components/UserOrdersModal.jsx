@@ -20,9 +20,20 @@ function UserOrdersModal({ user, closeModal }) {
   const completedOrders = orders.filter(order => order.orderStatus === 1);
   const canceledOrders = orders.filter(order => order.orderStatus === 2);
 
-  function handleCancelOrder(transactionId) {
-    console.log(`Canceling order with Transaction ID: ${transactionId}`);
+  function handleConfirmOrder(transactionId) {
+    console.log(`Confirming order with Transaction ID: ${transactionId}`);
+
+    fetch(`http://localhost:4000/admin/order-fulfillment`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ transactionId }),
+    })
+      .then((response) => response.text())
+      .then((body) => {
+        console.log(body);
+      });
   }
+
 
   const renderOrderSection = (orders) => {  
     if (orders.length === 0) {
@@ -37,7 +48,7 @@ function UserOrdersModal({ user, closeModal }) {
           const formattedTime = date.toLocaleTimeString('en-US', timeOptions);
   
           return (
-            <div key={order.productId} className="order-item">
+            <div key={order.productId} className="admin-order-item">
               <img src={'https://via.placeholder.com/100'} alt={order.productName} className="order-image" />
               <div className="order-details">
                 <h3>{order.productName}</h3>
@@ -45,7 +56,7 @@ function UserOrdersModal({ user, closeModal }) {
                 <p>Ordered on: {formattedDate} at {formattedTime}</p>
               </div>
               {order.orderStatus === 0 && (
-                <button onClick={() => handleCancelOrder(order.transactionId)}>Cancel Order</button>
+                <button onClick={() => handleConfirmOrder(order.transactionId)}>Confirm Order</button>
               )}
             </div>
           );
