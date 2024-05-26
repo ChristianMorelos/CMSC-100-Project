@@ -62,7 +62,7 @@ function UserOrders() {
 
         return (
           <div key={order.transactionId} className="order-item">
-            <img src={'https://via.placeholder.com/100'} alt={order.productName} className="order-image" />
+            <img src={order.productImg} alt={order.productName} className="order-image" />
             <div className="order-details">
               <h3>{order.productName}</h3>
               <p>Quantity: {order.orderQuantity}</p>

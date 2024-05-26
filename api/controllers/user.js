@@ -78,7 +78,9 @@ const getOrders = async (req, res) => {
         productName: product.productName, 
         orderQuantity: transaction.orderQuantity, 
         orderStatus: transaction.orderStatus,
-        dateOrdered: transaction.dateOrdered
+        dateOrdered: transaction.dateOrdered,
+        productId: transaction.productId,
+        productImg: product.productImg
       };
 
       orderList.push(order);
