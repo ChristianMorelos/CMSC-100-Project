@@ -5,16 +5,18 @@ function UserOrdersModal({ user, closeModal }) {
   const [currentView, setCurrentView] = useState('pending');
   const [orders, setOrders] = useState([]);
 
+  const [products, setProducts] = useState([]);
+
   const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   const timeOptions = { hour: '2-digit', minute: '2-digit' };
-
+  
   useEffect(() => {
     fetch(`http://localhost:4000/user/orders?email=${user.email}`)
-      .then(response => response.json())
-      .then(body => {
-        setOrders(body)
-      })
-  })
+      .then((response) => response.json())
+      .then((body) => {
+        setOrders(body);
+      });
+  },[orders]);
 
   const pendingOrders = orders.filter(order => order.orderStatus === 0);
   const completedOrders = orders.filter(order => order.orderStatus === 1);
@@ -48,8 +50,8 @@ function UserOrdersModal({ user, closeModal }) {
           const formattedTime = date.toLocaleTimeString('en-US', timeOptions);
   
           return (
-            <div key={order.productId} className="admin-order-item">
-              <img src={'https://via.placeholder.com/100'} alt={order.productName} className="order-image" />
+            <div key={order.productId}  className="admin-order-item">
+              <img src={order.productImg} alt={order.productImg} className="order-image" />
               <div className="order-details">
                 <h3>{order.productName}</h3>
                 <p>Quantity: {order.orderQuantity}</p>
