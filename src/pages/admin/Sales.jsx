@@ -14,6 +14,10 @@ function Sales() {
     const now = new Date();
     const start = new Date();
     const end = new Date();
+
+    start.setHours(0, 0, 0, 0);
+    now.setHours(23, 59, 59, 999);
+    end.setHours(23, 59, 59, 999);
   
     if (period === 'weekly') {
       start.setDate(now.getDate() - now.getDay());
