@@ -86,7 +86,7 @@ function Sales() {
 
   useEffect(() => {
     fetchSalesData();
-  }, [dates]);
+  });
 
   function fetchSalesData() {
     const queryString = `?start=${encodeURIComponent(dates.start.toISOString())}&end=${encodeURIComponent(dates.end.toISOString())}`;
