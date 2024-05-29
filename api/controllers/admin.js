@@ -132,11 +132,11 @@ const addProduct = async (req, res) => {
       res.status(200).send({ "product added": true });
     } catch (error) {
       //failure message
-      res.send({ "product added": false });
+      res.status(500).send({ "product added": false });
     }
   } else {
     //failure message
-    res.send({ "product added": false });
+    res.status(500).send({ "product added": false });
   }
 };
 
