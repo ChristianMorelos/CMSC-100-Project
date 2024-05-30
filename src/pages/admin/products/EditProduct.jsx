@@ -29,6 +29,9 @@ export default function EditProduct({ setEdit, prodDet }) {
       .then((body) => {
         console.log(body);
       });
+
+    //alert message for sucess
+    alert("Product edited successfully");
   }
 
   const productTypes = {
@@ -81,7 +84,6 @@ export default function EditProduct({ setEdit, prodDet }) {
             />
           </div>
           <div className="input-div">
-            
             <label>Product Type:</label>
             <select
               value={prodType}

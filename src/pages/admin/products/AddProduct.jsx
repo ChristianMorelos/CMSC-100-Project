@@ -74,7 +74,10 @@ export default function AddProduct({
     setDesc("");
     setType(1);
     setQty(1);
-  };
+
+    //alert message for sucess
+    alert("Product added successfully");
+  }
 
   //product types
   const productTypes = {

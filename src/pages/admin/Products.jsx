@@ -108,36 +108,41 @@ export default function Products() {
         console.log(body);
         fetchProducts();
       });
+
+    //alert message for sucess
+    alert("Product deleted successfully");
   }
 
   const handleCategoryChange = (event) => {
     const value = event.target.value;
     const isChecked = event.target.checked;
-  
+
     let updatedCategories;
     if (isChecked) {
       updatedCategories = [...selectedCategories, parseInt(value)];
     } else {
-      updatedCategories = selectedCategories.filter(cat => cat !== parseInt(value));
+      updatedCategories = selectedCategories.filter(
+        (cat) => cat !== parseInt(value)
+      );
     }
-  
+
     // Update the selected categories state
     setSelectedCategories(updatedCategories);
-  
+
     // If no categories are selected, display all products
     if (updatedCategories.length === 0) {
       setProducts(originalProducts);
     } else {
       // Filter products based on selected categories
-      const filteredProducts = originalProducts.filter(product =>
+      const filteredProducts = originalProducts.filter((product) =>
         updatedCategories.includes(product.productType)
       );
-  
+
       // Update the products state with the filtered products
       setProducts(filteredProducts);
     }
   };
-  
+
   return (
     <>
       {edit === false && (
@@ -161,18 +166,24 @@ export default function Products() {
           </div>
           <div className="display-product-div">
             <div className="products-head-div">
-              <form className='admin-filter-form'>
-                {Object.keys(productTypes).map(type => (
-                  <div key={type} className='admin-filter-div'>
+              <form className="admin-filter-form">
+                {Object.keys(productTypes).map((type) => (
+                  <div key={type} className="admin-filter-div">
                     <input
-                      type='checkbox'
+                      type="checkbox"
                       id={`filter-cat${type}`}
                       name={`filter-cat${type}`}
                       value={type}
                       onChange={handleCategoryChange}
                       checked={selectedCategories.includes(parseInt(type))}
                     />
-                    <label htmlFor={`filter-cat${type}`} onChange={handleCategoryChange}>{productTypes[type]}</label><br/>
+                    <label
+                      htmlFor={`filter-cat${type}`}
+                      onChange={handleCategoryChange}
+                    >
+                      {productTypes[type]}
+                    </label>
+                    <br />
                   </div>
                 ))}
               </form>
@@ -228,8 +239,11 @@ export default function Products() {
                       <a>Price: {product.productPrice}</a>
                     </div>
                     <div className="admin-price-div">
-                      {product.productQuantity === 0 ? <a id="outofstock">OUT OF STOCK</a>
-                      : <a>Stock Left: {product.productQuantity}</a>}
+                      {product.productQuantity === 0 ? (
+                        <a id="outofstock">OUT OF STOCK</a>
+                      ) : (
+                        <a>Stock Left: {product.productQuantity}</a>
+                      )}
                     </div>
                     <div className="admin-button-div">
                       <button
@@ -276,9 +290,11 @@ export default function Products() {
       )}
 
       {isModalOpen === true && (
-        <AdminProductModal setIsModalOpen={setIsModalOpen} prodDet={prodDet}></AdminProductModal>
+        <AdminProductModal
+          setIsModalOpen={setIsModalOpen}
+          prodDet={prodDet}
+        ></AdminProductModal>
       )}
-
     </>
   );
 }
