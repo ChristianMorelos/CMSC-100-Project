@@ -19,7 +19,9 @@
 
 .order-nav {
     text-align: center;
-    margin: 20px 0;
+    position: fixed;
+    background-color: #ffffff;
+    height: 15%;
 }
 
 .order-nav select {
