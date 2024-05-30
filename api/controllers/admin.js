@@ -1,5 +1,4 @@
 import { User, Product, OrderTransaction } from "../models/model.js";
-import { v4 as uuidv4 } from "uuid";
 
 const getSales = async (req, res) => {
   try {
@@ -106,13 +105,6 @@ const getOrders = async (req, res) => {
 
 //add product method
 const addProduct = async (req, res) => {
-  //random product id
-  var productId = uuidv4();
-  //split the random alphanumeric by "-"
-  productId = productId.split("-");
-  //get the first 8 character string of the random id
-  productId = productId[0];
-
   //check if the product fields are complete
   if (
     req.body.productName &&
@@ -125,7 +117,7 @@ const addProduct = async (req, res) => {
     try {
       //create new instance of product with the given inputs
       const newProduct = new Product({
-        productId: productId,
+        productId: new mongoose.Types.ObjectId(),
         productName: req.body.productName,
         productPrice: req.body.productPrice,
         productImg: req.body.productImg,
