@@ -92,8 +92,16 @@ const getUsers = async (req, res) => {
 
 //get orders method
 const getOrders = async (req, res) => {
-  //get all orders
-  res.json(await OrderTransaction.find());
+  try {
+    //get all orders
+    const orders = await OrderTransaction.find();
+
+    //success
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 //add product method
@@ -132,44 +140,55 @@ const addProduct = async (req, res) => {
       res.status(200).send({ "product added": true });
     } catch (error) {
       //failure message
+      console.error(error);
       res.status(500).send({ "product added": false });
     }
   } else {
     //failure message
-    res.status(500).send({ "product added": false });
+    res.status(400).send({ "product added": false });
   }
 };
 
 //delete product method
 const deleteProduct = async (req, res) => {
-  //remove product using product id
-  const removeProduct = await Product.deleteOne({
-    productId: req.body.productId,
-  });
+  try {
+    //remove product using product id
+    const removeProduct = await Product.deleteOne({
+      productId: req.body.productId,
+    });
 
-  //response message
-  res.send(removeProduct);
+    //response message
+    res.status(200).send({ "product removed": true });
+  } catch (error) {
+    //failure message
+    console.error(error);
+    res.status(500).send({ "product removed": false });
+  }
 };
 
 //edit product method
 const editProduct = async (req, res) => {
-  //edit product with the given product id
-  const editOne = await Product.updateOne(
-    { productId: req.body.productId },
-    {
-      $set: {
-        productName: req.body.productName,
-        productPrice: req.body.productPrice,
-        productImg: req.body.productImg,
-        productDescription: req.body.productDescription,
-        productType: req.body.productType,
-        productQuantity: req.body.productQuantity,
-      },
-    }
-  );
+  try {
+    //edit product with the given product id
+    const editOne = await Product.updateOne(
+      { productId: req.body.productId },
+      {
+        $set: {
+          productName: req.body.productName,
+          productPrice: req.body.productPrice,
+          productImg: req.body.productImg,
+          productDescription: req.body.productDescription,
+          productType: req.body.productType,
+          productQuantity: req.body.productQuantity,
+        },
+      }
+    );
 
-  //response message
-  res.send(editOne);
+    //response message
+    res.status(200).send("Product has been edited successfully.");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 };
 
 const fulfillOrder = async (req, res) => {
