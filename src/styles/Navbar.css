@@ -26,22 +26,39 @@ a {
     color: white;
     text-decoration: none;
     text-decoration-color: white; 
+    font-weight: 500;
 }
 
 a:hover {
     text-decoration: underline;
-    text-underline-offset: 1rem;
+    text-underline-offset: 0.5rem;
     text-decoration-color: white; 
 }
 
 .logo {
-    font-size: 2rem; 
-    transition: all 0.3s ease; 
+    font-size: 1.5rem; 
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 .logo:hover {
     cursor: default;
     text-decoration: none;
+}
+
+.navbar-logo{
+    display: flex;
+}
+
+.logo-text{
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    letter-spacing: 5px;
+}
+
+.logo-img{
+    height: 50px;
 }
 
 @media (max-width: 1000px) {

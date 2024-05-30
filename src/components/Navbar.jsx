@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "./logo.png";
 
 import "../styles/Navbar.css";
 
@@ -16,10 +17,15 @@ function Navbar({ menus }) {
 
   return (
     <nav className="navbar">
-      <div>
-        <Link to={menus[0].url} className="logo">
-          Farm-to-Table
-        </Link>
+      <div className="navbar-logo">
+          <div className="logo-text">
+            <Link to={menus[0].url} className="logo">
+              FARM-TO-TABLE
+            </Link>
+          </div>
+          <div>
+            <img src={logo} className="logo-img"/>
+          </div>
       </div>
 
       <div className="nav-links">

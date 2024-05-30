@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Root from './Root';
+import logo from './../components/logo-colored.png';
 
 import '../styles/Auth.css';
 
@@ -120,6 +121,7 @@ function Auth() {
               <a href="#" onClick={() => setIsSignUpActive(false)}> Sign in </a>
             </p>
             <button onClick={handleSignup} type="button">Sign Up</button>
+            <img src={logo} className='logo-sign'/>
           </form>
           </div>
         </div>
@@ -149,6 +151,7 @@ function Auth() {
             <a href="#" onClick={() => setIsSignUpActive(true)}> Register </a>
           </p>
           <button onClick={handleLogin} type="button">Sign In</button>
+          <img src={logo} className='logo-sign'/>
         </form>
         </div>
     </div>
