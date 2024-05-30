@@ -55,7 +55,7 @@ function Orders() {
         );
 
         return (
-          <div key={order.productId} className="admin-order-item">
+          <div key={order.transactionId} className="admin-order-item">
             <img
               src={product[0]?.productImg}
               alt={product[0]?.productName}
