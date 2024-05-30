@@ -1,4 +1,5 @@
 import { User, Product, OrderTransaction } from "../models/model.js";
+import mongoose from "mongoose";
 
 const getSales = async (req, res) => {
   try {
