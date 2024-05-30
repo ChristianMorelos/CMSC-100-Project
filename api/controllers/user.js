@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { User, Product, Cart, OrderTransaction } from "../models/model.js";
-import bcrypt from 'bcrypt'; 
+import bcrypt from "bcrypt";
 
 const checkoutOrder = async (req, res) => {
   try {
@@ -31,7 +31,7 @@ const checkoutOrder = async (req, res) => {
       await newTransaction.save();
     }
 
-    await Cart.deleteMany({ email: email });  //clears the cart
+    await Cart.deleteMany({ email: email }); //clears the cart
     res.status(200).send("All orders have been processed successfully.");
   } catch (error) {
     res.status(500).send(error.message);
@@ -64,23 +64,24 @@ const cancelOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
   try {
-
     const { email } = req.query;
 
     const transactions = await OrderTransaction.find({ email: email });
-    const orderList = []
-    
-    for (const transaction  of transactions) {
-      const product = await Product.findOne({ productId: transaction.productId });
+    const orderList = [];
+
+    for (const transaction of transactions) {
+      const product = await Product.findOne({
+        productId: transaction.productId,
+      });
 
       const order = {
-        transactionId: transaction .transactionId, 
-        productName: product.productName, 
-        orderQuantity: transaction.orderQuantity, 
+        transactionId: transaction.transactionId,
+        productName: product.productName,
+        orderQuantity: transaction.orderQuantity,
         orderStatus: transaction.orderStatus,
         dateOrdered: transaction.dateOrdered,
         productId: transaction.productId,
-        productImg: product.productImg
+        productImg: product.productImg,
       };
 
       orderList.push(order);
@@ -98,8 +99,13 @@ const getCart = async (req, res) => {
 
     const cart = [];
     for (let { productId, quantity } of items) {
-      const { productName, productDescription, productImg, productPrice, productType } =
-        await Product.findOne({ productId: productId });
+      const {
+        productName,
+        productDescription,
+        productImg,
+        productPrice,
+        productType,
+      } = await Product.findOne({ productId: productId });
 
       const cartItem = {
         productId: productId,
@@ -108,7 +114,7 @@ const getCart = async (req, res) => {
         productImg: productImg,
         productPrice: productPrice,
         productType: productType,
-        productQuantity: quantity
+        productQuantity: quantity,
       };
       cart.push(cartItem);
     }
@@ -151,16 +157,18 @@ const addCart = async (req, res) => {
   try {
     const { email, productId, productImg, productPrice, quantity } = req.body;
 
-    const existingCartItem = await Cart.findOne({ email: email, productId: productId });
+    const existingCartItem = await Cart.findOne({
+      email: email,
+      productId: productId,
+    });
 
     if (existingCartItem) {
       await Cart.updateOne(
-        { email: email,
-          productId: productId },
+        { email: email, productId: productId },
         {
           $set: {
-            quantity: existingCartItem.quantity + quantity
-          }
+            quantity: existingCartItem.quantity + quantity,
+          },
         }
       );
     } else {
@@ -171,7 +179,7 @@ const addCart = async (req, res) => {
         productPrice: productPrice,
         quantity: quantity,
       });
-  
+
       await newCart.save();
     }
 
@@ -218,19 +226,19 @@ const userInfo = async (req, res) => {
 const confirmPassword = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email });
 
-    const isPasswordValid = await bcrypt.compare(password, user.password)
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    if(!isPasswordValid) {
-        return res.status(401).json({ error: 'Invalid credentials' })
-    }   
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
 
-    return res.status(200).json({ response: 'Confirmed' })
+    return res.status(200).json({ response: "Confirmed" });
   } catch (error) {
     res.status(500).send(error.message);
   }
-}
+};
 
 export {
   checkoutOrder,
@@ -242,5 +250,5 @@ export {
   updateCartItemQuantity,
   editAccount,
   userInfo,
-  confirmPassword
+  confirmPassword,
 };
