@@ -62,7 +62,14 @@ export default function AddProduct({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(product),
     })
-      .then((response) => response.text())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to add product");
+        }
+        //alert message for sucess
+        alert("Product added successfully");
+        return response.text();
+      })
       .then((body) => {
         console.log(body);
       });
@@ -73,8 +80,8 @@ export default function AddProduct({
     setPrice(0);
     setDesc("");
     setType(1);
-    setQty(1);
-  };
+    setQty(0);
+  }
 
   //product types
   const productTypes = {

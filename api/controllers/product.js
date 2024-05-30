@@ -9,44 +9,48 @@ const getAllProducts = async (req, res) => {
 };
 
 const sortedGetAllProducts = async (req, res) => {
-  if (req.query.sortBy === "name" && req.query.sortType === "asc") {
-    const products = await Product.find().sort({ productName: 1 });
-    res.send(products);
-  }
+  try {
+    if (req.query.sortBy === "name" && req.query.sortType === "asc") {
+      const products = await Product.find().sort({ productName: 1 });
+      res.status(200).send(products);
+    }
 
-  if (req.query.sortBy === "name" && req.query.sortType === "desc") {
-    const products = await Product.find().sort({ productName: -1 });
-    res.send(products);
-  }
+    if (req.query.sortBy === "name" && req.query.sortType === "desc") {
+      const products = await Product.find().sort({ productName: -1 });
+      res.status(200).send(products);
+    }
 
-  if (req.query.sortBy === "type" && req.query.sortType === "asc") {
-    const products = await Product.find().sort({ productType: 1 });
-    res.send(products);
-  }
+    if (req.query.sortBy === "type" && req.query.sortType === "asc") {
+      const products = await Product.find().sort({ productType: 1 });
+      res.status(200).send(products);
+    }
 
-  if (req.query.sortBy === "type" && req.query.sortType === "desc") {
-    const products = await Product.find().sort({ productType: -1 });
-    res.send(products);
-  }
+    if (req.query.sortBy === "type" && req.query.sortType === "desc") {
+      const products = await Product.find().sort({ productType: -1 });
+      res.status(200).send(products);
+    }
 
-  if (req.query.sortBy === "price" && req.query.sortType === "asc") {
-    const products = await Product.find().sort({ productPrice: 1 });
-    res.send(products);
-  }
+    if (req.query.sortBy === "price" && req.query.sortType === "asc") {
+      const products = await Product.find().sort({ productPrice: 1 });
+      res.status(200).send(products);
+    }
 
-  if (req.query.sortBy === "price" && req.query.sortType === "desc") {
-    const products = await Product.find().sort({ productPrice: -1 });
-    res.send(products);
-  }
+    if (req.query.sortBy === "price" && req.query.sortType === "desc") {
+      const products = await Product.find().sort({ productPrice: -1 });
+      res.status(200).send(products);
+    }
 
-  if (req.query.sortBy === "quantity" && req.query.sortType === "asc") {
-    const products = await Product.find().sort({ productQuantity: 1 });
-    res.send(products);
-  }
+    if (req.query.sortBy === "quantity" && req.query.sortType === "asc") {
+      const products = await Product.find().sort({ productQuantity: 1 });
+      res.status(200).send(products);
+    }
 
-  if (req.query.sortBy === "quantity" && req.query.sortType === "desc") {
-    const products = await Product.find().sort({ productQuantity: -1 });
-    res.send(products);
+    if (req.query.sortBy === "quantity" && req.query.sortType === "desc") {
+      const products = await Product.find().sort({ productQuantity: -1 });
+      res.status(200).send(products);
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 };
 

@@ -12,6 +12,38 @@ export default function EditProduct({ setEdit, prodDet }) {
 
   //edit product function
   function editProduct() {
+    //check if any of the input fields are empty
+    if (prodName == "" || prodDesc == "" || prodImg == "") {
+      //alert message for incomplete fields
+      alert("Please fill out all of the fields first");
+      return;
+    }
+
+    //validation for price
+    if (prodPrice <= 0) {
+      alert("Please enter a valid price");
+      return;
+    }
+
+    //validation for product type
+    if (prodType > 5 || prodType < 1) {
+      alert("Please enter a valid product type from 1-5");
+      return;
+    }
+
+    //validation for product quantity
+    if (prodQty < 0) {
+      alert("Please enter a valid product quantity");
+      return;
+    }
+
+    //print validated fields
+    console.log("Product Name: " + prodName);
+    console.log("Product Description: " + prodDesc);
+    console.log("Product Type: " + prodType);
+    console.log("Product Quantity: " + prodQty);
+    console.log("Product Price: " + prodPrice);
+
     fetch("http://localhost:4000/admin/edit-product", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,7 +57,15 @@ export default function EditProduct({ setEdit, prodDet }) {
         productQuantity: prodQty,
       }),
     })
-      .then((response) => response.text())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to edit product");
+        }
+
+        //alert message for sucess
+        alert("Product edited successfully");
+        return response.text();
+      })
       .then((body) => {
         console.log(body);
       });
@@ -81,7 +121,6 @@ export default function EditProduct({ setEdit, prodDet }) {
             />
           </div>
           <div className="input-div">
-            
             <label>Product Type:</label>
             <select
               value={prodType}
