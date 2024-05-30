@@ -1,137 +1,337 @@
-[
-  {
-    "productId": "1",
-    "productName": "Rice",
-    "productPrice": 50.00,
-    "productDescription": "High-quality staple rice.",
-    "productType": 1,
-    "productQuantity": 100,
-    "productImg": "https://www.srssulit.com/wp-content/uploads/products/2004898875-9.png"
+[{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea2"
   },
-  {
-    "productId": "2",
-    "productName": "Potatoes",
-    "productPrice": 15.00,
-    "productDescription": "Fresh and organic potatoes.",
-    "productType": 2,
-    "productQuantity": 80,
-    "productImg": "https://png.pngtree.com/png-clipart/20230928/original/pngtree-potatoes-isolated-no-background-png-image_13008158.png"
+  "productId": "1",
+  "productName": "Rice",
+  "productPrice": 250,
+  "productDescription": "High-quality staple rice perfect for daily meals. Our rice is carefully harvested and processed to retain its nutrients. Enjoy its fluffy texture and rich taste in every bite.",
+  "productType": 1,
+  "productQuantity": 0,
+  "productImg": "https://www.srssulit.com/wp-content/uploads/products/2004898875-9.png"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea3"
   },
-  {
-    "productId": "3",
-    "productName": "Chicken",
-    "productPrice": 150.00,
-    "productDescription": "Free-range organic chicken.",
-    "productType": 3,
-    "productQuantity": 50,
-    "productImg": "https://binksberryhollow.com/wp-content/uploads/2021/01/Whole-Chicken-1030x1030.png"
+  "productId": "2",
+  "productName": "Potatoes",
+  "productPrice": 80,
+  "productDescription": "Fresh and organic potatoes ideal for various dishes. These potatoes are grown without synthetic chemicals and are packed with nutrients. Perfect for boiling, baking, or frying.",
+  "productType": 2,
+  "productQuantity": 0,
+  "productImg": "https://png.pngtree.com/png-clipart/20230928/original/pngtree-potatoes-isolated-no-background-png-image_13008158.png"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea4"
   },
-  {
-    "productId": "4",
-    "productName": "Salmon",
-    "productPrice": 500.00,
-    "productDescription": "Fresh wild-caught salmon.",
-    "productType": 4,
-    "productQuantity": 40,
-    "productImg": "https://png.pngtree.com/png-clipart/20231206/original/pngtree-slice-of-raw-salmon-nobody-photo-png-image_13785660.png"
+  "productId": "3",
+  "productName": "Chicken",
+  "productPrice": 220,
+  "productDescription": "Free-range organic chicken that is tender and flavorful. Our chickens are raised in a natural environment and fed with organic grains. Enjoy healthy and delicious meals with our premium chicken.",
+  "productType": 3,
+  "productQuantity": 0,
+  "productImg": "https://binksberryhollow.com/wp-content/uploads/2021/01/Whole-Chicken-1030x1030.png"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea5"
   },
-  {
-    "productId": "5",
-    "productName": "Almonds",
-    "productPrice": 20.00,
-    "productDescription": "Raw organic almonds.",
-    "productType": 5,
-    "productQuantity": 60,
-    "productImg": "https://img.freepik.com/premium-photo/almonds-isolated-white-background_188078-11739.jpg"
+  "productId": "4",
+  "productName": "Salmon",
+  "productPrice": 800,
+  "productDescription": "Fresh wild-caught salmon from the cleanest waters. Our salmon is rich in omega-3 fatty acids and perfect for a healthy diet. Savor its delicate flavor whether grilled, baked, or raw.",
+  "productType": 4,
+  "productQuantity": 30,
+  "productImg": "https://png.pngtree.com/png-clipart/20231206/original/pngtree-slice-of-raw-salmon-nobody-photo-png-image_13785660.png"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea6"
   },
-  {
-    "productId": "6",
-    "productName": "Wheat Flour",
-    "productPrice": 45.00,
-    "productDescription": "Premium quality wheat flour.",
-    "productType": 1,
-    "productQuantity": 70,
-    "productImg": "https://static.vecteezy.com/system/resources/previews/026/975/423/large_2x/whole-wheat-flour-top-view-isolated-on-white-background-photo.jpg"
+  "productId": "5",
+  "productName": "Almonds",
+  "productPrice": 250,
+  "productDescription": "Raw organic almonds that are perfect for snacking. These almonds are packed with essential nutrients and antioxidants. Enjoy them on their own or add them to your favorite recipes.",
+  "productType": 5,
+  "productQuantity": 60,
+  "productImg": "https://img.freepik.com/premium-photo/almonds-isolated-white-background_188078-11739.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea7"
   },
-  {
-    "productId": "7",
-    "productName": "Tomatoes",
-    "productPrice": 12.00,
-    "productDescription": "Fresh organic tomatoes.",
-    "productType": 2,
-    "productQuantity": 90,
-    "productImg": "https://st.depositphotos.com/1010305/3831/i/450/depositphotos_38313321-stock-photo-three-fresh-tomatoes.jpg"
+  "productId": "6",
+  "productName": "Wheat Flour",
+  "productPrice": 220,
+  "productDescription": "Premium quality wheat flour for all your baking needs. Our flour is finely milled to ensure smooth texture and consistency. Perfect for making bread, pastries, and other baked goods.",
+  "productType": 1,
+  "productQuantity": 70,
+  "productImg": "https://static.vecteezy.com/system/resources/previews/026/975/423/large_2x/whole-wheat-flour-top-view-isolated-on-white-background-photo.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea8"
   },
-  {
-    "productId": "8",
-    "productName": "Beef",
-    "productPrice": 250.00,
-    "productDescription": "Grass-fed organic beef.",
-    "productType": 3,
-    "productQuantity": 30,
-    "productImg": "https://thumbs.dreamstime.com/b/shin-beef-meat-isolated-white-studio-background-uncooked-organic-48190235.jpg"
+  "productId": "7",
+  "productName": "Tomatoes",
+  "productPrice": 60,
+  "productDescription": "Fresh organic tomatoes that are bursting with flavor. These tomatoes are grown without harmful pesticides and are rich in vitamins. Ideal for salads, sauces, and many other dishes.",
+  "productType": 2,
+  "productQuantity": 90,
+  "productImg": "https://st.depositphotos.com/1010305/3831/i/450/depositphotos_38313321-stock-photo-three-fresh-tomatoes.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ea9"
   },
-  {
-    "productId": "9",
-    "productName": "Shrimp",
-    "productPrice": 300.00,
-    "productDescription": "Fresh wild-caught shrimp.",
-    "productType": 4,
-    "productQuantity": 50,
-    "productImg": "https://st.depositphotos.com/1821481/2806/i/450/depositphotos_28067841-stock-photo-raw-shrimp-isolated-on-white.jpg"
+  "productId": "8",
+  "productName": "Beef",
+  "productPrice": 400,
+  "productDescription": "Grass-fed organic beef that is juicy and tender. Our beef is sourced from cattle raised in natural pastures. Perfect for steaks, stews, and other hearty dishes.",
+  "productType": 3,
+  "productQuantity": 29,
+  "productImg": "https://thumbs.dreamstime.com/b/shin-beef-meat-isolated-white-studio-background-uncooked-organic-48190235.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eaa"
   },
-  {
-    "productId": "10",
-    "productName": "Honey",
-    "productPrice": 150.00,
-    "productDescription": "Pure organic honey.",
-    "productType": 5,
-    "productQuantity": 100,
-    "productImg": "https://t3.ftcdn.net/jpg/02/55/17/30/360_F_255173033_6L6YbTDRgBNW4dnFee6umnpR4OTMUIBR.jpg"
+  "productId": "9",
+  "productName": "Shrimp",
+  "productPrice": 600,
+  "productDescription": "Fresh wild-caught shrimp that is sweet and succulent. Our shrimp is caught in pristine waters and processed immediately to retain its freshness. Ideal for grilling, frying, or in seafood dishes.",
+  "productType": 4,
+  "productQuantity": 50,
+  "productImg": "https://st.depositphotos.com/1821481/2806/i/450/depositphotos_28067841-stock-photo-raw-shrimp-isolated-on-white.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eab"
   },
-  {
-    "productId": "11",
-    "productName": "Corn",
-    "productPrice": 20.00,
-    "productDescription": "Fresh organic corn.",
-    "productType": 1,
-    "productQuantity": 80,
-    "productImg": "https://img.freepik.com/premium-photo/raw-corn-white_1010706-133.jpg"
+  "productId": "10",
+  "productName": "Honey",
+  "productPrice": 350,
+  "productDescription": "Pure organic honey with a rich, golden color. Our honey is harvested from bees that forage in organic fields. Perfect for sweetening teas, spreading on toast, or using in recipes.",
+  "productType": 5,
+  "productQuantity": 100,
+  "productImg": "https://t3.ftcdn.net/jpg/02/55/17/30/360_F_255173033_6L6YbTDRgBNW4dnFee6umnpR4OTMUIBR.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eac"
   },
-  {
-    "productId": "12",
-    "productName": "Carrots",
-    "productPrice": 10.00,
-    "productDescription": "Crisp organic carrots.",
-    "productType": 2,
-    "productQuantity": 100,
-    "productImg": "https://img.freepik.com/premium-photo/fresh-carrots-white-background-ai-generated-image_532963-17937.jpg"
+  "productId": "11",
+  "productName": "Corn",
+  "productPrice": 50,
+  "productDescription": "Fresh organic corn that is sweet and juicy. Our corn is grown in organic fields without synthetic fertilizers. Perfect for grilling, boiling, or adding to salads and dishes.",
+  "productType": 1,
+  "productQuantity": 80,
+  "productImg": "https://img.freepik.com/premium-photo/raw-corn-white_1010706-133.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ead"
   },
-  {
-    "productId": "13",
-    "productName": "Pork",
-    "productPrice": 220.00,
-    "productDescription": "Organic pork meat.",
-    "productType": 3,
-    "productQuantity": 40,
-    "productImg": "https://thumbs.dreamstime.com/b/raw-pork-loin-white-background-fresh-meat-raw-pork-loin-116986841.jpg"
+  "productId": "12",
+  "productName": "Carrots",
+  "productPrice": 40,
+  "productDescription": "Crisp organic carrots that are full of flavor. These carrots are grown without synthetic chemicals and are rich in beta-carotene. Perfect for snacking, salads, and cooking.",
+  "productType": 2,
+  "productQuantity": 40,
+  "productImg": "https://img.freepik.com/premium-photo/fresh-carrots-white-background-ai-generated-image_532963-17937.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eae"
   },
-  {
-    "productId": "14",
-    "productName": "Tuna",
-    "productPrice": 400.00,
-    "productDescription": "Fresh wild-caught tuna.",
-    "productType": 4,
-    "productQuantity": 60,
-    "productImg": "https://img.freepik.com/premium-photo/isolated-tuna-sashimi-raw-tuna-fish-white-background_1077802-9367.jpg"
+  "productId": "13",
+  "productName": "Pork",
+  "productPrice": 380,
+  "productDescription": "Organic pork meat that is tender and flavorful. Our pork is sourced from pigs raised in humane conditions and fed organic feed. Ideal for roasts, chops, and other pork dishes.",
+  "productType": 3,
+  "productQuantity": 40,
+  "productImg": "https://thumbs.dreamstime.com/b/raw-pork-loin-white-background-fresh-meat-raw-pork-loin-116986841.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eaf"
   },
-  {
-    "productId": "15",
-    "productName": "Olive Oil",
-    "productPrice": 350.00,
-    "productDescription": "Extra virgin olive oil.",
-    "productType": 5,
-    "productQuantity": 70,
-    "productImg": "https://png.pngtree.com/png-clipart/20240416/original/pngtree-olive-oil-and-olives-isolated-on-white-background-with-clipping-path-png-image_14838363.png"
-  }
-]
+  "productId": "14",
+  "productName": "Tuna",
+  "productPrice": 900,
+  "productDescription": "Fresh wild-caught tuna with a rich flavor. Our tuna is caught using sustainable methods and is perfect for sashimi, steaks, and salads. Enjoy its firm texture and delicious taste.",
+  "productType": 4,
+  "productQuantity": 60,
+  "productImg": "https://img.freepik.com/premium-photo/isolated-tuna-sashimi-raw-tuna-fish-white-background_1077802-9367.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb0"
+  },
+  "productId": "15",
+  "productName": "Olive Oil",
+  "productPrice": 700,
+  "productDescription": "Extra virgin olive oil of the highest quality. Our olive oil is cold-pressed to retain its natural flavors and nutrients. Ideal for dressing salads, cooking, and adding to various dishes.",
+  "productType": 5,
+  "productQuantity": 70,
+  "productImg": "https://png.pngtree.com/png-clipart/20240416/original/pngtree-olive-oil-and-olives-isolated-on-white-background-with-clipping-path-png-image_14838363.png"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb1"
+  },
+  "productId": "16",
+  "productName": "Spinach",
+  "productPrice": 50,
+  "productDescription": "Fresh organic spinach that is crisp and nutritious. Our spinach is grown without synthetic pesticides and is rich in iron and vitamins. Perfect for salads, smoothies, and cooking.",
+  "productType": 2,
+  "productQuantity": 80,
+  "productImg": "https://assets.shop.loblaws.ca/products/20162840001/b2/en/front/20162840001_front_a06_@2.png"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb2"
+  },
+  "productId": "17",
+  "productName": "Mangoes",
+  "productPrice": 120,
+  "productDescription": "Sweet and juicy organic mangoes. Our mangoes are grown in the tropics and harvested at peak ripeness. Perfect for snacking, desserts, and adding to salads and dishes.",
+  "productType": 2,
+  "productQuantity": 50,
+  "productImg": "https://villkart.com/cdn/shop/products/6_d750c74e-319d-48f5-91b2-5f266190fe6f.png?v=1676209116"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb4"
+  },
+  "productId": "19",
+  "productName": "Oats",
+  "productPrice": 150,
+  "productDescription": "Organic oats that are perfect for a healthy breakfast. Our oats are grown without synthetic chemicals and are high in fiber. Enjoy them as oatmeal, in smoothies, or in baked goods.",
+  "productType": 1,
+  "productQuantity": 60,
+  "productImg": "https://cdn.shopify.com/s/files/1/1667/4225/products/Oatramekin_1688x1688_crop_center.png?v=1685572344"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb5"
+  },
+  "productId": "20",
+  "productName": "Lamb",
+  "productPrice": 500,
+  "productDescription": "Organic lamb meat that is tender and flavorful. Our lamb is sourced from sheep raised in natural pastures. Perfect for roasting, grilling, and stewing.",
+  "productType": 3,
+  "productQuantity": 30,
+  "productImg": "https://static.vecteezy.com/system/resources/previews/036/094/534/original/ai-generated-lamb-chops-raw-on-a-transparent-background-free-png.png"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb6"
+  },
+  "productId": "21",
+  "productName": "Coconut Oil",
+  "productPrice": 250,
+  "productDescription": "Pure organic coconut oil that is versatile and healthy. Our coconut oil is cold-pressed to retain its natural nutrients. Ideal for cooking, baking, and skin care.",
+  "productType": 5,
+  "productQuantity": 50,
+  "productImg": "https://5.imimg.com/data5/PM/DQ/MY-36871609/organic-coconut-oil-500x500.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb7"
+  },
+  "productId": "22",
+  "productName": "Bell Peppers",
+  "productPrice": 80,
+  "productDescription": "Fresh organic bell peppers that are crisp and sweet. Our bell peppers are grown without synthetic chemicals and are rich in vitamins. Perfect for salads, stir-fries, and grilling.",
+  "productType": 2,
+  "productQuantity": 70,
+  "productImg": "https://alinggemma.com/cdn/shop/products/Bell_Pepper_Red_530x@2x.jpg?v=1636551860"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb8"
+  },
+  "productId": "23",
+  "productName": "Duck",
+  "productPrice": 450,
+  "productDescription": "Organic duck meat that is rich and flavorful. Our duck is raised in natural environments and fed organic grains. Perfect for roasting, grilling, and making traditional dishes.",
+  "productType": 3,
+  "productQuantity": 20,
+  "productImg": "https://res.cloudinary.com/promenade-prod/image/upload/b_rgb:ffffff,c_pad,d_butcher:vendor:global:catalog:product:image-placeholder.png,dpr_2.0,f_auto,fl_preserve_transparency,h_270,q_auto,w_270/v1688169200/butcher/vendor/12/catalog/product/7/r/7r2wIzxUKNVW4mQ9CmG8xh3vstBj_OakMlKxhqGMuC8_p1276.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907eb9"
+  },
+  "productId": "24",
+  "productName": "Tilapia",
+  "productPrice": 200,
+  "productDescription": "Fresh farm-raised tilapia that is mild and flaky. Our tilapia is raised in clean, sustainable farms. Perfect for baking, frying, and grilling.",
+  "productType": 4,
+  "productQuantity": 60,
+  "productImg": "https://afrobuy.co.uk/cdn/shop/products/Afrobuy_fresh_tilapia.jpg?v=1672007625"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ebb"
+  },
+  "productId": "26",
+  "productName": "Strawberries",
+  "productPrice": 200,
+  "productDescription": "Fresh organic strawberries that are sweet and juicy. Our strawberries are grown without synthetic pesticides and are packed with vitamins. Perfect for snacking, desserts, and smoothies.",
+  "productType": 2,
+  "productQuantity": 50,
+  "productImg": "https://www.thefruitbasketshop.co.uk/wp-content/uploads/2020/05/E4654331-2408-4526-A713-E5E92B1C6DB8.jpeg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ebd"
+  },
+  "productId": "28",
+  "productName": "Walnuts",
+  "productPrice": 300,
+  "productDescription": "Raw organic walnuts that are nutritious and delicious. Our walnuts are packed with healthy fats and antioxidants. Perfect for snacking, baking, and adding to dishes.",
+  "productType": 5,
+  "productQuantity": 50,
+  "productImg": "https://simplythegreat.ae/cdn/shop/products/Untitleddesign-2022-02-23T141352.504.png?v=1645607640"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ebe"
+  },
+  "productId": "29",
+  "productName": "Pumpkin",
+  "productPrice": 100,
+  "productDescription": "Fresh organic pumpkin that is sweet and nutritious. Our pumpkins are grown without synthetic chemicals and are rich in vitamins. Perfect for soups, pies, and roasting.",
+  "productType": 2,
+  "productQuantity": 70,
+  "productImg": "https://media.healthyfood.com/wp-content/uploads/2017/03/What-to-do-with-pumpkin.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589d002d0005b76e907ebf"
+  },
+  "productId": "30",
+  "productName": "Milk",
+  "productPrice": 80,
+  "productDescription": "Fresh organic milk that is creamy and delicious. Our milk is sourced from cows raised on organic pastures. Perfect for drinking, cooking, and baking.",
+  "productType": 1,
+  "productQuantity": 100,
+  "productImg": "https://www-konga-com-res.cloudinary.com/w_400,f_auto,fl_lossy,dpr_3.0,q_auto/media/catalog/product/V/V/178740_1641122680.jpg"
+},
+{
+  "_id": {
+    "$oid": "66589fe8f5b72f84a9556397"
+  },
+  "productId": "a7bea39c",
+  "productName": "Bananas",
+  "productPrice": 50,
+  "productImg": "https://www.kandyfreshfruits.com/wp-content/uploads/2017/04/banana1.jpg",
+  "productDescription": "Sweet and ripe organic bananas perfect for a healthy snack. Our bananas are grown in tropical climates and harvested at peak ripeness. Enjoy them fresh, in smoothies, or as a dessert topping.",
+  "productType": 2,
+  "productQuantity": 5,
+  "__v": 0
+}]
