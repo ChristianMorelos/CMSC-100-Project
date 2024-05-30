@@ -109,11 +109,8 @@ const addProduct = async (req, res) => {
   //check if the product fields are complete
   if (
     req.body.productName &&
-    req.body.productPrice &&
     req.body.productImg &&
-    req.body.productDescription &&
-    req.body.productType &&
-    req.body.productQuantity
+    req.body.productDescription
   ) {
     try {
       //create new instance of product with the given inputs

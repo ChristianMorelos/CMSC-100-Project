@@ -80,7 +80,7 @@ export default function AddProduct({
     setPrice(0);
     setDesc("");
     setType(1);
-    setQty(1);
+    setQty(0);
   }
 
   //product types
