@@ -25,13 +25,18 @@ export default function EditProduct({ setEdit, prodDet }) {
         productQuantity: prodQty,
       }),
     })
-      .then((response) => response.text())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to edit product");
+        }
+
+        //alert message for sucess
+        alert("Product edited successfully");
+        return response.text();
+      })
       .then((body) => {
         console.log(body);
       });
-
-    //alert message for sucess
-    alert("Product edited successfully");
   }
 
   const productTypes = {

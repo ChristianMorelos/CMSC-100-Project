@@ -103,14 +103,20 @@ export default function Products() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId: product }),
     })
-      .then((response) => response.text())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete product");
+        }
+
+        //alert message for sucess
+        alert("Product deleted successfully");
+
+        return response.text();
+      })
       .then((body) => {
         console.log(body);
         fetchProducts();
       });
-
-    //alert message for sucess
-    alert("Product deleted successfully");
   }
 
   const handleCategoryChange = (event) => {
