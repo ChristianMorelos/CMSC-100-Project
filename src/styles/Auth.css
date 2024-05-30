@@ -7,6 +7,11 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.logo-sign{
+  height: 100px;
+  margin-top: 50px;
+}
+
 .auth-page {
   background-color: #2da83d;
   background: linear-gradient(to right, #acc360, #67a74d);
